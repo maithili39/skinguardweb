@@ -40,6 +40,10 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# google service account credentials
+google.json
+*.json.key
+
 # generated db (rebuild with `npm run db:seed`)
 /data/app.db
 # local backups (use db:backup script; store off-repo for real backups)

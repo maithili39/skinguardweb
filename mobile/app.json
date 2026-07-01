@@ -23,10 +23,19 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#4a5d44"
       },
-      "package": "com.skinguard.mobile"
+      "package": "com.skinguard.mobile",
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "ef1e1cd0-0c5a-4268-a95b-1cc8752950e8"
+      }
     }
   }
 }
