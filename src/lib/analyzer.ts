@@ -261,92 +261,142 @@ function buildFlags(
     ings.filter(pred).map((i) => i.displayName);
 
   const concerns = new Set(profile.concerns);
+  const isSensitive = concerns.has("sensitive") || concerns.has("rosacea");
+  const isAcneProne = concerns.has("acne") || concerns.has("fungal-acne");
+  const isDry = profile.skinType === "dry";
+  const isPregnant = concerns.has("pregnancy");
 
-  // Fragrance / allergens
-  const fragrance = Array.from(
-    new Set([...namesWithTag("fragrance"), ...namesWithTag("allergen")]),
-  );
-  if (fragrance.length) {
-    flags.push({
-      level: "bad",
-      title: "Contains fragrance / known allergens",
-      detail:
-        concerns.has("sensitive") || concerns.has("rosacea")
-          ? "You flagged sensitive skin. Fragrance and declarable allergens are a leading cause of irritation and contact reactions — approach with caution."
-          : "Fragrance and EU-declarable allergens can trigger irritation or contact allergy in reactive skin.",
-      ingredientNames: fragrance,
-    });
-  }
-
-  // Comedogenic (acne / fungal concerns)
-  const comedogenic = namesWhere(
-    (i) => (i.comedogenicity ?? 0) >= 3 || hasTag(i, "comedogenic"),
-  );
-  if (comedogenic.length) {
-    flags.push({
-      level: concerns.has("acne") || concerns.has("fungal-acne") ? "bad" : "moderate",
-      title: "Potentially pore-clogging ingredients",
-      detail:
-        concerns.has("acne") || concerns.has("fungal-acne")
-          ? "Because you flagged acne-prone skin, these higher-comedogenic ingredients are worth watching — they may contribute to breakouts."
-          : "These ingredients rate higher on the comedogenicity scale and may clog pores for breakout-prone skin.",
-      ingredientNames: comedogenic,
-    });
-  }
-
-  // Drying alcohol
-  const dryingAlcohol = namesWithTag("drying-alcohol");
-  if (dryingAlcohol.length) {
-    flags.push({
-      level:
-        profile.skinType === "dry" || concerns.has("sensitive") ? "bad" : "moderate",
-      title: "Contains drying alcohol",
-      detail:
-        "Volatile alcohols give a fast-absorbing finish but can compromise the moisture barrier with frequent use, especially on dry or sensitive skin.",
-      ingredientNames: dryingAlcohol,
-    });
-  }
-
-  // Strong exfoliating / retinoid actives
-  const actives = namesWhere(
-    (i) =>
-      hasTag(i, "exfoliant") || hasTag(i, "retinoid") || hasTag(i, "active"),
-  );
-  if (actives.length) {
-    flags.push({
-      level: "moderate",
-      title: "Contains active ingredients",
-      detail:
-        "Actives (acids, retinoids, vitamin C) are effective but can over-exfoliate if layered. Introduce gradually, don't combine too many at once, and use sunscreen.",
-      ingredientNames: Array.from(new Set(actives)),
-    });
-  }
-
-  // Pregnancy
-  if (concerns.has("pregnancy")) {
+  // ── Pregnancy — only flag if concern is set, and only ingredients rated avoid ──
+  if (isPregnant) {
     const unsafe = namesWhere((i) => i.pregnancySafe === "avoid");
-    const caution = namesWhere((i) => i.pregnancySafe === "caution");
+    const cautionList = namesWhere((i) => i.pregnancySafe === "caution");
     if (unsafe.length) {
       flags.push({
         level: "bad",
-        title: "Best avoided during pregnancy",
+        title: "Avoid during pregnancy",
         detail:
-          "You flagged pregnant / nursing. These ingredients are commonly advised against in pregnancy — check with your doctor before use.",
+          "These ingredients have evidence-backed advisories against use in pregnancy. Retinoids (vitamin A derivatives) are linked to birth defects at high doses; salicylic acid penetrates the skin and is advised against in the third trimester. Consult your OB/GYN before use.",
         ingredientNames: unsafe,
       });
     }
-    if (caution.length) {
+    if (cautionList.length) {
       flags.push({
         level: "moderate",
-        title: "Use with caution during pregnancy",
+        title: "Mixed guidance during pregnancy",
         detail:
-          "Guidance on these is mixed during pregnancy. Discuss with your healthcare provider.",
-        ingredientNames: caution,
+          "Low topical doses of these ingredients are generally considered low-risk by most dermatologists, but guidance varies. If you're pregnant or breastfeeding, discuss with your healthcare provider.",
+        ingredientNames: cautionList,
       });
     }
   }
 
-  // Fungal acne triggers
+  // ── EU-declarable contact allergens — only a real concern for sensitised skin ──
+  const allergens = namesWithTag("allergen");
+  if (allergens.length && isSensitive) {
+    flags.push({
+      level: "bad",
+      title: "EU-declarable contact allergens",
+      detail:
+        "The EU requires these fragrance chemicals to be listed by name above 0.01% (rinse-off) / 0.001% (leave-on) because they are established contact sensitisers. For sensitive or rosacea-prone skin the risk of a reaction is meaningfully elevated — a fragrance-free formula is a safer choice.",
+      ingredientNames: allergens,
+    });
+  } else if (allergens.length) {
+    // Inform without alarming
+    flags.push({
+      level: "moderate",
+      title: "Contains EU-declarable fragrance allergens",
+      detail:
+        `${allergens.length} ingredient${allergens.length > 1 ? "s are" : " is"} on the EU's list of 26 declarable fragrance allergens. The vast majority of people tolerate these well at cosmetic concentrations. They are only a concern if you have a known fragrance allergy or have reacted to a product before.`,
+      ingredientNames: allergens,
+    });
+  }
+
+  // ── Fragrance (undisclosed blend) — context-dependent ──
+  const fragranceBlend = namesWithTag("fragrance").filter(
+    (n) => !allergens.includes(n),
+  );
+  if (fragranceBlend.length && isSensitive) {
+    flags.push({
+      level: "moderate",
+      title: "Contains fragrance (undisclosed blend)",
+      detail:
+        "\"Parfum\" / \"Fragrance\" on a label is a single entry for potentially dozens of chemicals, none of which are disclosed. For sensitive or reactive skin, undisclosed fragrance is a common trigger — look for the same product in a fragrance-free version if you react.",
+      ingredientNames: fragranceBlend,
+    });
+  }
+
+  // ── Comedogenicity — only flag ingredients rated 4–5, and contextualise ──
+  const highlyComedogenic = namesWhere(
+    (i) => (i.comedogenicity ?? 0) >= 4 || hasTag(i, "comedogenic"),
+  );
+  const mildlyComedogenic = namesWhere(
+    (i) => (i.comedogenicity ?? 0) === 3,
+  );
+  if (highlyComedogenic.length && isAcneProne) {
+    flags.push({
+      level: "bad",
+      title: "Highly comedogenic ingredients",
+      detail:
+        "These ingredients score 4–5 on the standard 0–5 comedogenicity scale, meaning they have a documented tendency to block follicles in controlled studies. For acne-prone skin this is a meaningful risk, not just a theoretical one. Concentration matters — if they appear near the end of the list they may be fine, but monitor your skin.",
+      ingredientNames: highlyComedogenic,
+    });
+  } else if (highlyComedogenic.length) {
+    flags.push({
+      level: "moderate",
+      title: "Some ingredients rate high on comedogenicity scales",
+      detail:
+        "These ingredients score 4–5 on comedogenicity scales. For most skin types at typical cosmetic concentrations this causes no issue. Only relevant if you are acne-prone.",
+      ingredientNames: highlyComedogenic,
+    });
+  }
+  if (mildlyComedogenic.length && isAcneProne) {
+    flags.push({
+      level: "moderate",
+      title: "Mildly comedogenic ingredients",
+      detail:
+        "These score 3/5 on comedogenicity scales — borderline territory. Many people with acne-prone skin use products containing these without issue, as final concentration in the formula is usually low. Worth monitoring if you break out.",
+      ingredientNames: mildlyComedogenic,
+    });
+  }
+
+  // ── Drying alcohols — only flag for dry/sensitive, inform others ──
+  const dryingAlcohol = namesWithTag("drying-alcohol");
+  if (dryingAlcohol.length) {
+    if (isDry || isSensitive) {
+      flags.push({
+        level: "moderate",
+        title: "Contains drying / volatile alcohol",
+        detail:
+          "Volatile alcohols (denatured alcohol, ethanol) evaporate quickly and give a fast-absorbing, matte finish. Clinical evidence shows repeated use can impair barrier function in dry or sensitive skin. For oily or normal skin types, low concentrations are typically well tolerated.",
+        ingredientNames: dryingAlcohol,
+      });
+    }
+    // For oily/normal skin: not flagged — it's actually beneficial (matte finish, penetration enhancer)
+  }
+
+  // ── Actives — informative, not alarming ──
+  const retinoids = namesWhere((i) => hasTag(i, "retinoid"));
+  const exfoliants = namesWhere((i) => hasTag(i, "exfoliant"));
+  if (retinoids.length) {
+    flags.push({
+      level: "moderate",
+      title: "Contains retinoid (vitamin A derivative)",
+      detail:
+        "Retinoids are among the most evidence-backed anti-ageing and acne actives in dermatology. They increase cell turnover, which can cause dryness and peeling in the first 4–8 weeks (the \"retinization\" period). Use at night, buffer with moisturiser if needed, and apply SPF daily. Do not combine with other strong exfoliants.",
+      ingredientNames: retinoids,
+    });
+  }
+  if (exfoliants.length) {
+    flags.push({
+      level: "moderate",
+      title: "Contains chemical exfoliant (AHA / BHA / PHA)",
+      detail:
+        "Chemical exfoliants dissolve the bonds between dead skin cells rather than scrubbing them off. AHAs (glycolic, lactic) target the surface; BHAs (salicylic acid) penetrate into pores — ideal for blackheads. PHAs are gentler and suitable for sensitive skin. All increase photosensitivity — daily SPF is non-negotiable.",
+      ingredientNames: exfoliants,
+    });
+  }
+
+  // ── Fungal acne triggers — only if concern is set ──
   if (concerns.has("fungal-acne")) {
     const fungalTriggers = namesWhere(
       (i) => hasTag(i, "fungal-acne-trigger") || hasTag(i, "oil"),
@@ -354,28 +404,27 @@ function buildFlags(
     if (fungalTriggers.length) {
       flags.push({
         level: "moderate",
-        title: "Possible fungal acne (malassezia) triggers",
+        title: "Potential malassezia triggers",
         detail:
-          "Certain oils, fatty acids, and esters can feed malassezia yeast. If you're prone to fungal acne, patch test and monitor.",
+          "Malassezia (pityrosporum) folliculitis feeds on certain fatty acids and oils. Note: comedogenicity scales and malassezia sensitivity are separate concerns — an ingredient can be non-comedogenic but still feed the yeast. These are worth avoiding if you have confirmed fungal acne, but they are harmless for everyone else.",
         ingredientNames: Array.from(new Set(fungalTriggers)),
       });
     }
   }
 
-  // Positive signal: barrier / soothing / superstar
-  const goodies = namesWhere(
-    (i) =>
-      i.rating === "superstar" ||
-      hasTag(i, "barrier-repair") ||
-      hasTag(i, "soothing"),
+  // ── Positive signals ──
+  const superstars = namesWhere((i) => i.rating === "superstar");
+  const barrierIngredients = namesWhere(
+    (i) => hasTag(i, "barrier-repair") || hasTag(i, "soothing"),
   );
-  if (goodies.length) {
+  const allGoodies = Array.from(new Set([...superstars, ...barrierIngredients]));
+  if (allGoodies.length) {
     flags.push({
       level: "good",
-      title: "Skin-loving ingredients found",
+      title: "Evidence-backed actives & skin-identical ingredients",
       detail:
-        "This formula includes well-regarded hydrators, barrier-repair lipids, or soothing agents.",
-      ingredientNames: Array.from(new Set(goodies)),
+        "This formula contains ingredients with strong peer-reviewed evidence for efficacy — hydrators, barrier lipids, or well-studied actives. These are the ingredients dermatologists and cosmetic scientists consistently recommend.",
+      ingredientNames: allGoodies,
     });
   }
 
@@ -390,56 +439,92 @@ function buildVerdict(
   const moderateFlags = flags.filter((f) => f.level === "moderate");
   const concerns = new Set(profile.concerns);
 
+  // Hard avoids: only things with real clinical evidence of harm for THIS person
   if (badFlags.length > 0) {
-    const titles = badFlags.map((f) => f.title.toLowerCase());
-    if (titles.some((t) => t.includes("pregnancy"))) {
+    const isPregnancyFlag = badFlags.some((f) => f.title.toLowerCase().includes("pregnancy"));
+    const isAllergenFlag = badFlags.some((f) => f.title.toLowerCase().includes("allergen"));
+    const isComedogenicFlag = badFlags.some((f) => f.title.toLowerCase().includes("comedogenic"));
+
+    if (isPregnancyFlag) {
       return {
         verdict: "avoid",
         verdictReason:
-          "This formula contains ingredients that are best avoided during pregnancy. Consult your doctor before use.",
+          "Contains ingredients with evidence-based advisories against use in pregnancy (e.g. retinoids, high-dose salicylic acid). The risk is not cosmetic — it is pharmacological. Consult your doctor.",
       };
     }
-    if (titles.some((t) => t.includes("fragrance") || t.includes("allergen"))) {
+
+    if (isAllergenFlag) {
       return {
         verdict: "avoid",
         verdictReason:
-          "This formula contains fragrance or known allergens that are likely to cause irritation for your skin profile. Consider a fragrance-free alternative.",
+          "Contains EU-declarable contact allergens and you have sensitive / reactive skin. This is a meaningful mismatch — not a theoretical risk. A fragrance-free alternative will give the same benefits without the irritant load.",
       };
     }
-    return {
-      verdict: "avoid",
-      verdictReason: `This formula has ${badFlags.length} concern${badFlags.length > 1 ? "s" : ""} that conflict with your skin profile. Review the flags below before using.`,
-    };
+
+    if (isComedogenicFlag && (concerns.has("acne") || concerns.has("fungal-acne"))) {
+      return {
+        verdict: "caution",
+        verdictReason:
+          "Contains highly comedogenic ingredients (4–5/5 scale) and you flagged acne-prone skin. These ingredients have a documented tendency to block follicles. Concentration in the formula matters — if they appear near the end of the ingredient list the risk is lower, but monitor your skin after 2–4 weeks.",
+      };
+    }
   }
 
+  // Caution: real but manageable concerns
   if (moderateFlags.length > 0) {
-    const isAcne = concerns.has("acne") || concerns.has("fungal-acne");
-    const isSensitive = concerns.has("sensitive") || concerns.has("rosacea");
-    if (isAcne && moderateFlags.some((f) => f.title.toLowerCase().includes("comedogenic"))) {
+    const hasExfoliant = moderateFlags.some((f) => f.title.toLowerCase().includes("exfoliant"));
+    const hasRetinoid = moderateFlags.some((f) => f.title.toLowerCase().includes("retinoid"));
+    const hasMildComedo = moderateFlags.some((f) => f.title.toLowerCase().includes("mildly comedogenic"));
+    const hasFungal = moderateFlags.some((f) => f.title.toLowerCase().includes("malassezia"));
+
+    if (hasRetinoid && hasExfoliant) {
       return {
         verdict: "caution",
         verdictReason:
-          "This formula contains pore-clogging ingredients that may trigger breakouts. Patch test and monitor your skin.",
+          "Contains both a retinoid and a chemical exfoliant. Either alone is excellent — combined in the same routine they can over-exfoliate, causing barrier damage. Use on alternate nights rather than together.",
       };
     }
-    if (isSensitive && moderateFlags.some((f) => f.title.toLowerCase().includes("alcohol"))) {
+    if (hasRetinoid) {
+      return {
+        verdict: "safe",
+        verdictReason:
+          "Contains a retinoid — one of the most clinically validated skincare ingredients available. Expect a 4–8 week adjustment period (dryness, peeling). This is normal and not a reason to stop. Apply SPF daily when using retinoids.",
+      };
+    }
+    if (hasExfoliant) {
+      return {
+        verdict: "safe",
+        verdictReason:
+          "Contains a chemical exfoliant (AHA/BHA/PHA). These are well-studied and effective at the concentrations used in leave-on products. Daily SPF is essential — exfoliants increase UV sensitivity.",
+      };
+    }
+    if (hasMildComedo && (concerns.has("acne") || concerns.has("fungal-acne"))) {
       return {
         verdict: "caution",
         verdictReason:
-          "This formula contains drying alcohol, which may compromise your moisture barrier. Introduce slowly and monitor for dryness or irritation.",
+          "A few ingredients score 3/5 on comedogenicity scales. This is borderline — many acne-prone people use these without issue at typical cosmetic concentrations. Patch test for 2 weeks and monitor.",
       };
     }
+    if (hasFungal) {
+      return {
+        verdict: "caution",
+        verdictReason:
+          "Contains oils or fatty acids that can feed malassezia yeast. If your acne is fungal in origin, these may perpetuate breakouts. Switch to a malassezia-safe formula and reassess.",
+      };
+    }
+
+    // Generic moderate — don't overstate
     return {
-      verdict: "caution",
+      verdict: "safe",
       verdictReason:
-        "This formula is generally fine but has a few ingredients worth watching for your skin type. Patch test before full use.",
+        "No significant concerns for your skin profile. A few ingredients are worth being aware of (see notes below) but none represent a meaningful risk at typical cosmetic use concentrations.",
     };
   }
 
   return {
     verdict: "safe",
     verdictReason:
-      "No significant concerns detected for your skin profile. This formula looks compatible with your skin type and concerns.",
+      "Formula looks well-matched to your skin profile. No ingredients of concern were identified based on your skin type and flagged concerns.",
   };
 }
 
