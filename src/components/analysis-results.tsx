@@ -203,6 +203,9 @@ function IngredientRow({ item, index }: { item: AnalyzedIngredient; index: numbe
           {ing && item.rawName.toLowerCase() !== ing.displayName.toLowerCase() && (
             <span className="text-xs text-text-light">({ing.displayName})</span>
           )}
+          {item.concentration && (
+            <span className="rounded-full bg-green-primary/10 px-2 py-0.5 text-[10px] font-semibold text-green-primary">{item.concentration}</span>
+          )}
           {ing && <RatingBadge rating={ing.rating} />}
           {item.isMayContain && (
             <span className="rounded-full bg-bg-section px-2 py-0.5 text-[10px] uppercase tracking-wide text-text-muted">May contain</span>

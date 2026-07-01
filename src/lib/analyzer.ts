@@ -17,6 +17,14 @@ import type { SkinProfile } from "./profile";
 interface RawToken {
   raw: string;
   isMayContain: boolean;
+  concentration?: string;
+}
+
+// Extract percentage concentration from a token like "Niacinamide 10%" or "Niacinamide (10%)"
+function extractConcentration(token: string): { name: string; concentration?: string } {
+  const m = token.match(/^(.*?)\s*\(?\s*(\d+(?:\.\d+)?%)\s*\)?$/);
+  if (m) return { name: m[1].trim(), concentration: m[2] };
+  return { name: token };
 }
 
 function buildFtsQuery(token: string): string | null {
@@ -37,8 +45,14 @@ export async function analyzeInci(
 ): Promise<AnalysisReport> {
   const { main, mayContain } = tokenizeInci(rawText);
   const tokens: RawToken[] = [
-    ...main.map((raw) => ({ raw, isMayContain: false })),
-    ...mayContain.map((raw) => ({ raw, isMayContain: true })),
+    ...main.map((raw) => {
+      const { name, concentration } = extractConcentration(raw);
+      return { raw: name, isMayContain: false, concentration };
+    }),
+    ...mayContain.map((raw) => {
+      const { name, concentration } = extractConcentration(raw);
+      return { raw: name, isMayContain: true, concentration };
+    }),
   ];
 
   const allForms = new Set<string>();
@@ -103,6 +117,7 @@ export async function analyzeInci(
     matchKind: r.kind,
     ingredient: r.id !== null ? (ingMap.get(r.id) ?? null) : null,
     isMayContain: r.token.isMayContain,
+    concentration: r.token.concentration,
   }));
 
   const matchedCount = analyzed.filter((a) => a.ingredient).length;

@@ -57,6 +57,7 @@ export interface AnalyzedIngredient {
   matchKind: MatchKind;
   ingredient: Ingredient | null;
   isMayContain: boolean;
+  concentration?: string; // e.g. "10%" if listed on the label
 }
 
 export interface AnalysisFlag {

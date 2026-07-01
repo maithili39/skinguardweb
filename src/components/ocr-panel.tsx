@@ -2,6 +2,8 @@
 
 import { useRef, useState } from "react";
 
+interface ExpiryInfo { raw: string; isExpired: boolean }
+
 interface OcrPanelProps {
   onExtracted: (text: string) => void;
 }
@@ -12,6 +14,7 @@ export default function OcrPanel({ onExtracted }: OcrPanelProps) {
   const [preview, setPreview] = useState<string | null>(null);
   const [extracted, setExtracted] = useState("");
   const [message, setMessage] = useState<string | null>(null);
+  const [expiry, setExpiry] = useState<ExpiryInfo | null>(null);
 
   async function handleFile(file: File) {
     if (!file.type.startsWith("image/")) {
@@ -22,12 +25,12 @@ export default function OcrPanel({ onExtracted }: OcrPanelProps) {
     setStatus("working");
     setMessage(null);
     setExtracted("");
+    setExpiry(null);
 
     const url = URL.createObjectURL(file);
     setPreview(url);
 
     try {
-      // Convert to base64 for the Vision API
       const base64 = await fileToBase64(file);
 
       const res = await fetch("/api/ocr", {
@@ -36,7 +39,7 @@ export default function OcrPanel({ onExtracted }: OcrPanelProps) {
         body: JSON.stringify({ imageBase64: base64 }),
       });
 
-      const data = await res.json() as { text?: string; error?: string };
+      const data = await res.json() as { text?: string; expiry?: ExpiryInfo; error?: string };
 
       if (!res.ok || data.error) {
         throw new Error(data.error ?? "OCR failed");
@@ -44,6 +47,7 @@ export default function OcrPanel({ onExtracted }: OcrPanelProps) {
 
       const text = (data.text ?? "").trim();
       setExtracted(text);
+      setExpiry(data.expiry ?? null);
       setStatus("done");
 
       if (!text) {
@@ -122,6 +126,16 @@ export default function OcrPanel({ onExtracted }: OcrPanelProps) {
           {preview && (
             // eslint-disable-next-line @next/next/no-img-element
             <img src={preview} alt="Label preview" className="max-h-36 w-full rounded-xl border border-border object-contain" />
+          )}
+          {expiry && (
+            <div className={`flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium ${expiry.isExpired ? "bg-risk-bad-bg text-risk-bad" : "bg-risk-good-bg text-risk-good"}`}>
+              <span>{expiry.isExpired ? "⚠️" : "✓"}</span>
+              <span>
+                {expiry.isExpired
+                  ? `Expired — best before ${expiry.raw}. Do not use.`
+                  : `Not expired — best before ${expiry.raw}.`}
+              </span>
+            </div>
           )}
           {message && (
             <p className="rounded-xl bg-risk-moderate-bg px-4 py-2 text-sm text-risk-moderate">{message}</p>

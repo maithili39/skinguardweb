@@ -48,44 +48,73 @@ async function getAccessToken(): Promise<string> {
   return data.access_token;
 }
 
+const INGREDIENT_HEADERS = [
+  /ingr[eé]dients?\s*[:：]/i,
+  /inci\s*[:：]/i,
+  /composition\s*[:：]/i,
+  /contains?\s*[:：]/i,
+  /inhalts?stoffe\s*[:：]/i,
+  /ingredientes\s*[:：]/i,
+  /ingrédients\s*[:：]/i,
+];
+
+// Patterns that signal the end of an ingredient list
+const END_PATTERN = /\b(warning|caution|keep out|for external use|avoid contact|discontinue|net weight|net wt|how to use|directions|manufactured|distributed|batch|lot no|best before|made in|cruelty.free|paraben.free|vegan|dermatologist|allergy.tested|hypoallergenic|fragrance.free|sulfate.free|www\.|©|\d{2}\/\d{4}|\d{2}\/\d{2}\/\d{4}|\d{1,3}\s*g\b|\d+\s*ml\b|\d+\s*oz\b)/i;
+
+// Expiry date patterns: EXP 12/2025, Best Before 01/26, BB: 2026-01, Expiry: 12/2025
+const EXPIRY_PATTERNS = [
+  /(?:exp(?:iry|iration)?|best before|use before|bb|mfg)\s*[:\-]?\s*(\d{1,2}[\/\-]\d{2,4})/gi,
+  /(?:exp(?:iry|iration)?|best before|use before)\s*[:\-]?\s*(\d{4}[\/\-]\d{1,2})/gi,
+];
+
+function extractExpiryDate(raw: string): { raw: string; isExpired: boolean } | null {
+  for (const pattern of EXPIRY_PATTERNS) {
+    pattern.lastIndex = 0;
+    const m = pattern.exec(raw);
+    if (m) {
+      const dateStr = m[1];
+      const parts = dateStr.split(/[\/\-]/);
+      let month: number, year: number;
+      if (parts[0].length === 4) {
+        year = parseInt(parts[0]); month = parseInt(parts[1]);
+      } else {
+        month = parseInt(parts[0]);
+        year = parseInt(parts[1]);
+        if (year < 100) year += 2000;
+      }
+      if (!isNaN(month) && !isNaN(year)) {
+        const now = new Date();
+        const expiry = new Date(year, month - 1 + 1, 0); // last day of expiry month
+        return { raw: dateStr, isExpired: now > expiry };
+      }
+    }
+  }
+  return null;
+}
+
 /**
- * Try to extract just the ingredient list from raw OCR output.
- * Product packaging has lots of noise (brand names, marketing copy, legal text).
- * We look for common ingredient-list headers and extract from there.
+ * Extract ingredient list from full product image OCR text.
+ * Returns ingredients text + optional expiry info.
  */
-function extractIngredientSection(raw: string): string {
-  if (!raw) return raw;
+function extractIngredientSection(raw: string): { ingredients: string; expiry: { raw: string; isExpired: boolean } | null } {
+  const expiry = extractExpiryDate(raw);
 
-  // Common ingredient list header patterns (multilingual)
-  const headers = [
-    /ingr[eé]dients?\s*[:：]/i,
-    /inci\s*[:：]/i,
-    /composition\s*[:：]/i,
-    /contains?\s*[:：]/i,
-    /inhalts?stoffe\s*[:：]/i,   // German
-    /ingredientes\s*[:：]/i,     // Spanish/Portuguese
-    /ingrédients\s*[:：]/i,      // French
-    /составdisabled\s*[:：]/i,
-  ];
-
-  for (const pattern of headers) {
+  for (const pattern of INGREDIENT_HEADERS) {
     const match = raw.search(pattern);
     if (match !== -1) {
-      // Find where the header word starts, grab from the colon onward
       const colonAt = raw.indexOf(":", match);
       if (colonAt !== -1) {
         const section = raw.slice(colonAt + 1).trim();
-        // Stop at common end-markers: warnings, claims, net weight, legal text, certifications
-        const endPattern = /\b(warning|caution|keep out|for external use|avoid contact|discontinue|net weight|net wt|manufactured|distributed|batch|lot no|exp\b|best before|made in|cruelty.free|paraben.free|vegan|dermatologist|allergy.tested|hypoallergenic|fragrance.free|sulfate.free|www\.|©|\d{2}\/\d{4}|\d{2}\/\d{2}\/\d{4}|\d{3}g|\d+\s*ml\b|\d+\s*oz\b)/i;
-        const endMatch = section.search(endPattern);
+        const endMatch = section.search(END_PATTERN);
         const extracted = endMatch !== -1 ? section.slice(0, endMatch).trim() : section;
-        if (extracted.length > 20) return normalizeIngredientLines(extracted);
+        if (extracted.length > 20) {
+          return { ingredients: normalizeIngredientLines(extracted), expiry };
+        }
       }
     }
   }
 
-  // No header found — return the raw text so the user can edit it
-  return normalizeIngredientLines(raw);
+  return { ingredients: normalizeIngredientLines(raw), expiry };
 }
 
 /**
@@ -155,8 +184,8 @@ export const POST = withLogger(async (req: NextRequest) => {
     if (response?.error) throw new Error(response.error.message);
 
     const raw = response?.fullTextAnnotation?.text ?? "";
-    const text = extractIngredientSection(raw);
-    return NextResponse.json({ text, raw: text !== raw ? raw : undefined });
+    const { ingredients, expiry } = extractIngredientSection(raw);
+    return NextResponse.json({ text: ingredients, expiry });
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err);
     console.error("OCR error:", msg);
