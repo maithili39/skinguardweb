@@ -9,6 +9,13 @@ export const metadata: Metadata = {
   title: "My Account — SkinGuard",
 };
 
+interface AnalysisHistoryItem {
+  id: number;
+  createdAt: string;
+  label: string;
+  verdict: string;
+}
+
 interface SavedItem {
   itemType: string;
   itemId: number;
@@ -20,6 +27,18 @@ interface SavedItem {
 export default async function AccountPage() {
   const user = await getSessionUser();
   if (!user) redirect("/login");
+
+  const historyRes = await db.execute({
+    sql: `SELECT id, created_at, label, verdict FROM analysis_history WHERE user_id = ? ORDER BY created_at DESC LIMIT 20`,
+    args: [user.id],
+  });
+
+  const history: AnalysisHistoryItem[] = historyRes.rows.map((r) => ({
+    id: Number(r.id),
+    createdAt: r.created_at as string,
+    label: r.label as string,
+    verdict: r.verdict as string,
+  }));
 
   const savedRes = await db.execute({
     sql: `SELECT si.item_type, si.item_id, si.created_at,
@@ -82,6 +101,47 @@ export default async function AccountPage() {
           </p>
         </Link>
       </div>
+
+      {/* Analysis history */}
+      <section className="mb-8">
+        <h2 className="mb-4 font-display text-xl font-semibold text-text-dark">
+          Analysis History
+        </h2>
+        {history.length === 0 ? (
+          <div className="rounded-2xl border border-border bg-card-bg px-6 py-10 text-center text-text-muted">
+            <p>No analyses yet.</p>
+            <p className="mt-1 text-sm">Analyze an ingredient list and results will appear here.</p>
+          </div>
+        ) : (
+          <ul className="divide-y divide-border overflow-hidden rounded-2xl border border-border bg-card-bg">
+            {history.map((item) => {
+              const verdictColors: Record<string, string> = {
+                safe: "text-risk-good",
+                caution: "text-risk-moderate",
+                avoid: "text-risk-bad",
+              };
+              const verdictLabels: Record<string, string> = {
+                safe: "Safe",
+                caution: "Caution",
+                avoid: "Avoid",
+              };
+              return (
+                <li key={item.id} className="flex items-center justify-between gap-4 px-5 py-4">
+                  <div>
+                    <p className="font-medium text-text-dark">{item.label}</p>
+                    <p className="text-xs text-text-muted">
+                      {new Date(item.createdAt).toLocaleDateString(undefined, { dateStyle: "medium" })}
+                    </p>
+                  </div>
+                  <span className={`text-xs font-semibold capitalize ${verdictColors[item.verdict] ?? "text-text-muted"}`}>
+                    {verdictLabels[item.verdict] ?? item.verdict}
+                  </span>
+                </li>
+              );
+            })}
+          </ul>
+        )}
+      </section>
 
       {/* Saved items */}
       <section>

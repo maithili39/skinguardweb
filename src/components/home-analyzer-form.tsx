@@ -192,3 +192,4 @@ export default function HomeAnalyzerForm() {
 }
 
 export { HANDOFF_KEY };
+export const AUTH_PENDING_KEY = "skinguard:analyze-pending";

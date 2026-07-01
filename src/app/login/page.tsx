@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
+import { Suspense } from "react";
 import { getSessionUser } from "@/lib/auth";
 import AuthForm from "@/components/auth-form";
 
@@ -19,7 +20,7 @@ export default async function LoginPage() {
       <p className="mb-8 text-text-muted">
         Welcome back. Sign in to access your saved products and analysis history.
       </p>
-      <AuthForm mode="login" />
+      <Suspense><AuthForm mode="login" /></Suspense>
     </div>
   );
 }

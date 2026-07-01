@@ -66,6 +66,8 @@ export interface AnalysisFlag {
   ingredientNames: string[];
 }
 
+export type Verdict = "safe" | "caution" | "avoid";
+
 export interface AnalysisReport {
   ingredients: AnalyzedIngredient[];
   matchedCount: number;
@@ -77,4 +79,6 @@ export interface AnalysisReport {
     fragranceAllergens: string[];
     comedogenic: string[];
   };
+  verdict: Verdict;
+  verdictReason: string;
 }

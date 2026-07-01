@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import {
   SKIN_TYPES,
   CONCERNS,
@@ -9,7 +9,7 @@ import {
   type Concern,
   type SkinProfile,
 } from "@/lib/profile";
-import { HANDOFF_KEY } from "@/components/home-analyzer-form";
+import { HANDOFF_KEY, AUTH_PENDING_KEY } from "@/components/home-analyzer-form";
 import AnalysisResults from "@/components/analysis-results";
 import OcrPanel from "@/components/ocr-panel";
 import BarcodeScanner from "@/components/barcode-scanner";
@@ -22,6 +22,7 @@ const SAMPLE =
 
 export default function AnalyzeClient() {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const [skinType, setSkinType] = useState<SkinType>("normal");
   const [concerns, setConcerns] = useState<Concern[]>([]);
   const [tab, setTab] = useState<Tab>("paste");
@@ -32,13 +33,43 @@ export default function AnalyzeClient() {
 
   // Pick up the profile/text handed off from the homepage form OR from the
   // ?inci= query param (used by product pages' "Customize analysis" link).
+  // Also restore and auto-run a pending analysis after login redirect.
   useEffect(() => {
     const inciParam = searchParams.get("inci");
     if (inciParam) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setText(decodeURIComponent(inciParam));
       return;
     }
+
+    // Restore pending state saved before auth redirect
+    const pendingRaw = sessionStorage.getItem(AUTH_PENDING_KEY);
+    if (pendingRaw) {
+      sessionStorage.removeItem(AUTH_PENDING_KEY);
+      try {
+        const data = JSON.parse(pendingRaw) as {
+          skinType?: SkinType;
+          concerns?: Concern[];
+          text?: string;
+        };
+        if (data.skinType) setSkinType(data.skinType);
+        if (Array.isArray(data.concerns)) setConcerns(data.concerns);
+        if (data.text) {
+          setText(data.text);
+          // Auto-run after restoring state
+          setTimeout(() => {
+            const profile: SkinProfile = {
+              skinType: data.skinType ?? "normal",
+              concerns: data.concerns ?? [],
+            };
+            runAnalysisWithProfile(data.text!, profile);
+          }, 100);
+        }
+      } catch {
+        // ignore malformed state
+      }
+      return;
+    }
+
     try {
       const raw = sessionStorage.getItem(HANDOFF_KEY);
       if (!raw) return;
@@ -56,6 +87,7 @@ export default function AnalyzeClient() {
     } catch {
       // ignore malformed handoff
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
 
   function toggleConcern(id: Concern) {
@@ -68,16 +100,12 @@ export default function AnalyzeClient() {
     });
   }
 
-  const runAnalysis = useCallback(
-    async (inputText: string) => {
+  const runAnalysisWithProfile = useCallback(
+    async (inputText: string, profile: SkinProfile) => {
       const trimmed = inputText.trim();
-      if (!trimmed) {
-        setError("Paste or scan an ingredient list first.");
-        return;
-      }
+      if (!trimmed) return;
       setLoading(true);
       setError(null);
-      const profile: SkinProfile = { skinType, concerns };
       try {
         const res = await fetch("/api/analyze", {
           method: "POST",
@@ -85,6 +113,15 @@ export default function AnalyzeClient() {
           body: JSON.stringify({ text: trimmed, profile }),
         });
         const data = await res.json();
+        if (res.status === 401) {
+          // Save state and redirect to login
+          sessionStorage.setItem(
+            AUTH_PENDING_KEY,
+            JSON.stringify({ skinType: profile.skinType, concerns: profile.concerns, text: trimmed }),
+          );
+          router.push("/login?next=/analyze");
+          return;
+        }
         if (!res.ok) {
           setError(data.error ?? "Something went wrong.");
           setReport(null);
@@ -97,7 +134,19 @@ export default function AnalyzeClient() {
         setLoading(false);
       }
     },
-    [skinType, concerns],
+    [router],
+  );
+
+  const runAnalysis = useCallback(
+    async (inputText: string) => {
+      const trimmed = inputText.trim();
+      if (!trimmed) {
+        setError("Paste or scan an ingredient list first.");
+        return;
+      }
+      await runAnalysisWithProfile(trimmed, { skinType, concerns });
+    },
+    [skinType, concerns, runAnalysisWithProfile],
   );
 
   return (

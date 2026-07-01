@@ -9,6 +9,7 @@ import type {
   AnalysisReport,
   AnalysisFlag,
   MatchKind,
+  Verdict,
 } from "./types";
 import type { SkinProfile } from "./profile";
 
@@ -104,13 +105,17 @@ export async function analyzeInci(
   }));
 
   const matchedCount = analyzed.filter((a) => a.ingredient).length;
+  const flags = buildFlags(analyzed, profile);
+  const { verdict, verdictReason } = buildVerdict(flags, profile);
 
   return {
     ingredients: analyzed,
     matchedCount,
     totalCount: analyzed.length,
-    flags: buildFlags(analyzed, profile),
+    flags,
     highlights: buildHighlights(analyzed),
+    verdict,
+    verdictReason,
   };
 }
 
@@ -375,6 +380,67 @@ function buildFlags(
   }
 
   return flags;
+}
+
+function buildVerdict(
+  flags: AnalysisFlag[],
+  profile: SkinProfile,
+): { verdict: Verdict; verdictReason: string } {
+  const badFlags = flags.filter((f) => f.level === "bad");
+  const moderateFlags = flags.filter((f) => f.level === "moderate");
+  const concerns = new Set(profile.concerns);
+
+  if (badFlags.length > 0) {
+    const titles = badFlags.map((f) => f.title.toLowerCase());
+    if (titles.some((t) => t.includes("pregnancy"))) {
+      return {
+        verdict: "avoid",
+        verdictReason:
+          "This formula contains ingredients that are best avoided during pregnancy. Consult your doctor before use.",
+      };
+    }
+    if (titles.some((t) => t.includes("fragrance") || t.includes("allergen"))) {
+      return {
+        verdict: "avoid",
+        verdictReason:
+          "This formula contains fragrance or known allergens that are likely to cause irritation for your skin profile. Consider a fragrance-free alternative.",
+      };
+    }
+    return {
+      verdict: "avoid",
+      verdictReason: `This formula has ${badFlags.length} concern${badFlags.length > 1 ? "s" : ""} that conflict with your skin profile. Review the flags below before using.`,
+    };
+  }
+
+  if (moderateFlags.length > 0) {
+    const isAcne = concerns.has("acne") || concerns.has("fungal-acne");
+    const isSensitive = concerns.has("sensitive") || concerns.has("rosacea");
+    if (isAcne && moderateFlags.some((f) => f.title.toLowerCase().includes("comedogenic"))) {
+      return {
+        verdict: "caution",
+        verdictReason:
+          "This formula contains pore-clogging ingredients that may trigger breakouts. Patch test and monitor your skin.",
+      };
+    }
+    if (isSensitive && moderateFlags.some((f) => f.title.toLowerCase().includes("alcohol"))) {
+      return {
+        verdict: "caution",
+        verdictReason:
+          "This formula contains drying alcohol, which may compromise your moisture barrier. Introduce slowly and monitor for dryness or irritation.",
+      };
+    }
+    return {
+      verdict: "caution",
+      verdictReason:
+        "This formula is generally fine but has a few ingredients worth watching for your skin type. Patch test before full use.",
+    };
+  }
+
+  return {
+    verdict: "safe",
+    verdictReason:
+      "No significant concerns detected for your skin profile. This formula looks compatible with your skin type and concerns.",
+  };
 }
 
 function buildHighlights(analyzed: AnalyzedIngredient[]) {

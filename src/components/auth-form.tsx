@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 interface Props {
   mode: "login" | "signup";
@@ -10,6 +10,8 @@ interface Props {
 
 export default function AuthForm({ mode }: Props) {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const nextUrl = searchParams.get("next") ?? "/account";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -30,7 +32,7 @@ export default function AuthForm({ mode }: Props) {
       if (!res.ok) {
         setError(data.error ?? "Something went wrong.");
       } else {
-        router.push("/account");
+        router.push(nextUrl);
         router.refresh();
       }
     } catch {
