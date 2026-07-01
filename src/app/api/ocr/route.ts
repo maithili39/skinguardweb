@@ -60,7 +60,7 @@ const INGREDIENT_HEADERS = [
 ];
 
 // Patterns that signal the end of an ingredient list
-const END_PATTERN = /\b(warning|caution|keep out|for external use|avoid contact|discontinue|net weight|net wt|how to use|directions|manufactured|distributed|batch|lot no|best before|made in|cruelty.free|paraben.free|vegan|dermatologist|allergy.tested|hypoallergenic|fragrance.free|sulfate.free|www\.|©|\d{2}\/\d{4}|\d{2}\/\d{2}\/\d{4}|\d{1,3}\s*g\b|\d+\s*ml\b|\d+\s*oz\b)/i;
+const END_PATTERN = /\b(warning|caution|keep out|for external use|avoid contact|discontinue|net weight|net wt|how to use|directions|manufactured|distributed|batch|lot no|best before|made in|cruelty.free|paraben.free|vegan|dermatologist|allergy.tested|hypoallergenic|fragrance.free|sulfate.free|safety information|store in|storage|precautions?|for more information|www\.|©|\d{2}\/\d{4}|\d{2}\/\d{2}\/\d{4}|\d{1,3}\s*g\b|\d+\s*ml\b|\d+\s*oz\b)/i;
 
 // Explicit expiry date patterns: EXP 12/2025, Best Before 01/26, Use Before 2026-06
 const EXPIRY_DATE_PATTERNS = [
