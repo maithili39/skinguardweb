@@ -48,6 +48,46 @@ async function getAccessToken(): Promise<string> {
   return data.access_token;
 }
 
+/**
+ * Try to extract just the ingredient list from raw OCR output.
+ * Product packaging has lots of noise (brand names, marketing copy, legal text).
+ * We look for common ingredient-list headers and extract from there.
+ */
+function extractIngredientSection(raw: string): string {
+  if (!raw) return raw;
+
+  // Common ingredient list header patterns (multilingual)
+  const headers = [
+    /ingr[eé]dients?\s*[:：]/i,
+    /inci\s*[:：]/i,
+    /composition\s*[:：]/i,
+    /contains?\s*[:：]/i,
+    /inhalts?stoffe\s*[:：]/i,   // German
+    /ingredientes\s*[:：]/i,     // Spanish/Portuguese
+    /ingrédients\s*[:：]/i,      // French
+    /составdisabled\s*[:：]/i,
+  ];
+
+  for (const pattern of headers) {
+    const match = raw.search(pattern);
+    if (match !== -1) {
+      // Find where the header word starts, grab from the colon onward
+      const colonAt = raw.indexOf(":", match);
+      if (colonAt !== -1) {
+        const section = raw.slice(colonAt + 1).trim();
+        // Stop at common end-markers (warnings, net weight, etc.)
+        const endPattern = /\b(warning|caution|keep out|net weight|manufactured|distributed|batch|lot no|exp\.|best before|made in|www\.|©|\d{2}\/\d{2}\/\d{4})/i;
+        const endMatch = section.search(endPattern);
+        const extracted = endMatch !== -1 ? section.slice(0, endMatch).trim() : section;
+        if (extracted.length > 20) return extracted;
+      }
+    }
+  }
+
+  // No header found — return the raw text so the user can edit it
+  return raw;
+}
+
 export const POST = withLogger(async (req: NextRequest) => {
   let body: unknown;
   try {
@@ -95,8 +135,9 @@ export const POST = withLogger(async (req: NextRequest) => {
     const response = data.responses[0];
     if (response?.error) throw new Error(response.error.message);
 
-    const text = response?.fullTextAnnotation?.text ?? "";
-    return NextResponse.json({ text });
+    const raw = response?.fullTextAnnotation?.text ?? "";
+    const text = extractIngredientSection(raw);
+    return NextResponse.json({ text, raw: text !== raw ? raw : undefined });
   } catch (err) {
     console.error("OCR error:", err);
     return NextResponse.json({ error: "OCR processing failed." }, { status: 500 });
