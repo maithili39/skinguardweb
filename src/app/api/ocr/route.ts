@@ -79,13 +79,37 @@ function extractIngredientSection(raw: string): string {
         const endPattern = /\b(warning|caution|keep out|for external use|avoid contact|discontinue|net weight|net wt|manufactured|distributed|batch|lot no|exp\b|best before|made in|cruelty.free|paraben.free|vegan|dermatologist|allergy.tested|hypoallergenic|fragrance.free|sulfate.free|www\.|©|\d{2}\/\d{4}|\d{2}\/\d{2}\/\d{4}|\d{3}g|\d+\s*ml\b|\d+\s*oz\b)/i;
         const endMatch = section.search(endPattern);
         const extracted = endMatch !== -1 ? section.slice(0, endMatch).trim() : section;
-        if (extracted.length > 20) return extracted;
+        if (extracted.length > 20) return normalizeIngredientLines(extracted);
       }
     }
   }
 
   // No header found — return the raw text so the user can edit it
-  return raw;
+  return normalizeIngredientLines(raw);
+}
+
+/**
+ * Join lines that are mid-ingredient (i.e. the previous line didn't end with a comma).
+ * OCR of curved/wrapped label text breaks ingredient names across lines.
+ */
+function normalizeIngredientLines(text: string): string {
+  return text
+    .split("\n")
+    .reduce<string[]>((acc, line) => {
+      const trimmed = line.trim();
+      if (!trimmed) return acc;
+      if (acc.length === 0) { acc.push(trimmed); return acc; }
+      const prev = acc[acc.length - 1];
+      // If previous line ends with a comma (or comma+space), start a new entry
+      if (/,\s*$/.test(prev)) {
+        acc.push(trimmed);
+      } else {
+        // Continuation — join with a space
+        acc[acc.length - 1] = prev + " " + trimmed;
+      }
+      return acc;
+    }, [])
+    .join("\n");
 }
 
 export const POST = withLogger(async (req: NextRequest) => {
