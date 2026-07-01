@@ -27,6 +27,7 @@ export default function AnalyzeClient() {
   const [concerns, setConcerns] = useState<Concern[]>([]);
   const [tab, setTab] = useState<Tab>("paste");
   const [text, setText] = useState("");
+  const [productLabel, setProductLabel] = useState("");
   const [report, setReport] = useState<AnalysisReport | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -110,7 +111,7 @@ export default function AnalyzeClient() {
         const res = await fetch("/api/analyze", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ text: trimmed, profile }),
+          body: JSON.stringify({ text: trimmed, profile, label: productLabel || undefined }),
         });
         const data = await res.json();
         if (res.status === 401) {
@@ -277,8 +278,9 @@ export default function AnalyzeClient() {
           />
         ) : (
           <BarcodeScanner
-            onIngredients={(inci) => {
+            onIngredients={(inci, name) => {
               setText(inci);
+              if (name) setProductLabel(name);
               setTab("paste");
             }}
           />

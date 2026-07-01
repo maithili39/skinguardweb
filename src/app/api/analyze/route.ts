@@ -37,8 +37,11 @@ export const POST = withLogger(async (request: NextRequest) => {
     parsed.data.profile as SkinProfile,
   );
 
-  // Derive a label from the first line of the input
-  const label = parsed.data.text.split(/[\n,]/)[0].trim().slice(0, 80) || "Unnamed analysis";
+  // Use explicit label (e.g. product name from barcode), else summarise by count
+  const tokenCount = parsed.data.text.split(/,|\n/).filter((s) => s.trim()).length;
+  const label =
+    parsed.data.label?.trim() ||
+    `${tokenCount}-ingredient formula · ${new Date().toLocaleDateString(undefined, { month: "short", day: "numeric" })}`;
 
   await db.execute({
     sql: "INSERT INTO analysis_history (user_id, created_at, label, verdict) VALUES (?,?,?,?)",
