@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { withLogger } from "@/lib/api-handler";
+import { cleanWithGemini } from "@/lib/gemini-ocr";
 import { z } from "zod";
 
 const schema = z.object({
@@ -288,6 +289,15 @@ export const POST = withLogger(async (req: NextRequest) => {
     if (response?.error) throw new Error(response.error.message);
 
     const raw = response?.fullTextAnnotation?.text ?? "";
+
+    // Preferred path: let Gemini intelligently extract only the ingredient
+    // list (fixes OCR typos, splits correctly, drops instructions/warnings).
+    const gemini = await cleanWithGemini(raw);
+    if (gemini) {
+      return NextResponse.json({ text: gemini.ingredients, expiry: gemini.expiry });
+    }
+
+    // Fallback: regex-based extraction if Gemini is unavailable or fails.
     const { ingredients, expiry } = extractIngredientSection(raw);
     return NextResponse.json({ text: ingredients, expiry });
   } catch (err) {
