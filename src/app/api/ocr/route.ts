@@ -89,27 +89,19 @@ function extractIngredientSection(raw: string): string {
 }
 
 /**
- * Join lines that are mid-ingredient (i.e. the previous line didn't end with a comma).
- * OCR of curved/wrapped label text breaks ingredient names across lines.
+ * Normalize OCR ingredient text: join wrapped lines, clean up spacing.
+ * Ingredient labels always use commas as delimiters — newlines are just
+ * OCR wrapping artifacts from curved/small packaging surfaces.
  */
 function normalizeIngredientLines(text: string): string {
   return text
     .split("\n")
-    .reduce<string[]>((acc, line) => {
-      const trimmed = line.trim();
-      if (!trimmed) return acc;
-      if (acc.length === 0) { acc.push(trimmed); return acc; }
-      const prev = acc[acc.length - 1];
-      // If previous line ends with a comma (or comma+space), start a new entry
-      if (/,\s*$/.test(prev)) {
-        acc.push(trimmed);
-      } else {
-        // Continuation — join with a space
-        acc[acc.length - 1] = prev + " " + trimmed;
-      }
-      return acc;
-    }, [])
-    .join("\n");
+    .map((l) => l.trim())
+    .filter(Boolean)
+    .join(" ")                        // flatten all lines into one string
+    .replace(/\s*,\s*/g, ", ")        // normalise comma spacing
+    .replace(/\s{2,}/g, " ")          // collapse double spaces
+    .trim();
 }
 
 export const POST = withLogger(async (req: NextRequest) => {
