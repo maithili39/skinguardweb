@@ -203,14 +203,12 @@ function extractIngredientSection(raw: string): { ingredients: string; expiry: E
 /**
  * Normalize OCR ingredient text.
  *
- * Two common label formats:
- *   A) Comma-separated, wrapping across lines — join lines with space so
- *      wrapped INCI names reunite, then the analyzer splits on commas.
- *   B) Newline-separated, no commas — each line is its own ingredient;
- *      join lines with ", " so the analyzer can split on commas.
- *
- * Heuristic: if the block already contains commas, treat it as format A.
- * If it has no commas but has multiple non-empty lines, treat as format B.
+ * Three formats seen on real labels (and OCR output):
+ *   A) Comma-separated, possibly wrapping across lines — join lines with
+ *      space so wrapped INCI names reunite, then split on commas.
+ *   B) Period-separated — OCR frequently reads commas as periods on curved
+ *      or small packaging. Detect and split on ". " before an uppercase letter.
+ *   C) Newline-separated, no commas or periods — each line is one ingredient.
  */
 function normalizeIngredientLines(text: string): string {
   const lines = text
@@ -218,22 +216,25 @@ function normalizeIngredientLines(text: string): string {
     .map((l) => l.trim())
     .filter(Boolean);
 
-  const hasCommas = lines.some((l) => l.includes(","));
+  const joined = lines.join(" ").replace(/\s{2,}/g, " ").trim();
 
-  if (hasCommas) {
-    // Format A — join wrapped lines, commas already separate ingredients
-    return lines
-      .join(" ")
-      .replace(/\s*,\s*/g, ", ")
-      .replace(/\s{2,}/g, " ")
-      .trim();
+  // Format A — commas present
+  if (joined.includes(",")) {
+    return joined.replace(/\s*,\s*/g, ", ");
   }
 
-  // Format B — each line is a separate ingredient; join with comma
-  return lines
-    .join(", ")
-    .replace(/\s{2,}/g, " ")
-    .trim();
+  // Format B — period used as separator (e.g. "Glycerin. Niacinamide. Aqua")
+  // Heuristic: period followed by space + uppercase, after a letter or ")"
+  if (/[a-zA-Z0-9\)]\.\s+[A-Z]/.test(joined)) {
+    return joined
+      .split(/\.\s+(?=[A-Z])/)
+      .map((s) => s.replace(/\.$/, "").trim())
+      .filter(Boolean)
+      .join(", ");
+  }
+
+  // Format C — plain newline-separated
+  return lines.join(", ");
 }
 
 export const POST = withLogger(async (req: NextRequest) => {
