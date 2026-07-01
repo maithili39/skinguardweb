@@ -7,7 +7,7 @@
  * Idempotent: drops and rebuilds the content tables on every run, while leaving
  * user/session/saved_items tables untouched.
  */
-import { readFileSync, existsSync, mkdirSync } from "node:fs";
+import { readFileSync, readdirSync, existsSync, mkdirSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parse } from "csv-parse/sync";
@@ -315,9 +315,13 @@ async function main() {
   const db = createClient({ url: `file:${DB_PATH}` });
 
   console.log("Building schema…");
-  const schema = readFileSync(join(__dirname, "schema.sql"), "utf8");
-  for (const stmt of schema.split(/;\s*$/m).map((s) => s.trim()).filter(Boolean)) {
-    await db.execute(stmt);
+  const migrationsDir = join(__dirname, "migrations");
+  const migrationFiles = readdirSync(migrationsDir).filter((f) => f.endsWith(".sql")).sort();
+  for (const file of migrationFiles) {
+    const sql = readFileSync(join(migrationsDir, file), "utf8");
+    for (const stmt of sql.split(";").map((s) => s.trim()).filter(Boolean)) {
+      await db.execute(stmt);
+    }
   }
 
   console.log("Resetting content tables…");
