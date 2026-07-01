@@ -201,18 +201,38 @@ function extractIngredientSection(raw: string): { ingredients: string; expiry: E
 }
 
 /**
- * Normalize OCR ingredient text: join wrapped lines, clean up spacing.
- * Ingredient labels always use commas as delimiters — newlines are just
- * OCR wrapping artifacts from curved/small packaging surfaces.
+ * Normalize OCR ingredient text.
+ *
+ * Two common label formats:
+ *   A) Comma-separated, wrapping across lines — join lines with space so
+ *      wrapped INCI names reunite, then the analyzer splits on commas.
+ *   B) Newline-separated, no commas — each line is its own ingredient;
+ *      join lines with ", " so the analyzer can split on commas.
+ *
+ * Heuristic: if the block already contains commas, treat it as format A.
+ * If it has no commas but has multiple non-empty lines, treat as format B.
  */
 function normalizeIngredientLines(text: string): string {
-  return text
+  const lines = text
     .split("\n")
     .map((l) => l.trim())
-    .filter(Boolean)
-    .join(" ")                        // flatten all lines into one string
-    .replace(/\s*,\s*/g, ", ")        // normalise comma spacing
-    .replace(/\s{2,}/g, " ")          // collapse double spaces
+    .filter(Boolean);
+
+  const hasCommas = lines.some((l) => l.includes(","));
+
+  if (hasCommas) {
+    // Format A — join wrapped lines, commas already separate ingredients
+    return lines
+      .join(" ")
+      .replace(/\s*,\s*/g, ", ")
+      .replace(/\s{2,}/g, " ")
+      .trim();
+  }
+
+  // Format B — each line is a separate ingredient; join with comma
+  return lines
+    .join(", ")
+    .replace(/\s{2,}/g, " ")
     .trim();
 }
 
