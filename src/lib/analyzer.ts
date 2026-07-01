@@ -121,6 +121,26 @@ export async function analyzeInci(
   }));
 
   const matchedCount = analyzed.filter((a) => a.ingredient).length;
+  const totalCount = analyzed.length;
+
+  // If fewer than 15% of tokens matched real ingredients, the input is likely
+  // not an ingredient list (e.g. usage instructions leaked through OCR).
+  // Return an honest "insufficient data" result instead of a misleading verdict.
+  if (totalCount > 0 && matchedCount / totalCount < 0.15 && matchedCount < 2) {
+    return {
+      ingredients: analyzed,
+      matchedCount,
+      totalCount,
+      flags: [],
+      highlights: { superstars: [], actives: [], fragranceAllergens: [], comedogenic: [] },
+      verdict: "caution",
+      verdictReason: "Too few ingredients were recognized to give a reliable verdict. The scanned text may contain usage instructions or other non-ingredient content — please review and edit the text before re-analyzing.",
+      score: 0,
+      scoreBreakdown: [],
+      recommendation: "Edit the ingredient text to remove instructions, warnings, and marketing claims, then re-analyze.",
+    };
+  }
+
   const flags = buildFlags(analyzed, profile);
   const { verdict, verdictReason } = buildVerdict(flags, profile);
   const { score, scoreBreakdown, recommendation } = buildScore(analyzed, flags, profile);
@@ -128,7 +148,7 @@ export async function analyzeInci(
   return {
     ingredients: analyzed,
     matchedCount,
-    totalCount: analyzed.length,
+    totalCount,
     flags,
     highlights: buildHighlights(analyzed),
     verdict,

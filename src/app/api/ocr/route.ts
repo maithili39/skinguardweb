@@ -48,14 +48,15 @@ async function getAccessToken(): Promise<string> {
   return data.access_token;
 }
 
+// Colon is optional — many labels write "Ingredients Sodium Palmate…" without a colon
 const INGREDIENT_HEADERS = [
-  /ingr[eé]dients?\s*[:：]/i,
-  /inci\s*[:：]/i,
-  /composition\s*[:：]/i,
-  /contains?\s*[:：]/i,
-  /inhalts?stoffe\s*[:：]/i,
-  /ingredientes\s*[:：]/i,
-  /ingrédients\s*[:：]/i,
+  /ingr[eé]dients?\s*[:：]?\s*/i,
+  /inci\s*[:：]\s*/i,
+  /composition\s*[:：]\s*/i,
+  /contains?\s*[:：]\s*/i,
+  /inhalts?stoffe\s*[:：]\s*/i,
+  /ingredientes\s*[:：]?\s*/i,
+  /ingrédients\s*[:：]?\s*/i,
 ];
 
 // Patterns that signal the end of an ingredient list
@@ -183,16 +184,15 @@ function extractIngredientSection(raw: string): { ingredients: string; expiry: E
   const expiry = extractExpiryInfo(raw);
 
   for (const pattern of INGREDIENT_HEADERS) {
-    const match = raw.search(pattern);
-    if (match !== -1) {
-      const colonAt = raw.indexOf(":", match);
-      if (colonAt !== -1) {
-        const section = raw.slice(colonAt + 1).trim();
-        const endMatch = section.search(END_PATTERN);
-        const extracted = endMatch !== -1 ? section.slice(0, endMatch).trim() : section;
-        if (extracted.length > 20) {
-          return { ingredients: normalizeIngredientLines(extracted), expiry };
-        }
+    const headerMatch = raw.match(pattern);
+    if (headerMatch && headerMatch.index !== undefined) {
+      // Start right after the full header match (keyword + optional colon/space)
+      const contentStart = headerMatch.index + headerMatch[0].length;
+      const section = raw.slice(contentStart).trim();
+      const endMatch = section.search(END_PATTERN);
+      const extracted = endMatch !== -1 ? section.slice(0, endMatch).trim() : section;
+      if (extracted.length > 10) {
+        return { ingredients: normalizeIngredientLines(extracted), expiry };
       }
     }
   }
