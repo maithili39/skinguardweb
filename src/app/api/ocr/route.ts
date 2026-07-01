@@ -75,8 +75,8 @@ function extractIngredientSection(raw: string): string {
       const colonAt = raw.indexOf(":", match);
       if (colonAt !== -1) {
         const section = raw.slice(colonAt + 1).trim();
-        // Stop at common end-markers (warnings, net weight, etc.)
-        const endPattern = /\b(warning|caution|keep out|net weight|manufactured|distributed|batch|lot no|exp\.|best before|made in|www\.|©|\d{2}\/\d{2}\/\d{4})/i;
+        // Stop at common end-markers: warnings, claims, net weight, legal text, certifications
+        const endPattern = /\b(warning|caution|keep out|for external use|avoid contact|discontinue|net weight|net wt|manufactured|distributed|batch|lot no|exp\b|best before|made in|cruelty.free|paraben.free|vegan|dermatologist|allergy.tested|hypoallergenic|fragrance.free|sulfate.free|www\.|©|\d{2}\/\d{4}|\d{2}\/\d{2}\/\d{4}|\d{3}g|\d+\s*ml\b|\d+\s*oz\b)/i;
         const endMatch = section.search(endPattern);
         const extracted = endMatch !== -1 ? section.slice(0, endMatch).trim() : section;
         if (extracted.length > 20) return extracted;
