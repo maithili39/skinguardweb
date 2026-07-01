@@ -3,11 +3,19 @@ import { db } from "@/lib/db";
 import { sendNewsletterWelcome } from "@/lib/email";
 
 export async function POST(req: NextRequest) {
-  const formData = await req.formData();
-  const email = String(formData.get("email") ?? "").trim().toLowerCase();
+  let email = "";
+  const ct = req.headers.get("content-type") ?? "";
+
+  if (ct.includes("application/json")) {
+    const body = await req.json() as { email?: string };
+    email = String(body.email ?? "").trim().toLowerCase();
+  } else {
+    const formData = await req.formData();
+    email = String(formData.get("email") ?? "").trim().toLowerCase();
+  }
 
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return NextResponse.redirect(new URL("/?sub=invalid", req.url));
+    return NextResponse.json({ error: "Please enter a valid email address." }, { status: 422 });
   }
 
   const result = await db.execute({
@@ -16,14 +24,13 @@ export async function POST(req: NextRequest) {
     args: [email],
   });
 
-  // Only send welcome email on first subscribe (not duplicate)
   if (result.rowsAffected > 0) {
     try {
       await sendNewsletterWelcome(email);
     } catch {
-      // Don't fail the redirect if email send fails
+      // Don't fail if email send fails
     }
   }
 
-  return NextResponse.redirect(new URL("/?sub=ok", req.url));
+  return NextResponse.json({ ok: true });
 }

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import NewsletterSignup from "./newsletter-signup";
 
 export default function SiteFooter() {
   return (
@@ -105,26 +106,7 @@ export default function SiteFooter() {
           <p className="mt-3 text-sm leading-6" style={{ color: "#c8ddd0" }}>
             Join 10,000+ users getting our weekly skincare science digest.
           </p>
-          <form action="/api/newsletter" method="post" className="mt-4 flex gap-2">
-            <input
-              type="email"
-              name="email"
-              required
-              placeholder="Enter your email"
-              className="flex-1 min-w-0 rounded-lg px-4 py-2.5 text-sm text-text-dark outline-none focus:ring-2 focus:ring-green-primary"
-              style={{ backgroundColor: "#2a4c38", color: "#ffffff", border: "1px solid #3a5a44" }}
-            />
-            <button
-              type="submit"
-              aria-label="Subscribe"
-              className="flex shrink-0 h-10 w-10 items-center justify-center rounded-lg text-white transition-colors hover:bg-green-btn-hover"
-              style={{ backgroundColor: "#5b6e55" }}
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </button>
-          </form>
+          <NewsletterSignup />
         </div>
       </div>
 
