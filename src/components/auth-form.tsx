@@ -61,9 +61,16 @@ export default function AuthForm({ mode }: Props) {
       </div>
 
       <div>
-        <label htmlFor="password" className="mb-1 block text-sm font-medium text-text-dark">
-          Password
-        </label>
+        <div className="mb-1 flex items-center justify-between">
+          <label htmlFor="password" className="text-sm font-medium text-text-dark">
+            Password
+          </label>
+          {isLogin && (
+            <Link href="/forgot-password" className="text-xs text-green-primary hover:underline">
+              Forgot password?
+            </Link>
+          )}
+        </div>
         <input
           id="password"
           type="password"
