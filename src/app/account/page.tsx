@@ -115,27 +115,25 @@ export default async function AccountPage() {
         ) : (
           <ul className="divide-y divide-border overflow-hidden rounded-2xl border border-border bg-card-bg">
             {history.map((item) => {
-              const verdictColors: Record<string, string> = {
-                safe: "text-risk-good",
-                caution: "text-risk-moderate",
-                avoid: "text-risk-bad",
-              };
-              const verdictLabels: Record<string, string> = {
-                safe: "Safe",
-                caution: "Caution",
-                avoid: "Avoid",
+              const verdictDot: Record<string, string> = {
+                safe: "bg-risk-good",
+                caution: "bg-risk-moderate",
+                avoid: "bg-risk-bad",
               };
               return (
-                <li key={item.id} className="flex items-center justify-between gap-4 px-5 py-4">
-                  <div>
-                    <p className="font-medium text-text-dark">{item.label}</p>
-                    <p className="text-xs text-text-muted">
-                      {new Date(item.createdAt).toLocaleDateString(undefined, { dateStyle: "medium" })}
-                    </p>
-                  </div>
-                  <span className={`text-xs font-semibold capitalize ${verdictColors[item.verdict] ?? "text-text-muted"}`}>
-                    {verdictLabels[item.verdict] ?? item.verdict}
-                  </span>
+                <li key={item.id}>
+                  <Link
+                    href={`/account/analysis/${item.id}`}
+                    className="flex items-center justify-between gap-4 px-5 py-4 hover:bg-bg-section transition-colors"
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className={`h-2.5 w-2.5 shrink-0 rounded-full ${verdictDot[item.verdict] ?? "bg-text-muted"}`} />
+                      <p className="text-sm text-text-dark">
+                        {new Date(item.createdAt).toLocaleDateString(undefined, { dateStyle: "long" })}
+                      </p>
+                    </div>
+                    <span className="text-xs text-text-muted">View →</span>
+                  </Link>
                 </li>
               );
             })}

@@ -5,15 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 
-interface HistoryItem {
-  label: string;
-  verdict: string;
-  createdAt: string;
-}
-
 interface SiteHeaderProps {
   user?: { email: string } | null;
-  history?: HistoryItem[];
 }
 
 function NavLink({ href, children }: { href: string; children: React.ReactNode }) {
@@ -34,13 +27,7 @@ function NavLink({ href, children }: { href: string; children: React.ReactNode }
   );
 }
 
-const VERDICT_DOT: Record<string, string> = {
-  safe: "bg-risk-good",
-  caution: "bg-risk-moderate",
-  avoid: "bg-risk-bad",
-};
-
-export default function SiteHeader({ user, history = [] }: SiteHeaderProps) {
+export default function SiteHeader({ user }: SiteHeaderProps) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -102,31 +89,6 @@ export default function SiteHeader({ user, history = [] }: SiteHeaderProps) {
                   <div className="px-4 py-3 border-b border-border">
                     <p className="text-xs text-text-muted">Signed in as</p>
                     <p className="text-sm font-semibold text-text-dark truncate">{user.email}</p>
-                  </div>
-
-                  {/* Recent history */}
-                  <div className="px-4 py-2 border-b border-border">
-                    <p className="text-[11px] font-semibold uppercase tracking-wider text-text-muted mb-2">
-                      Recent Analyses
-                    </p>
-                    {history.length === 0 ? (
-                      <p className="text-xs text-text-light py-2">No analyses yet. Try the analyzer!</p>
-                    ) : (
-                      <ul className="space-y-1">
-                        {history.map((item, i) => (
-                          <li key={i} className="flex items-center gap-2 py-1.5">
-                            <span
-                              className={`h-2 w-2 shrink-0 rounded-full ${VERDICT_DOT[item.verdict] ?? "bg-text-muted"}`}
-                              aria-hidden="true"
-                            />
-                            <span className="min-w-0 flex-1 truncate text-sm text-text-dark">{item.label}</span>
-                            <span className="shrink-0 text-[11px] text-text-muted">
-                              {new Date(item.createdAt).toLocaleDateString(undefined, { month: "short", day: "numeric" })}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
                   </div>
 
                   {/* Actions */}

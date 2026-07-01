@@ -44,8 +44,8 @@ export const POST = withLogger(async (request: NextRequest) => {
     `${tokenCount}-ingredient formula · ${new Date().toLocaleDateString(undefined, { month: "short", day: "numeric" })}`;
 
   await db.execute({
-    sql: "INSERT INTO analysis_history (user_id, created_at, label, verdict) VALUES (?,?,?,?)",
-    args: [user.id, new Date().toISOString(), label, report.verdict],
+    sql: "INSERT INTO analysis_history (user_id, created_at, label, verdict, report_json) VALUES (?,?,?,?,?)",
+    args: [user.id, new Date().toISOString(), label, report.verdict, JSON.stringify(report)],
   });
 
   return NextResponse.json(report);
