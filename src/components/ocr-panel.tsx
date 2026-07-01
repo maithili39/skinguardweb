@@ -2,7 +2,14 @@
 
 import { useRef, useState } from "react";
 
-interface ExpiryInfo { raw: string; isExpired: boolean }
+interface ExpiryInfo {
+  label: string;
+  isExpired: boolean;
+  isNearExpiry: boolean;
+  source: "explicit" | "mfg+pao" | "mfg_only";
+  mfgDate?: string;
+  paoMonths?: number;
+}
 
 interface OcrPanelProps {
   onExtracted: (text: string) => void;
@@ -127,16 +134,7 @@ export default function OcrPanel({ onExtracted }: OcrPanelProps) {
             // eslint-disable-next-line @next/next/no-img-element
             <img src={preview} alt="Label preview" className="max-h-36 w-full rounded-xl border border-border object-contain" />
           )}
-          {expiry && (
-            <div className={`flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium ${expiry.isExpired ? "bg-risk-bad-bg text-risk-bad" : "bg-risk-good-bg text-risk-good"}`}>
-              <span>{expiry.isExpired ? "⚠️" : "✓"}</span>
-              <span>
-                {expiry.isExpired
-                  ? `Expired — best before ${expiry.raw}. Do not use.`
-                  : `Not expired — best before ${expiry.raw}.`}
-              </span>
-            </div>
-          )}
+          {expiry && <ExpiryBanner expiry={expiry} />}
           {message && (
             <p className="rounded-xl bg-risk-moderate-bg px-4 py-2 text-sm text-risk-moderate">{message}</p>
           )}
@@ -184,6 +182,40 @@ export default function OcrPanel({ onExtracted }: OcrPanelProps) {
           </button>
         </div>
       )}
+    </div>
+  );
+}
+
+function ExpiryBanner({ expiry }: { expiry: ExpiryInfo }) {
+  if (expiry.source === "mfg_only") {
+    return (
+      <div className="rounded-xl bg-bg-section px-4 py-2.5 text-sm text-text-muted">
+        Manufactured: {expiry.mfgDate} — no expiry date found on label.
+      </div>
+    );
+  }
+
+  const sourceNote = expiry.source === "mfg+pao"
+    ? ` (manufactured ${expiry.mfgDate}, best within ${expiry.paoMonths} months)`
+    : "";
+
+  if (expiry.isExpired) {
+    return (
+      <div className="rounded-xl bg-risk-bad-bg px-4 py-2.5 text-sm font-medium text-risk-bad">
+        Expired — best before {expiry.label}{sourceNote}. Do not use this product.
+      </div>
+    );
+  }
+  if (expiry.isNearExpiry) {
+    return (
+      <div className="rounded-xl bg-risk-moderate-bg px-4 py-2.5 text-sm font-medium text-risk-moderate">
+        Expiring soon — best before {expiry.label}{sourceNote}. Use it up soon.
+      </div>
+    );
+  }
+  return (
+    <div className="rounded-xl bg-risk-good-bg px-4 py-2.5 text-sm font-medium text-risk-good">
+      Not expired — best before {expiry.label}{sourceNote}.
     </div>
   );
 }
