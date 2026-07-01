@@ -25,7 +25,14 @@ export function tokenizeInci(raw: string): TokenizedInci {
 
 function splitTokens(text: string): string[] {
   if (!text || !text.trim()) return [];
-  const parts = text
+
+  // Detect period-as-separator: OCR often reads commas as periods.
+  // Heuristic: ". " before an uppercase letter, after a letter/digit/paren.
+  // Replace those periods with commas before splitting so the normal
+  // path handles them correctly.
+  let normalised = text.replace(/([a-zA-Z0-9\)])\.\s+(?=[A-Z])/g, "$1, ");
+
+  const parts = normalised
     .split(/[\n•·;]+|,(?!\d)|(?<!\d),/g)
     .map(cleanToken)
     .filter(Boolean);
