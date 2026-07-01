@@ -10,6 +10,7 @@ import type {
   AnalysisFlag,
   MatchKind,
   Verdict,
+  ScoreBreakdown,
 } from "./types";
 import type { SkinProfile } from "./profile";
 
@@ -107,6 +108,7 @@ export async function analyzeInci(
   const matchedCount = analyzed.filter((a) => a.ingredient).length;
   const flags = buildFlags(analyzed, profile);
   const { verdict, verdictReason } = buildVerdict(flags, profile);
+  const { score, scoreBreakdown, recommendation } = buildScore(analyzed, flags, profile);
 
   return {
     ingredients: analyzed,
@@ -116,6 +118,9 @@ export async function analyzeInci(
     highlights: buildHighlights(analyzed),
     verdict,
     verdictReason,
+    score,
+    scoreBreakdown,
+    recommendation,
   };
 }
 
@@ -526,6 +531,158 @@ function buildVerdict(
     verdictReason:
       "Formula looks well-matched to your skin profile. No ingredients of concern were identified based on your skin type and flagged concerns.",
   };
+}
+
+function buildScore(
+  analyzed: AnalyzedIngredient[],
+  flags: AnalysisFlag[],
+  profile: SkinProfile,
+): { score: number; scoreBreakdown: ScoreBreakdown[]; recommendation: string } {
+  const ings = analyzed.map((a) => a.ingredient).filter((x): x is Ingredient => Boolean(x));
+  const concerns = new Set(profile.concerns);
+  const isSensitive = concerns.has("sensitive") || concerns.has("rosacea");
+  const isAcneProne = concerns.has("acne") || concerns.has("fungal-acne");
+  const isDry = profile.skinType === "dry";
+  const isPregnant = concerns.has("pregnancy");
+  const breakdown: ScoreBreakdown[] = [];
+
+  let score = 65; // neutral baseline — most products are decent
+
+  // ── Positive signals ──
+  const superstars = ings.filter((i) => i.rating === "superstar");
+  if (superstars.length > 0) {
+    const pts = Math.min(superstars.length * 4, 16);
+    breakdown.push({ label: "Evidence-backed actives", points: pts, reason: `${superstars.length} superstar ingredient${superstars.length > 1 ? "s" : ""} (${superstars.map((i) => i.displayName).slice(0, 3).join(", ")}) with strong clinical evidence.` });
+    score += pts;
+  }
+
+  const barrierIngredients = ings.filter((i) => i.tags.includes("barrier-repair") || i.tags.includes("soothing"));
+  if (barrierIngredients.length > 0) {
+    const pts = Math.min(barrierIngredients.length * 2, 8);
+    breakdown.push({ label: "Barrier & soothing agents", points: pts, reason: `Contains ${barrierIngredients.length} barrier-repair or soothing ingredient${barrierIngredients.length > 1 ? "s" : ""}.` });
+    score += pts;
+  }
+
+  const goodieCount = ings.filter((i) => i.rating === "goodie").length;
+  if (goodieCount > 0) {
+    const pts = Math.min(goodieCount * 2, 6);
+    breakdown.push({ label: "Well-tolerated ingredients", points: pts, reason: `${goodieCount} goodie-rated ingredient${goodieCount > 1 ? "s" : ""} — safe and effective for most skin types.` });
+    score += pts;
+  }
+
+  // ── Negative signals (contextual to skin profile) ──
+
+  // Pregnancy conflicts — hard deduction
+  if (isPregnant) {
+    const unsafeCount = ings.filter((i) => i.pregnancySafe === "avoid").length;
+    if (unsafeCount > 0) {
+      const pts = -(unsafeCount * 25);
+      breakdown.push({ label: "Pregnancy-unsafe ingredients", points: pts, reason: `${unsafeCount} ingredient${unsafeCount > 1 ? "s" : ""} (e.g. retinoids, high-dose BHA) are clinically advised against in pregnancy.` });
+      score += pts;
+    }
+  }
+
+  // Contact allergens for sensitive skin
+  const allergens = ings.filter((i) => i.tags.includes("allergen"));
+  if (allergens.length > 0 && isSensitive) {
+    const pts = -(allergens.length * 8);
+    breakdown.push({ label: "Allergens (sensitive skin conflict)", points: pts, reason: `${allergens.length} EU-declarable contact allergen${allergens.length > 1 ? "s" : ""} — elevated risk for sensitive or rosacea-prone skin.` });
+    score += pts;
+  } else if (allergens.length > 0) {
+    breakdown.push({ label: "EU-declarable allergens (informational)", points: -2, reason: `${allergens.length} fragrance allergen${allergens.length > 1 ? "s" : ""} present — low risk for non-sensitive skin at cosmetic concentrations.` });
+    score -= 2;
+  }
+
+  // High comedogenicity for acne-prone
+  const highComedo = ings.filter((i) => (i.comedogenicity ?? 0) >= 4 || i.tags.includes("comedogenic"));
+  if (highComedo.length > 0 && isAcneProne) {
+    const pts = -(highComedo.length * 10);
+    breakdown.push({ label: "Highly comedogenic (acne conflict)", points: pts, reason: `${highComedo.length} ingredient${highComedo.length > 1 ? "s" : ""} score 4–5/5 on the comedogenicity scale — a meaningful risk for acne-prone skin.` });
+    score += pts;
+  } else if (highComedo.length > 0) {
+    const pts = -(highComedo.length * 3);
+    breakdown.push({ label: "Comedogenic ingredients", points: pts, reason: `${highComedo.length} high-comedogenicity ingredient${highComedo.length > 1 ? "s" : ""} — only relevant if you are acne-prone.` });
+    score += pts;
+  }
+
+  // Mild comedogenicity (3/5) for acne-prone
+  const mildComedo = ings.filter((i) => (i.comedogenicity ?? 0) === 3);
+  if (mildComedo.length > 0 && isAcneProne) {
+    const pts = -(mildComedo.length * 4);
+    breakdown.push({ label: "Borderline comedogenic", points: pts, reason: `${mildComedo.length} ingredient${mildComedo.length > 1 ? "s" : ""} score 3/5 — borderline for acne-prone skin; monitor your skin.` });
+    score += pts;
+  }
+
+  // Drying alcohol for dry/sensitive skin
+  const dryingAlcohol = ings.filter((i) => i.tags.includes("drying-alcohol"));
+  if (dryingAlcohol.length > 0 && (isDry || isSensitive)) {
+    breakdown.push({ label: "Drying alcohol (barrier concern)", points: -8, reason: "Volatile alcohol can impair the skin barrier with repeated use on dry or sensitive skin." });
+    score -= 8;
+  }
+
+  // Fungal acne triggers
+  if (concerns.has("fungal-acne")) {
+    const fungal = ings.filter((i) => i.tags.includes("fungal-acne-trigger") || i.tags.includes("oil"));
+    if (fungal.length > 0) {
+      const pts = -(fungal.length * 5);
+      breakdown.push({ label: "Malassezia triggers (fungal acne)", points: pts, reason: `${fungal.length} oil or fatty acid ingredient${fungal.length > 1 ? "s" : ""} that can feed malassezia yeast.` });
+      score += pts;
+    }
+  }
+
+  // Avoid-rated ingredients in formula
+  const avoidRated = ings.filter((i) => i.rating === "avoid");
+  if (avoidRated.length > 0) {
+    const pts = -(avoidRated.length * 6);
+    breakdown.push({ label: "Avoid-rated ingredients", points: pts, reason: `${avoidRated.length} ingredient${avoidRated.length > 1 ? "s" : ""} in our database rated Avoid based on safety data.` });
+    score += pts;
+  }
+
+  // Clamp score
+  score = Math.max(0, Math.min(100, Math.round(score)));
+
+  // ── Personalised recommendation ──
+  const skinTypeLabel = {
+    normal: "normal skin",
+    dry: "dry skin",
+    oily: "oily skin",
+    combination: "combination skin",
+    sensitive: "sensitive skin",
+  }[profile.skinType] ?? profile.skinType;
+
+  let recommendation: string;
+
+  if (score >= 80) {
+    if (isAcneProne && highComedo.length === 0) {
+      recommendation = `For your ${skinTypeLabel}, this formula is a strong match — no high-comedogenicity ingredients and solid hydrating agents. Use it as part of your routine without concern.`;
+    } else if (isDry && barrierIngredients.length > 0) {
+      recommendation = `For your ${skinTypeLabel}, this formula is well-suited — it contains barrier-repair and hydrating ingredients that directly address dryness. Use morning or evening.`;
+    } else {
+      recommendation = `For your ${skinTypeLabel}, this formula scores well. The ingredient profile is clean and appropriate. No significant red flags for your skin type.`;
+    }
+  } else if (score >= 60) {
+    if (isAcneProne && highComedo.length > 0) {
+      recommendation = `For your ${skinTypeLabel}, this formula is usable but worth monitoring. Introduce it slowly — apply to a small area first and check for new breakouts after 2–3 weeks before committing to daily use.`;
+    } else if (isSensitive && allergens.length > 0) {
+      recommendation = `For your ${skinTypeLabel}, patch test on the inner arm for 48 hours before applying to the face. The fragrance allergens present are a potential trigger — if you have reacted to fragrance before, consider a fragrance-free alternative.`;
+    } else if (isDry && dryingAlcohol.length > 0) {
+      recommendation = `For your ${skinTypeLabel}, this formula is acceptable but the drying alcohol may cause tightness. Follow with a heavier moisturiser and limit to once daily. If you notice increased flakiness, switch to an alcohol-free version.`;
+    } else {
+      recommendation = `For your ${skinTypeLabel}, this formula is generally suitable. The moderate score reflects a few minor ingredient concerns — nothing that should stop you using it, but worth patch testing first.`;
+    }
+  } else {
+    if (isPregnant) {
+      recommendation = `For your ${skinTypeLabel} during pregnancy, we recommend avoiding this formula until you have spoken with your OB/GYN. There are excellent pregnancy-safe alternatives available for most product categories.`;
+    } else if (isAcneProne) {
+      recommendation = `For your ${skinTypeLabel}, this formula has too many high-comedogenicity ingredients to recommend without significant caveats. Look for products labelled "non-comedogenic" or with a simpler oil-free base. Products with niacinamide, salicylic acid, or azelaic acid would be better alternatives.`;
+    } else if (isSensitive) {
+      recommendation = `For your ${skinTypeLabel}, this formula is likely to cause irritation due to the allergen and/or fragrance load. A fragrance-free, minimal-ingredient formula (fewer than 15 ingredients) will give the same function with far less irritant risk.`;
+    } else {
+      recommendation = `For your ${skinTypeLabel}, this formula scores low due to multiple ingredients that conflict with your skin profile. We recommend looking for an alternative better matched to your concerns.`;
+    }
+  }
+
+  return { score, scoreBreakdown: breakdown, recommendation };
 }
 
 function buildHighlights(analyzed: AnalyzedIngredient[]) {

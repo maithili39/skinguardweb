@@ -68,6 +68,12 @@ export interface AnalysisFlag {
 
 export type Verdict = "safe" | "caution" | "avoid";
 
+export interface ScoreBreakdown {
+  label: string;
+  points: number;   // negative = deduction, positive = addition
+  reason: string;
+}
+
 export interface AnalysisReport {
   ingredients: AnalyzedIngredient[];
   matchedCount: number;
@@ -81,4 +87,7 @@ export interface AnalysisReport {
   };
   verdict: Verdict;
   verdictReason: string;
+  score: number;            // 0–100, personalised to skin profile
+  scoreBreakdown: ScoreBreakdown[];
+  recommendation: string;   // "For your skin type, we recommend…"
 }
