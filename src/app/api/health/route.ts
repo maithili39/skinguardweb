@@ -1,0 +1,13 @@
+import { NextResponse } from "next/server";
+import { db } from "@/lib/db";
+
+export const dynamic = "force-dynamic";
+
+export async function GET() {
+  try {
+    await db.execute({ sql: "SELECT 1", args: [] });
+    return NextResponse.json({ status: "ok", db: "ok", ts: new Date().toISOString() });
+  } catch {
+    return NextResponse.json({ status: "error", db: "unreachable" }, { status: 503 });
+  }
+}

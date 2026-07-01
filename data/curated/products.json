@@ -1,0 +1,1227 @@
+[
+  {
+    "brand": "The Ordinary",
+    "name": "Niacinamide 10% + Zinc 1%",
+    "category": "Serum",
+    "description": "A high-strength vitamin and mineral blend aimed at blemishes and visible shine.",
+    "inci": "Aqua (Water), Niacinamide, Pentylene Glycol, Zinc PCA, Dimethyl Isosorbide, Tamarindus Indica Seed Gum, Xanthan Gum, Isoceteth-20, Ethoxydiglycol, Phenoxyethanol, Chlorphenesin"
+  },
+  {
+    "brand": "The Ordinary",
+    "name": "Hyaluronic Acid 2% + B5",
+    "category": "Serum",
+    "description": "A hydrating serum with multiple forms of hyaluronic acid plus vitamin B5.",
+    "inci": "Aqua (Water), Sodium Hyaluronate, Pentylene Glycol, Propanediol, Sodium Hyaluronate Crosspolymer, Panthenol, Ahnfeltia Concinna Extract, Glycerin, Trisodium Ethylenediamine Disuccinate, Citric Acid, Isoceteth-20, Ethylhexylglycerin, Hexylene Glycol, Phenoxyethanol, Chlorphenesin"
+  },
+  {
+    "brand": "The Ordinary",
+    "name": "Caffeine Solution 5% + EGCG",
+    "category": "Eye Serum",
+    "description": "A lightweight eye serum targeting puffiness and dark circles.",
+    "inci": "Aqua (Water), Caffeine, Maltodextrin, Glycerin, Epigallocatechin Gallatyl Glucoside, Propanediol, Gluconolactone, Sodium Hyaluronate, Xanthan Gum, Polyacrylate Crosspolymer-6, Ethylhexylglycerin, Sodium Chloride, Calcium Gluconate, Phenoxyethanol, Chlorphenesin"
+  },
+  {
+    "brand": "The Ordinary",
+    "name": "Natural Moisturizing Factors + HA",
+    "category": "Moisturizer",
+    "description": "A non-greasy moisturizer with amino acids and skin-identical NMF components.",
+    "inci": "Aqua (Water), Caprylic/Capric Triglyceride, Cetyl Alcohol, Propanediol, Stearyl Alcohol, Glycerin, Sodium Hyaluronate, Arginine, Sodium PCA, PCA, Sodium Lactate, Glycine, Alanine, Serine, Valine, Isoleucine, Proline, Threonine, Histidine, Phenylalanine, Glucose, Maltose, Fructose, Trehalose, Sodium Chloride, Citric Acid, Hydrogenated Polydecene, Glyceryl Stearate, Cetearyl Alcohol, Ceteareth-20, Behentrimonium Methosulfate, Carbomer, Triethanolamine, Phenoxyethanol, Chlorphenesin"
+  },
+  {
+    "brand": "The Ordinary",
+    "name": "Glycolic Acid 7% Toning Solution",
+    "category": "Toner",
+    "description": "An exfoliating toner with 7% glycolic acid to improve skin texture and radiance.",
+    "inci": "Aqua (Water), Glycolic Acid, Rosa damascena Flower Water, Centaurea Cyanus Flower Water, Aloe Barbadensis Leaf Water, Propanediol, Glycerin, Triethanolamine, Aminomethyl Propanol, Panax Ginseng Root Extract, Tasmannia Lanceolata Fruit/Leaf Extract, Aspartic Acid, Alanine, Glycine, Serine, Valine, Isoleucine, Proline, Threonine, Histidine, Phenylalanine, Glutamic Acid, Arginine, PCA, Sodium PCA, Sodium Lactate, Fructose, Glucose, Sucrose, Urea, Hexyl Nicotinate, Dextran, Citric Acid, Polysorbate 20, Geraniol, Hydroxyisohexyl 3-Cyclohexene Carboxaldehyde, Anthemis Nobilis Flower Extract, Hydroxycitronellal, Linalool, Citronellol, Phenoxyethanol, Chlorphenesin"
+  },
+  {
+    "brand": "The Ordinary",
+    "name": "Retinol 0.5% in Squalane",
+    "category": "Serum",
+    "description": "A moderate-strength retinol formula in a squalane base for anti-aging.",
+    "inci": "Squalane, Caprylic/Capric Triglyceride, Retinol, Solanum Lycopersicum (Tomato) Fruit Extract, Simmondsia Chinensis (Jojoba) Seed Oil, BHT"
+  },
+  {
+    "brand": "The Ordinary",
+    "name": "AHA 30% + BHA 2% Peeling Solution",
+    "category": "Exfoliant",
+    "description": "A 10-minute exfoliating facial with 30% AHAs and 2% BHA for superficial skin resurfacing.",
+    "inci": "Aqua (Water), Glycolic Acid, Aloe Barbadensis Leaf Water, Sodium Hydroxide, Propanediol, Daucus Carota Sativa Root Extract, Juniperus Communis Fruit Extract, Lactic Acid, Tartaric Acid, Citric Acid, Malic Acid, Salicylic Acid, Panthenol, Sodium Hyaluronate, Witch Hazel Extract, Tasmannia Lanceolata Fruit/Leaf Extract, Ethylhexylglycerin, Polysorbate 20, Phenoxyethanol, Chlorphenesin"
+  },
+  {
+    "brand": "The Ordinary",
+    "name": "Vitamin C Suspension 23% + HA Spheres 2%",
+    "category": "Serum",
+    "description": "A water-free suspension of 23% pure L-ascorbic acid with hyaluronic acid spheres.",
+    "inci": "Ascorbic Acid, Isodecyl Neopentanoate, Isononyl Isononanoate, Polysilicone-11, Sodium Hyaluronate Crosspolymer, Silica, Phenoxyethanol, Triethoxycaprylylsilane"
+  },
+  {
+    "brand": "The Ordinary",
+    "name": "Lactic Acid 10% + HA",
+    "category": "Exfoliant",
+    "description": "A higher-strength lactic acid exfoliant with hyaluronic acid for smoother skin.",
+    "inci": "Aqua (Water), Lactic Acid, Pentylene Glycol, Propanediol, Sodium Hyaluronate Crosspolymer, Tasmannia Lanceolata Fruit/Leaf Extract, Acacia Senegal Gum, Xanthan Gum, Trisodium Ethylenediamine Disuccinate, Sodium Hydroxide, Ethylhexylglycerin, Phenoxyethanol, Chlorphenesin"
+  },
+  {
+    "brand": "The Ordinary",
+    "name": "Salicylic Acid 2% Solution",
+    "category": "Toner",
+    "description": "A targeted salicylic acid solution for blemish-prone skin and congested pores.",
+    "inci": "Aqua (Water), Salicylic Acid, Witch Hazel Extract, Propanediol, Aloe Barbadensis Leaf Juice Powder, Triethanolamine, Sodium Hyaluronate, Tasmannia Lanceolata Fruit/Leaf Extract, Ethylhexylglycerin, Phenoxyethanol, Chlorphenesin"
+  },
+  {
+    "brand": "The Ordinary",
+    "name": "Argireline Solution 10%",
+    "category": "Serum",
+    "description": "A peptide serum with acetyl hexapeptide-3 to help reduce expression lines.",
+    "inci": "Aqua (Water), Acetyl Hexapeptide-3, Pentylene Glycol, Propanediol, Sodium Chloride, Phenoxyethanol, Chlorphenesin"
+  },
+  {
+    "brand": "The Ordinary",
+    "name": "Marine Hyaluronics",
+    "category": "Serum",
+    "description": "A lightweight hydration serum with a marine-derived hyaluronic acid alternative.",
+    "inci": "Aqua (Water), Glycerin, Sodium Chloride, Pentylene Glycol, Pseudoalteromonas Ferment Extract, Phenoxyethanol, Chlorphenesin"
+  },
+  {
+    "brand": "CeraVe",
+    "name": "Moisturizing Cream",
+    "category": "Moisturizer",
+    "description": "A rich barrier-repair cream with three essential ceramides and hyaluronic acid.",
+    "inci": "Aqua/Water, Glycerin, Cetearyl Alcohol, Caprylic/Capric Triglyceride, Cetyl Alcohol, Ceramide NP, Ceramide AP, Ceramide EOP, Carbomer, Dimethicone, Behentrimonium Methosulfate, Sodium Lauroyl Lactylate, Sodium Hyaluronate, Cholesterol, Phenoxyethanol, Disodium EDTA, Dipotassium Phosphate, Potassium Phosphate, Tocopherol, Phytosphingosine, Xanthan Gum, Ethylhexylglycerin"
+  },
+  {
+    "brand": "CeraVe",
+    "name": "Foaming Facial Cleanser",
+    "category": "Cleanser",
+    "description": "A gel-to-foam cleanser for normal to oily skin with ceramides and niacinamide.",
+    "inci": "Aqua/Water, Cocamidopropyl Hydroxysultaine, Glycerin, Sodium Lauroyl Sarcosinate, PEG-150 Pentaerythrityl Tetrastearate, Niacinamide, PEG-6 Caprylic/Capric Glycerides, Propylene Glycol, Ceramide NP, Ceramide AP, Ceramide EOP, Carbomer, Methylparaben, Sodium Methyl Cocoyl Taurate, Sodium Chloride, Phenoxyethanol, Cholesterol, Tetrasodium EDTA, Disodium EDTA, Phytosphingosine, Sodium Hydroxide, Hydroxypropyl Methylcellulose, Tocopherol"
+  },
+  {
+    "brand": "CeraVe",
+    "name": "AM Facial Moisturizing Lotion SPF 30",
+    "category": "Sunscreen",
+    "description": "A lightweight daytime moisturizer with broad-spectrum mineral-plus sunscreen.",
+    "inci": "Aqua/Water, Homosalate, Glycerin, Octocrylene, Ethylhexyl Salicylate, Niacinamide, Butyl Methoxydibenzoylmethane, Silica, Cetearyl Alcohol, Caprylic/Capric Triglyceride, Ceramide NP, Ceramide AP, Ceramide EOP, Carbomer, Dimethicone, Behentrimonium Methosulfate, Sodium Hyaluronate, Cholesterol, Phenoxyethanol, Disodium EDTA, Tocopherol, Phytosphingosine, Xanthan Gum, Ethylhexylglycerin"
+  },
+  {
+    "brand": "CeraVe",
+    "name": "Hydrating Facial Cleanser",
+    "category": "Cleanser",
+    "description": "A gentle non-foaming cleanser for dry to normal skin with ceramides and hyaluronic acid.",
+    "inci": "Aqua/Water, Glycerin, Cetearyl Alcohol, Polysorbate 20, Ceteareth-20, Stearyl Alcohol, Sodium Lauroyl Lactylate, Ceramide NP, Ceramide AP, Ceramide EOP, Carbomer, Cholesterol, Sodium Hyaluronate, Xanthan Gum, Phenoxyethanol, Methylparaben, Propylparaben, Disodium EDTA, Phytosphingosine, Sodium Hydroxide"
+  },
+  {
+    "brand": "CeraVe",
+    "name": "PM Facial Moisturizing Lotion",
+    "category": "Moisturizer",
+    "description": "A lightweight, oil-free nighttime moisturizer with niacinamide and ceramides.",
+    "inci": "Aqua/Water, Niacinamide, Glycerin, Caprylic/Capric Triglyceride, Cetearyl Alcohol, Cetearyl Glucoside, Dimethicone, Polysorbate 20, Hyaluronic Acid, Ceramide NP, Ceramide AP, Ceramide EOP, Cholesterol, Carbomer, Sodium Hyaluronate, Phenoxyethanol, Methylparaben, Propylparaben, Sodium Lauroyl Lactylate, Disodium EDTA, Phytosphingosine, Xanthan Gum"
+  },
+  {
+    "brand": "CeraVe",
+    "name": "SA Smoothing Cream",
+    "category": "Moisturizer",
+    "description": "A thick moisturizing cream with salicylic acid for rough, bumpy skin (keratosis pilaris).",
+    "inci": "Aqua/Water, Salicylic Acid, Urea, Ammonium Lactate, Glycerin, Cetearyl Alcohol, Caprylic/Capric Triglyceride, Cetyl Alcohol, Ceramide NP, Ceramide AP, Ceramide EOP, Carbomer, Behentrimonium Methosulfate, Sodium Lauroyl Lactylate, Sodium Hyaluronate, Cholesterol, Phenoxyethanol, Disodium EDTA, Dipotassium Phosphate, Potassium Phosphate, Tocopherol, Phytosphingosine, Xanthan Gum, Ethylhexylglycerin"
+  },
+  {
+    "brand": "CeraVe",
+    "name": "Resurfacing Retinol Serum",
+    "category": "Serum",
+    "description": "An encapsulated retinol serum with ceramides and niacinamide to minimize irritation.",
+    "inci": "Aqua/Water, Glycerin, Propanediol, Niacinamide, Dimethicone, Sodium Hyaluronate, Ceramide NP, Ceramide AP, Ceramide EOP, Cholesterol, Carbomer, Triethanolamine, Retinol, Dimethicone Crosspolymer, Phenoxyethanol, Ethylhexylglycerin, Disodium EDTA, Phytosphingosine"
+  },
+  {
+    "brand": "CeraVe",
+    "name": "Eye Repair Cream",
+    "category": "Eye Cream",
+    "description": "A gentle eye cream with ceramides, hyaluronic acid, and niacinamide for the delicate eye area.",
+    "inci": "Aqua/Water, Glycerin, Cetearyl Alcohol, Caprylic/Capric Triglyceride, Niacinamide, Ceteareth-20, Dimethicone, Ceramide NP, Ceramide AP, Ceramide EOP, Carbomer, Sodium Hyaluronate, Cholesterol, Phenoxyethanol, Methylparaben, Propylparaben, Disodium EDTA, Phytosphingosine, Xanthan Gum"
+  },
+  {
+    "brand": "La Roche-Posay",
+    "name": "Toleriane Double Repair Face Moisturizer",
+    "category": "Moisturizer",
+    "description": "A daily moisturizer with ceramide-3, niacinamide, and prebiotic thermal water.",
+    "inci": "Aqua/Water, Glycerin, Dimethicone, Cetearyl Alcohol, Niacinamide, Caprylyl Methicone, Sodium Hydroxide, Cetyl Alcohol, Hydroxyethylpiperazine Ethane Sulfonic Acid, Stearyl Alcohol, Tocopherol, Caprylic/Capric Triglyceride, Carbomer, Ceramide NP, Citric Acid, Disodium EDTA, Glyceryl Stearate, PEG-100 Stearate, Phenoxyethanol, Myristyl Myristate, Zinc PCA, Xanthan Gum, Caprylyl Glycol, Mannose, Phytosphingosine, Cholesterol, Sodium Benzoate"
+  },
+  {
+    "brand": "La Roche-Posay",
+    "name": "Effaclar Medicated Gel Cleanser",
+    "category": "Cleanser",
+    "description": "A salicylic acid foaming face wash for oily, acne-prone skin.",
+    "inci": "Aqua/Water, Cocamidopropyl Betaine, Sodium Laureth Sulfate, Salicylic Acid, Zinc PCA, Propylene Glycol, Sodium Hydroxide, Disodium EDTA, Sodium Chloride, Citric Acid, Parfum/Fragrance"
+  },
+  {
+    "brand": "La Roche-Posay",
+    "name": "Anthelios Melt-In Milk Sunscreen SPF 60",
+    "category": "Sunscreen",
+    "description": "A broad-spectrum SPF 60 sunscreen with a light, non-greasy texture.",
+    "inci": "Aqua/Water, Homosalate, Ethylhexyl Salicylate, Octocrylene, Butyl Methoxydibenzoylmethane, Glycerin, Silica, Drometrizole Trisiloxane, Dimethicone, Styrene/Acrylates Copolymer, Triethanolamine, Polyester-8, Sodium Chloride, Tocopherol, Phenoxyethanol"
+  },
+  {
+    "brand": "La Roche-Posay",
+    "name": "Cicaplast Baume B5",
+    "category": "Balm",
+    "description": "A multi-repairing soothing balm with panthenol, madecassoside, and zinc for damaged skin.",
+    "inci": "Aqua/Water, Glycerin, Shea Butter Ethyl Esters, Dimethicone, Panthenol, Niacinamide, Madecassoside, Zinc Sulfate, Manganese Sulfate, Copper Sulfate, Cetyl Alcohol, Glyceryl Stearate, PEG-100 Stearate, Sodium Hyaluronate, Carbomer, Triethanolamine, Titanium Dioxide, Phenoxyethanol"
+  },
+  {
+    "brand": "La Roche-Posay",
+    "name": "Toleriane Hydrating Gentle Cleanser",
+    "category": "Cleanser",
+    "description": "A soap-free, prebiotic daily face wash for normal to dry sensitive skin.",
+    "inci": "Aqua/Water, Glycerin, Myristyl Glucoside, Cocamidopropyl Betaine, Coco-Glucoside, Ceramide NP, Niacinamide, Sodium Chloride, Citric Acid, Panthenol, Caprylic/Capric Triglyceride, Xanthan Gum, Sodium Hydroxide"
+  },
+  {
+    "brand": "La Roche-Posay",
+    "name": "B5 Pure Vitamin B5 Hyaluronic Acid Serum",
+    "category": "Serum",
+    "description": "A lightweight serum combining panthenol and hyaluronic acid for intense hydration.",
+    "inci": "Aqua/Water, Glycerin, Pentylene Glycol, Panthenol, Sodium Hyaluronate, Hydroxyethylpiperazine Ethane Sulfonic Acid, Disodium EDTA, Citric Acid, Phenoxyethanol"
+  },
+  {
+    "brand": "La Roche-Posay",
+    "name": "Effaclar Duo Dual Action Acne Treatment",
+    "category": "Treatment",
+    "description": "A targeted acne treatment with 5.5% benzoyl peroxide and LHA for unclogging pores.",
+    "inci": "Aqua/Water, Benzoyl Peroxide, Glycerin, Dimethicone, Propylene Glycol, Lipo Hydroxy Acid, Niacinamide, Tocopherol, Cetyl Alcohol, Stearyl Alcohol, Carbomer, Triethanolamine, Phenoxyethanol, Methylparaben, Disodium EDTA"
+  },
+  {
+    "brand": "Paula's Choice",
+    "name": "Skin Perfecting 2% BHA Liquid Exfoliant",
+    "category": "Exfoliant",
+    "description": "A leave-on salicylic acid exfoliant for unclogging pores and smoothing skin.",
+    "inci": "Water, Methylpropanediol, Butylene Glycol, Salicylic Acid, Polysorbate 20, Camellia Oleifera Leaf Extract, Sodium Hydroxide, Tetrasodium EDTA"
+  },
+  {
+    "brand": "Paula's Choice",
+    "name": "RESIST Anti-Aging Clear Skin Hydrator",
+    "category": "Moisturizer",
+    "description": "A lightweight oil-free gel moisturizer with antioxidants and skin-restoring niacinamide.",
+    "inci": "Water, Niacinamide, Propanediol, Pentylene Glycol, Sodium Hyaluronate, Glycerin, Panthenol, Arctium Lappa Root Extract, Allantoin, Silica, Sodium Lactate, Ceramide NP, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "brand": "Paula's Choice",
+    "name": "10% Niacinamide Booster",
+    "category": "Serum",
+    "description": "A concentrated niacinamide booster for enlarged pores, uneven tone, and wrinkles.",
+    "inci": "Water, Niacinamide, Glycerin, Propanediol, Ceramide NP, Panthenol, Sodium Hyaluronate, Allantoin, Silica, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "brand": "Paula's Choice",
+    "name": "Skin Perfecting 8% AHA Gel Exfoliant",
+    "category": "Exfoliant",
+    "description": "A gentle leave-on glycolic acid gel for normal to dry skin.",
+    "inci": "Water, Glycolic Acid, Butylene Glycol, Aloe Barbadensis Leaf Juice, Panthenol, Allantoin, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "brand": "Paula's Choice",
+    "name": "C15 Super Booster",
+    "category": "Serum",
+    "description": "A 15% vitamin C booster with ferulic acid and vitamin E for brightening.",
+    "inci": "Ascorbic Acid, Ethoxydiglycol, Propylene Glycol, Alpha Tocopherol, Ferulic Acid, Triethanolamine, Panthenol, Sodium Hyaluronate, Phenoxyethanol"
+  },
+  {
+    "brand": "COSRX",
+    "name": "Advanced Snail 96 Mucin Power Essence",
+    "category": "Essence",
+    "description": "A lightweight hydrating essence built around snail secretion filtrate.",
+    "inci": "Snail Secretion Filtrate, Betaine, Butylene Glycol, 1,2-Hexanediol, Sodium Polyacrylate, Phenoxyethanol, Sodium Hyaluronate, Allantoin, Ethyl Hexanediol, Carbomer, Panthenol, Arginine"
+  },
+  {
+    "brand": "COSRX",
+    "name": "AC Collection Calming Foam Cleanser",
+    "category": "Cleanser",
+    "description": "A low-pH foam cleanser with centella asiatica and BHA for acne-prone skin.",
+    "inci": "Water, Cocamidopropyl Betaine, Sodium Cocoyl Isethionate, Dipropylene Glycol, Glycerin, Betaine, Butylene Glycol, Caprylyl Glycol, 1,2-Hexanediol, Salicylic Acid, Centella Asiatica Extract, Allantoin, Disodium EDTA, Sodium Hydroxide, Fragrance"
+  },
+  {
+    "brand": "COSRX",
+    "name": "Low pH Good Morning Gel Cleanser",
+    "category": "Cleanser",
+    "description": "A low-pH morning cleanser with tea tree oil for gentle daily cleansing.",
+    "inci": "Water, Sodium Lauryl Sulfoacetate, Styrene/Acrylates Copolymer, Glycerin, Butylene Glycol, Cocamidopropyl Betaine, PEG-7 Glyceryl Cocoate, Arginine, Citric Acid, Ethyl Hexanediol, Caprylyl Glycol, 1,2-Hexanediol, Tea Tree Oil, Allantoin"
+  },
+  {
+    "brand": "COSRX",
+    "name": "Snail Mucin 92% All In One Cream",
+    "category": "Moisturizer",
+    "description": "A gel-cream moisturizer with 92% snail secretion filtrate for repairing and hydrating.",
+    "inci": "Snail Secretion Filtrate, Arbutin, Betaine, Panthenol, Arginine, Allantoin, Glycerin, Ethyl Hexanediol, 1,2-Hexanediol, Hydroxyethylcellulose, Hyaluronic Acid, Sodium Polyacrylate, Carbomer, Phenoxyethanol"
+  },
+  {
+    "brand": "COSRX",
+    "name": "AHA/BHA Clarifying Treatment Toner",
+    "category": "Toner",
+    "description": "A mild exfoliating toner with AHA and BHA to clarify and balance skin.",
+    "inci": "Betaine Salicylate, Niacinamide, Panthenol, Glycolic Acid, Water, Butylene Glycol, Glycerin, 1,2-Hexanediol, Ethyl Hexanediol, Allantoin, Sodium Hydroxide, Citric Acid"
+  },
+  {
+    "brand": "COSRX",
+    "name": "Ultimate Nourishing Rice Overnight Spa Mask",
+    "category": "Mask",
+    "description": "A sleep mask with fermented rice extract to brighten and replenish the skin barrier.",
+    "inci": "Oryza Sativa (Rice) Ferment Filtrate, Water, Propanediol, Glycerin, Dipropylene Glycol, Behenyl Alcohol, Niacinamide, Panthenol, Sodium Hyaluronate, Ceramide NP, Adenosine, Allantoin, Carbomer, Arginine, 1,2-Hexanediol, Ethyl Hexanediol"
+  },
+  {
+    "brand": "COSRX",
+    "name": "Propolis Light Ampule",
+    "category": "Serum",
+    "description": "A lightweight serum with 73.5% black bee propolis extract for brightening and healing.",
+    "inci": "Propolis Extract, Butylene Glycol, Glycerin, Niacinamide, 1,2-Hexanediol, Ethyl Hexanediol, Panthenol, Sodium Hyaluronate, Allantoin, Betaine, Arginine, Xanthan Gum, Carbomer"
+  },
+  {
+    "brand": "Cetaphil",
+    "name": "Gentle Skin Cleanser",
+    "category": "Cleanser",
+    "description": "A soap-free, fragrance-free cleanser for sensitive skin.",
+    "inci": "Water, Glycerin, Cetyl Alcohol, Propylene Glycol, Sodium Lauryl Sulfate, Stearyl Alcohol, Methylparaben, Propylparaben, Butylparaben"
+  },
+  {
+    "brand": "Cetaphil",
+    "name": "Moisturizing Lotion",
+    "category": "Moisturizer",
+    "description": "A lightweight, fast-absorbing daily moisturizer for normal to dry skin.",
+    "inci": "Water, Glycerin, Hydrogenated Polyisobutene, Cetyl Alcohol, Dimethicone, Panthenol, Tocopheryl Acetate, Farnesol, Urea, Benzyl Alcohol, Phenoxyethanol, Acrylates/C10-30 Alkyl Acrylate Crosspolymer, Sodium Hydroxide"
+  },
+  {
+    "brand": "Cetaphil",
+    "name": "Moisturizing Cream",
+    "category": "Moisturizer",
+    "description": "A rich, non-greasy moisturizing cream for sensitive, dry skin.",
+    "inci": "Water, Petrolatum, Glycerin, Cetearyl Alcohol, Cetyl Alcohol, Dimethicone, Benzyl Alcohol, Phenoxyethanol, Stearyl Alcohol, Sodium Lauryl Sulfate, Methylparaben, Propylparaben"
+  },
+  {
+    "brand": "Neutrogena",
+    "name": "Hydro Boost Water Gel",
+    "category": "Moisturizer",
+    "description": "An oil-free gel moisturizer with hyaluronic acid for lightweight hydration.",
+    "inci": "Water, Dimethicone, Glycerin, Dimethicone/Vinyl Dimethicone Crosspolymer, Phenoxyethanol, Cetearyl Olivate, Polyacrylamide, Sorbitan Olivate, C13-14 Isoparaffin, Carbomer, Sodium Hyaluronate, Dimethiconol, Laureth-7, Sodium Hydroxide, Ethylhexylglycerin, C12-14 Pareth-12, Blue 1, Fragrance"
+  },
+  {
+    "brand": "Neutrogena",
+    "name": "Ultra Sheer Dry-Touch Sunscreen SPF 100+",
+    "category": "Sunscreen",
+    "description": "A lightweight, broad-spectrum SPF 100+ sunscreen with a dry-touch finish.",
+    "inci": "Avobenzone 3%, Homosalate 15%, Octisalate 5%, Octocrylene 10%. Aqua/Water, Styrene/Acrylates Copolymer, Silica, PEG-7 Trimethylolpropane Coconut Ether, Diethylhexyl 2,6-Naphthalate, Aluminum Starch Octenylsuccinate, Glycerin, Dimethicone, Methyl Methacrylate Crosspolymer, Caprylyl Methicone, Acrylates/Dimethicone Copolymer, Phenoxyethanol, Methylparaben, Propylparaben, Fragrance"
+  },
+  {
+    "brand": "Neutrogena",
+    "name": "Rapid Wrinkle Repair Retinol Cream",
+    "category": "Moisturizer",
+    "description": "A daily retinol cream to visibly reduce wrinkles and even skin tone.",
+    "inci": "Water, Glycerin, Cetearyl Alcohol, Dimethicone, Stearic Acid, Mineral Oil, Persea Gratissima (Avocado) Oil, Phenoxyethanol, Carbomer, Sodium Hydroxide, Methylparaben, Retinol, Propylparaben, Panthenol, Diazolidinyl Urea, Tocopheryl Acetate, Fragrance"
+  },
+  {
+    "brand": "Neutrogena",
+    "name": "Oil-Free Acne Wash",
+    "category": "Cleanser",
+    "description": "A salicylic acid face wash that fights acne without over-drying.",
+    "inci": "Water, Salicylic Acid, Cocamidopropyl Betaine, Sodium C14-16 Olefin Sulfonate, Glycerin, Aloe Barbadensis Leaf Juice, Chamomilla Recutita Extract, PEG-120 Methyl Glucose Dioleate, Propylene Glycol, Sodium Hydroxide, Fragrance, Menthol, Methylisothiazolinone"
+  },
+  {
+    "brand": "Drunk Elephant",
+    "name": "C-Firma Fresh Day Serum",
+    "category": "Serum",
+    "description": "A potent vitamin C day serum with 15% L-ascorbic acid, ferulic acid, and vitamin E.",
+    "inci": "Aqua/Water, Propanediol, Ascorbic Acid, Glycerin, Isododecane, Niacinamide, Sodium Hyaluronate Crosspolymer, Tocopherol, Ferulic Acid, Panthenol, Sucrose, Acetyl Glucosamine, Pumpkin Ferment Extract, Pomegranate Extract, Sodium Hyaluronate, Citric Acid, Isoceteth-20, Polysorbate 80, Triethyl Citrate, Ethylene/Acrylic Acid Copolymer, Dimethicone, Hydroxyethyl Acrylate/Sodium Acryloyldimethyl Taurate Copolymer, Phenoxyethanol"
+  },
+  {
+    "brand": "Drunk Elephant",
+    "name": "Protini Polypeptide Cream",
+    "category": "Moisturizer",
+    "description": "A protein-rich moisturizer with signal peptides, growth factors, and amino acids.",
+    "inci": "Aqua/Water, Glycerin, Caprylic/Capric Triglyceride, Cetearyl Alcohol, Dicaprylyl Carbonate, Squalane, Behentrimonium Methosulfate, Acetyl Hexapeptide-3, Sh-Oligopeptide-1, Sh-Polypeptide-1, Sh-Polypeptide-9, Palmitoyl Tripeptide-1, Palmitoyl Tetrapeptide-7, Panthenol, Allantoin, Glycine, Alanine, Arginine, Serine, Proline, Sodium PCA, Cholesterol, Ceramide NP, Phytosphingosine, Xanthan Gum, Carbomer, Phenoxyethanol"
+  },
+  {
+    "brand": "Drunk Elephant",
+    "name": "T.L.C. Framboos Glycolic Night Serum",
+    "category": "Serum",
+    "description": "A 12% AHA/BHA exfoliating night serum for texture and clarity.",
+    "inci": "Aqua/Water, Glycolic Acid, Lactic Acid, Tartaric Acid, Citric Acid, Salicylic Acid, Raspberry Fruit Extract, Sodium Hydroxide, Arbutin, Niacinamide, Lens Esculenta (Lentil) Fruit Extract, Saccharum Officinarum (Sugarcane) Extract, Citrus Aurantifolia (Lime) Fruit Extract, Propanediol, Sodium Hyaluronate, Allantoin, Butylene Glycol, Polysorbate 20, Xanthan Gum, Phenoxyethanol"
+  },
+  {
+    "brand": "Drunk Elephant",
+    "name": "Lala Whipped Cream Moisturizer",
+    "category": "Moisturizer",
+    "description": "A lightweight whipped moisturizer with marula oil, olive oil, and ceramides.",
+    "inci": "Aqua/Water, Sclerocarya Birrea Seed Oil, Glycerin, Isononyl Isononanoate, Squalane, Caprylic/Capric Triglyceride, Cetearyl Glucoside, Cetearyl Alcohol, Ceramide NP, Panthenol, Allantoin, Sodium Hyaluronate, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "brand": "Drunk Elephant",
+    "name": "Beste No.9 Jelly Cleanser",
+    "category": "Cleanser",
+    "description": "A gentle, non-stripping gel cleanser with a balanced surfactant blend.",
+    "inci": "Aqua/Water, Cocamidopropyl Betaine, Sodium Methyl Cocoyl Taurate, Glycerin, Decyl Glucoside, Arginine, Panthenol, Sodium PCA, Allantoin, Sodium Hyaluronate, Hempseed Oil, Marula Oil, Rosehip Oil, Citric Acid, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "brand": "Tatcha",
+    "name": "The Water Cream",
+    "category": "Moisturizer",
+    "description": "An oil-free, anti-aging moisturizer with Japanese wild rose and tatami extract.",
+    "inci": "Water, Glycerin, Alcohol Denat., Butylene Glycol, Isohexadecane, Caprylyl Methicone, Rosa Canina Flower Extract, Imperata Cylindrica Root Extract, Sodium Acetylated Hyaluronate, Sodium Hyaluronate, Oryza Sativa Bran Extract, Saccharomyces Ferment Filtrate, Camellia Sinensis Leaf Extract, Spiraea Ulmaria Flower Extract, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "brand": "Tatcha",
+    "name": "The Dewy Skin Cream",
+    "category": "Moisturizer",
+    "description": "A plumping cream with Japanese purple rice, hyaluronic acid, and Okinawa algae.",
+    "inci": "Water, Glycerin, Dimethicone, Isohexadecane, Haematococcus Pluvialis Extract, Oryza Sativa (Rice) Extract, Saccharomyces/Rice Ferment Filtrate, Sodium Hyaluronate, Acetyl Hexapeptide-3, Camellia Sinensis Leaf Extract, Tremella Fuciformis Sporocarp Extract, Panthenol, Allantoin, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "brand": "Tatcha",
+    "name": "The Rice Wash",
+    "category": "Cleanser",
+    "description": "A creamy rice-based cleanser that gently removes impurities without stripping.",
+    "inci": "Water, Oryza Sativa (Rice) Bran Oil, Glycerin, Cetyl Alcohol, PEG-20 Methyl Glucose Sesquistearate, Sorbitol, Betaine, Panthenol, Saccharomyces Ferment Filtrate, Camellia Sinensis Leaf Extract, Sodium Hydroxide, Citric Acid, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "brand": "Tatcha",
+    "name": "The Liquid Silk Canvas Primer",
+    "category": "Primer",
+    "description": "A silky primer that blurs pores and locks in skincare for a smooth base.",
+    "inci": "Water, Cyclopentasiloxane, Dimethicone, Glycerin, Dimethicone/Vinyl Dimethicone Crosspolymer, Polyglyceryl-6 Distearate, Oryza Sativa Starch, Haematococcus Pluvialis Extract, Camellia Sinensis Leaf Extract, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "brand": "SKII",
+    "name": "Facial Treatment Essence",
+    "category": "Essence",
+    "description": "The iconic SKII essence with over 90% Pitera (galactomyces ferment filtrate) for luminosity.",
+    "inci": "Galactomyces Ferment Filtrate, Butylene Glycol, Pentylene Glycol, Water, Niacinamide, Sodium Benzoate, Methylparaben, Sorbic Acid"
+  },
+  {
+    "brand": "Laneige",
+    "name": "Water Sleeping Mask",
+    "category": "Mask",
+    "description": "An overnight sleeping mask with hydro-ionized mineral water and orange extract.",
+    "inci": "Water, Butylene Glycol, Glycerin, Methylpropanediol, Beta-Glucan, Dimethicone, Angelica Acutiloba Root Extract, Citrus Unshiu Peel Extract, Scutellaria Baicalensis Root Extract, Apigenin, Eclipta Prostrata Leaf Extract, Biota Orientalis Leaf Extract, Morus Alba Root Extract, Sodium Hyaluronate, Carbomer, Triethanolamine, Ethylhexylglycerin, Phenoxyethanol, Fragrance"
+  },
+  {
+    "brand": "Laneige",
+    "name": "Lip Sleeping Mask",
+    "category": "Lip Care",
+    "description": "An overnight lip mask with berry extracts and vitamin C to hydrate and exfoliate lips.",
+    "inci": "Polybutene, Ethylhexyl Palmitate, Bis-Diglyceryl Polyacyladipate-2, Dipentaerythrityl Hexahydroxystearate/Hexastearate/Hexarosinate, Hydrogenated Polydecene, Cetyl Ethylhexanoate, Caprylyl Dimethicone Ethoxy Glucoside, Synthetic Wax, Microcrystalline Wax, Saccharum Officinarum Extract, Citrus Aurantifolia Fruit Extract, Rubus Idaeus Fruit Extract, Vaccinium Angustifolium Fruit Extract, Tocopherol, Ascorbyl Glucoside, Fragrance"
+  },
+  {
+    "brand": "Laneige",
+    "name": "Cream Skin Toner",
+    "category": "Toner",
+    "description": "A milky toner-moisturizer hybrid with white tea leaf water for soft, dewy skin.",
+    "inci": "Water, Glycerin, Camellia Sinensis Leaf Extract, Niacinamide, Propanediol, Betaine, Panthenol, Hydroxyethyl Urea, Sodium Acetylated Hyaluronate, Ceramide NP, Meadowfoam Seed Oil, Carbomer, Arginine, Ethylhexylglycerin, Phenoxyethanol"
+  },
+  {
+    "brand": "Innisfree",
+    "name": "Green Tea Seed Serum",
+    "category": "Serum",
+    "description": "A hydrating serum with Jeju green tea water and seed extract for plumping.",
+    "inci": "Camellia Sinensis Leaf Water, Butylene Glycol, Glycerin, Dipropylene Glycol, Camellia Sinensis Seed Extract, Niacinamide, Panthenol, Sodium Hyaluronate, Hydroxyethyl Urea, Adenosine, Carbomer, Triethanolamine, Phenoxyethanol, Fragrance"
+  },
+  {
+    "brand": "Innisfree",
+    "name": "Super Volcanic Pore Clay Mask",
+    "category": "Mask",
+    "description": "A jeju volcanic ash clay mask to minimize pores and control sebum.",
+    "inci": "Water, Kaolin, Glycerin, Butylene Glycol, Volcanic Ash, Propylene Glycol, Niacinamide, Panthenol, Tea Tree Oil, Xanthan Gum, Carbomer, Triethanolamine, Phenoxyethanol, Fragrance"
+  },
+  {
+    "brand": "Some By Mi",
+    "name": "AHA BHA PHA 30 Days Miracle Toner",
+    "category": "Toner",
+    "description": "A triple-acid exfoliating toner with centella asiatica for trouble-prone skin.",
+    "inci": "Water, Butylene Glycol, Niacinamide, Glycolic Acid, Lactic Acid, Salicylic Acid, Gluconolactone, Centella Asiatica Extract, Tea Tree Oil, Panthenol, Allantoin, Sodium Hyaluronate, Adenosine, Arginine, Carbomer, Phenoxyethanol, Fragrance"
+  },
+  {
+    "brand": "Some By Mi",
+    "name": "Snail Truecica Miracle Repair Serum",
+    "category": "Serum",
+    "description": "A soothing serum with snail mucin, centella asiatica, and tea tree extract for breakout recovery.",
+    "inci": "Snail Secretion Filtrate, Water, Niacinamide, Centella Asiatica Extract, Tea Tree Oil, Butylene Glycol, Glycerin, Panthenol, Allantoin, Sodium Hyaluronate, Adenosine, Arginine, Carbomer, Phenoxyethanol"
+  },
+  {
+    "brand": "Missha",
+    "name": "Time Revolution The First Treatment Essence",
+    "category": "Essence",
+    "description": "A fermented yeast essence with 80% saccharomyces filtrate for skin renewal.",
+    "inci": "Saccharomyces Ferment Filtrate, Niacinamide, Adenosine, Panthenol, Allantoin, Sodium Hyaluronate, Butylene Glycol, Glycerin, Betaine, Water, Phenoxyethanol"
+  },
+  {
+    "brand": "Sulwhasoo",
+    "name": "First Care Activating Serum",
+    "category": "Serum",
+    "description": "A luxury Korean serum with jaum activator™ and five herbal medicinal ingredients.",
+    "inci": "Water, Glycerin, Alcohol, Methyl Trimethicone, Butylene Glycol, Panax Ginseng Root Extract, Paeonia Lactiflora Root Extract, Rehmannia Glutinosa Root Extract, Ligustrum Japonicum Fruit Extract, Cnidium Officinale Root Extract, Niacinamide, Panthenol, Sodium Hyaluronate, Carbomer, Triethanolamine, Phenoxyethanol, Fragrance"
+  },
+  {
+    "brand": "Klairs",
+    "name": "Supple Preparation Unscented Toner",
+    "category": "Toner",
+    "description": "A fragrance-free hydrating toner with beta-glucan and hyaluronic acid for sensitive skin.",
+    "inci": "Water, Glycerin, Butylene Glycol, Beta-Glucan, Niacinamide, Sodium Hyaluronate, Panthenol, Allantoin, Centella Asiatica Extract, Adenosine, Arginine, Carbomer, Phenoxyethanol"
+  },
+  {
+    "brand": "iUnik",
+    "name": "Beta-Glucan Daily Moisture Cream",
+    "category": "Moisturizer",
+    "description": "A lightweight gel cream with 68% beta-glucan to strengthen the skin barrier.",
+    "inci": "Beta-Glucan, Water, Glycerin, Butylene Glycol, Propanediol, Niacinamide, Panthenol, Sodium Hyaluronate, Allantoin, Ceramide NP, Centella Asiatica Extract, Carbomer, Arginine, Phenoxyethanol"
+  },
+  {
+    "brand": "iUnik",
+    "name": "Rose Galactomyces Synergy Serum",
+    "category": "Serum",
+    "description": "A brightening serum with 55% galactomyces ferment filtrate and 10% rose hip extract.",
+    "inci": "Galactomyces Ferment Filtrate, Water, Rosa Canina (Rose Hip) Fruit Extract, Niacinamide, Butylene Glycol, Glycerin, Panthenol, Allantoin, Sodium Hyaluronate, Adenosine, Arginine, Carbomer, Phenoxyethanol"
+  },
+  {
+    "brand": "Skin1004",
+    "name": "Madagascar Centella Ampoule",
+    "category": "Serum",
+    "description": "A soothing serum with 100% Madagascar centella asiatica water and madecassoside.",
+    "inci": "Centella Asiatica Extract, Madecassoside, Asiaticoside, Asiatic Acid, Madecassic Acid, Butylene Glycol, 1,2-Hexanediol, Hydroxyethylcellulose"
+  },
+  {
+    "brand": "Beauty of Joseon",
+    "name": "Dynasty Cream",
+    "category": "Moisturizer",
+    "description": "A rich traditional Korean moisturizer with rice and ginseng extract.",
+    "inci": "Water, Glycerin, Butylene Glycol, Dimethicone, Oryza Sativa (Rice) Kernel Extract, Panax Ginseng Root Extract, Niacinamide, Panthenol, Sodium Hyaluronate, Ceramide NP, Allantoin, Squalane, Cetearyl Alcohol, Glyceryl Stearate, Carbomer, Arginine, Phenoxyethanol"
+  },
+  {
+    "brand": "Beauty of Joseon",
+    "name": "Relief Sun Rice and Probiotics SPF50+ PA++++",
+    "category": "Sunscreen",
+    "description": "A lightweight, milky sunscreen with rice and probiotic extracts for sensitive skin.",
+    "inci": "Water, Zinc Oxide, Ethylhexyl Methoxycinnamate, Glycerin, Titanium Dioxide, Butylene Glycol, Niacinamide, Oryza Sativa (Rice) Bran Extract, Lactobacillus Ferment, Sodium Hyaluronate, Panthenol, Allantoin, Cetearyl Alcohol, Ceteareth-20, Carbomer, Triethanolamine, Phenoxyethanol"
+  },
+  {
+    "brand": "Beauty of Joseon",
+    "name": "Calming Serum Green Tea and Panthenol",
+    "category": "Serum",
+    "description": "A soothing serum with green tea and panthenol for blemish-prone skin.",
+    "inci": "Camellia Sinensis Leaf Water, Niacinamide, Panthenol, Glycerin, Butylene Glycol, Centella Asiatica Extract, Sodium Hyaluronate, Allantoin, Adenosine, Arginine, Carbomer, 1,2-Hexanediol, Phenoxyethanol"
+  },
+  {
+    "brand": "Purito",
+    "name": "Centella Green Level Buffet Serum",
+    "category": "Serum",
+    "description": "A calming serum with centella asiatica, niacinamide, and peptides.",
+    "inci": "Water, Centella Asiatica Extract, Niacinamide, Glycerin, Butylene Glycol, Madecassoside, Asiaticoside, Asiatic Acid, Panthenol, Sodium Hyaluronate, Peptide Complex, Allantoin, Adenosine, Carbomer, Arginine, 1,2-Hexanediol, Phenoxyethanol"
+  },
+  {
+    "brand": "Anua",
+    "name": "Heartleaf 77% Soothing Toner",
+    "category": "Toner",
+    "description": "A calming toner with 77% heartleaf (houttuynia cordata) extract for troubled skin.",
+    "inci": "Houttuynia Cordata Extract, Water, Glycerin, Butylene Glycol, Niacinamide, Panthenol, Centella Asiatica Extract, Allantoin, Sodium Hyaluronate, Adenosine, Arginine, Carbomer, 1,2-Hexanediol, Phenoxyethanol"
+  },
+  {
+    "brand": "Anua",
+    "name": "Peach 70% Niacin Serum",
+    "category": "Serum",
+    "description": "A brightening serum with 70% peach extract and niacinamide for even skin tone.",
+    "inci": "Prunus Persica (Peach) Fruit Extract, Niacinamide, Water, Glycerin, Butylene Glycol, Panthenol, Sodium Hyaluronate, Allantoin, Adenosine, Vitamin C, Carbomer, Arginine, 1,2-Hexanediol, Phenoxyethanol"
+  },
+  {
+    "brand": "Round Lab",
+    "name": "1025 Dokdo Toner",
+    "category": "Toner",
+    "description": "A mineral-rich toner with Dokdo island deep-sea water to strengthen the skin barrier.",
+    "inci": "Water, Glycerin, Butylene Glycol, Niacinamide, Panthenol, Sodium Hyaluronate, Allantoin, Adenosine, Sea Water, Minerals, Arginine, Carbomer, 1,2-Hexanediol, Phenoxyethanol"
+  },
+  {
+    "brand": "Axis-Y",
+    "name": "Dark Spot Correcting Glow Serum",
+    "category": "Serum",
+    "description": "A brightening serum targeting dark spots with mugwort, niacinamide, and vitamin C.",
+    "inci": "Artemisia Princeps Leaf Extract, Niacinamide, Water, Glycerin, Butylene Glycol, Sodium Ascorbyl Phosphate, Panthenol, Sodium Hyaluronate, Allantoin, Adenosine, Arginine, Carbomer, 1,2-Hexanediol, Phenoxyethanol"
+  },
+  {
+    "brand": "Torriden",
+    "name": "Dive-In Low Molecule Hyaluronic Acid Serum",
+    "category": "Serum",
+    "description": "A 5-type hyaluronic acid serum with ultra-low molecular weight HA for deep hydration.",
+    "inci": "Water, Glycerin, Butylene Glycol, Sodium Hyaluronate, Hydrolyzed Hyaluronic Acid, Hyaluronic Acid, Sodium Acetylated Hyaluronate, Hyaluronate Crosspolymer, Niacinamide, Panthenol, Allantoin, Adenosine, Arginine, Carbomer, 1,2-Hexanediol, Phenoxyethanol"
+  },
+  {
+    "brand": "Mediheal",
+    "name": "N.M.F Aquaring Ampoule Mask",
+    "category": "Mask",
+    "description": "A hydrating sheet mask with NMF components to restore moisture to dehydrated skin.",
+    "inci": "Water, Glycerin, Betaine, Butylene Glycol, Dipropylene Glycol, Sodium Hyaluronate, Niacinamide, Panthenol, Allantoin, Hydroxyethyl Urea, Sodium PCA, Arginine, Carbomer, Phenoxyethanol, Fragrance"
+  },
+  {
+    "brand": "First Aid Beauty",
+    "name": "Ultra Repair Cream Intense Hydration",
+    "category": "Moisturizer",
+    "description": "A rich, fast-absorbing body and face cream with colloidal oatmeal and shea butter.",
+    "inci": "Water, Glycerin, Stearic Acid, Glyceryl Stearate, Cetearyl Alcohol, Dimethicone, Panthenol, Colloidal Oatmeal, Allantoin, Avena Sativa Kernel Extract, Propylene Glycol, Squalane, Ceramide NP, Ceramide AP, Ceramide EOP, Shea Butter, Phenoxyethanol, Disodium EDTA, Carbomer"
+  },
+  {
+    "brand": "First Aid Beauty",
+    "name": "KP Bump Eraser Body Scrub",
+    "category": "Exfoliant",
+    "description": "An AHA and BHA body scrub with pumice to smooth keratosis pilaris.",
+    "inci": "Water, Pumice, Glycerin, Lactic Acid, Salicylic Acid, Allantoin, Colloidal Oatmeal, Panthenol, Cetyl Alcohol, Cocamidopropyl Betaine, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "brand": "Glow Recipe",
+    "name": "Watermelon Glow Niacinamide Dew Drops",
+    "category": "Serum",
+    "description": "A dewy serum with 3% niacinamide, watermelon extract, and hyaluronic acid.",
+    "inci": "Water, Niacinamide, Glycerin, Propanediol, Sodium Hyaluronate, Citrullus Lanatus (Watermelon) Fruit Extract, Panthenol, Allantoin, Hyaluronic Acid, Ceramide NP, Carbomer, Arginine, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "brand": "Glow Recipe",
+    "name": "Plum Plump Hyaluronic Acid Serum",
+    "category": "Serum",
+    "description": "A five-type hyaluronic acid serum with plum extract for plumping and bounce.",
+    "inci": "Water, Glycerin, Butylene Glycol, Sodium Hyaluronate, Hydrolyzed Sodium Hyaluronate, Sodium Acetylated Hyaluronate, Prunus Domestica Fruit Extract, Niacinamide, Panthenol, Ceramide NP, Allantoin, Arginine, Carbomer, 1,2-Hexanediol, Phenoxyethanol"
+  },
+  {
+    "brand": "Summer Fridays",
+    "name": "Jet Lag Mask",
+    "category": "Mask",
+    "description": "A travel-friendly mask with niacinamide, hyaluronic acid, and chestnut extract.",
+    "inci": "Water, Glycerin, Niacinamide, Dimethicone, Butylene Glycol, Panthenol, Sodium Hyaluronate, Castanea Sativa Seed Extract, Allantoin, Ceramide NP, Carbomer, Triethanolamine, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "brand": "Summer Fridays",
+    "name": "CC Me Serum",
+    "category": "Serum",
+    "description": "A vitamin C ceramide serum with 15% pure vitamin C for radiance and protection.",
+    "inci": "Water, Ascorbic Acid, Propanediol, Niacinamide, Glycerin, Dimethicone, Sodium Hyaluronate, Ceramide NP, Ceramide AP, Ceramide EOP, Panthenol, Tocopherol, Ferulic Acid, Carbomer, Arginine, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "brand": "Supergoop",
+    "name": "Unseen Sunscreen SPF 40",
+    "category": "Sunscreen",
+    "description": "An invisible, velvety SPF 40 primer-sunscreen that works under makeup.",
+    "inci": "Avobenzone 3%, Homosalate 10%, Octisalate 5%, Octocrylene 2.8%. Water, Cyclopentasiloxane, Butylene Glycol, Niacinamide, Meadowfoam Seed Oil, Frankincense Oil, Rosemary Extract, Red Algae Extract, Dimethicone, Phenoxyethanol, Ethylhexylglycerin, Fragrance"
+  },
+  {
+    "brand": "Supergoop",
+    "name": "Glowscreen SPF 40",
+    "category": "Sunscreen",
+    "description": "A glow-boosting SPF 40 sunscreen with hyaluronic acid and niacinamide.",
+    "inci": "Avobenzone 3%, Homosalate 9%, Octisalate 5%, Octocrylene 2.7%. Water, Glycerin, Niacinamide, Sodium Hyaluronate, Vitamin E, Vitamin B5, Sea Kelp, Phenoxyethanol, Ethylhexylglycerin, Fragrance"
+  },
+  {
+    "brand": "EltaMD",
+    "name": "UV Clear Broad-Spectrum SPF 46",
+    "category": "Sunscreen",
+    "description": "A lightweight oil-free sunscreen with niacinamide for acne-prone and sensitive skin.",
+    "inci": "Zinc Oxide 9%, Octinoxate 7.5%. Water, Niacinamide, Dimethicone, Lactic Acid, Hyaluronic Acid, Sodium Hyaluronate, Tocopheryl Acetate, Ascorbic Acid, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "brand": "EltaMD",
+    "name": "UV Daily Broad-Spectrum SPF 40",
+    "category": "Sunscreen",
+    "description": "A tinted daily sunscreen with SPF 40 and hyaluronic acid for hydration.",
+    "inci": "Zinc Oxide 9%, Octinoxate 7.5%. Water, Dimethicone, Glycerin, Hyaluronic Acid, Sodium Hyaluronate, Niacinamide, Iron Oxides, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "brand": "Isntree",
+    "name": "Hyaluronic Acid Watery Sun Gel SPF50+ PA++++",
+    "category": "Sunscreen",
+    "description": "A lightweight gel sunscreen with hyaluronic acid that leaves no white cast.",
+    "inci": "Water, Zinc Oxide, Ethylhexyl Methoxycinnamate, Diethylamino Hydroxybenzoyl Hexyl Benzoate, Butylene Glycol, Glycerin, Niacinamide, Sodium Hyaluronate, Panthenol, Allantoin, Adenosine, Carbomer, Triethanolamine, 1,2-Hexanediol, Phenoxyethanol"
+  },
+  {
+    "brand": "Biore",
+    "name": "UV Aqua Rich Watery Essence SPF50+ PA++++",
+    "category": "Sunscreen",
+    "description": "A super lightweight Japanese chemical sunscreen with a water-gel texture.",
+    "inci": "Water, Ethylhexyl Methoxycinnamate, Alcohol, Bis-Ethylhexyloxyphenol Methoxyphenyl Triazine, Diethylamino Hydroxybenzoyl Hexyl Benzoate, Butylene Glycol, Glycerin, Benzophenone-3, PEG/PPG-14/7 Dimethyl Ether, Polyacrylate-13, Polyisobutene, Polysorbate 20, Phenoxyethanol, Dimethicone, Sodium Hyaluronate, Hyaluronic Acid"
+  },
+  {
+    "brand": "Kose",
+    "name": "Suncut UV Perfect Gel SPF50+ PA++++",
+    "category": "Sunscreen",
+    "description": "A Japanese all-in-one sunscreen gel that's water and sweat resistant.",
+    "inci": "Water, Ethylhexyl Methoxycinnamate, Alcohol, Bis-Ethylhexyloxyphenol Methoxyphenyl Triazine, Diethylamino Hydroxybenzoyl Hexyl Benzoate, Methylene Bis-Benzotriazolyl Tetramethylbutylphenol, Glycerin, PEG-32, Phenoxyethanol"
+  },
+  {
+    "brand": "Altruist",
+    "name": "Face Fluid SPF50",
+    "category": "Sunscreen",
+    "description": "An affordable lightweight SPF 50 fluid for everyday facial use.",
+    "inci": "Water, Ethylhexyl Methoxycinnamate, Glycerin, Homosalate, Butyl Methoxydibenzoylmethane, Octocrylene, Dimethicone, Cetearyl Alcohol, Phenoxyethanol, Acrylates/C10-30 Alkyl Acrylate Crosspolymer, Sodium Hydroxide, Disodium EDTA"
+  },
+  {
+    "brand": "Obagi",
+    "name": "Vitamin C Serum 15%",
+    "category": "Serum",
+    "description": "A clinical-strength 15% L-ascorbic acid serum for anti-aging and brightening.",
+    "inci": "Ascorbic Acid, Water, Propylene Glycol, Ethoxydiglycol, Laureth-23, Panthenol, Sodium Hyaluronate, Tocopherol, Triethanolamine, Phenoxyethanol"
+  },
+  {
+    "brand": "SkinCeuticals",
+    "name": "C E Ferulic",
+    "category": "Serum",
+    "description": "The gold-standard antioxidant serum with 15% vitamin C, vitamin E, and ferulic acid.",
+    "inci": "Aqua/Water, Ethoxydiglycol, Ascorbic Acid, Glycerin, Propylene Glycol, Laureth-23, Phenoxyethanol, Triethanolamine, Alpha Tocopherol, Ferulic Acid, Panthenol"
+  },
+  {
+    "brand": "SkinCeuticals",
+    "name": "Hydrating B5 Gel",
+    "category": "Serum",
+    "description": "A hyaluronic acid gel with vitamin B5 to restore moisture levels.",
+    "inci": "Water, Glycerin, Propylene Glycol, Hydroxyethylcellulose, Panthenol, Sodium Hyaluronate, Xanthan Gum, Allantoin, Phenoxyethanol"
+  },
+  {
+    "brand": "SkinCeuticals",
+    "name": "Triple Lipid Restore 2:4:2",
+    "category": "Moisturizer",
+    "description": "A lipid-replenishing cream with 2% pure ceramides, 4% natural cholesterol, and 2% fatty acids.",
+    "inci": "Water, Isohexadecane, Glycerin, Cyclopentasiloxane, Dimethicone, Ceramide NP, Ceramide AP, Ceramide EOP, Cholesterol, Phytosphingosine, Linoleic Acid, Stearic Acid, Sodium Hyaluronate, Panthenol, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "brand": "Revision Skincare",
+    "name": "Vitamin C Lotion 30%",
+    "category": "Serum",
+    "description": "A high-potency 30% vitamin C lotion for significant brightening and anti-aging results.",
+    "inci": "Ascorbic Acid, Water, Propylene Glycol, Ethoxydiglycol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Tocopherol"
+  },
+  {
+    "brand": "Peter Thomas Roth",
+    "name": "Water Drench Hyaluronic Cloud Cream",
+    "category": "Moisturizer",
+    "description": "A plumping moisturizer with 30% hyaluronic acid complex and ceramides.",
+    "inci": "Water, Glycerin, Dimethicone, Sodium Hyaluronate Crosspolymer, Hyaluronic Acid, Sodium Hyaluronate, Panthenol, Ceramide NP, Ceramide AP, Ceramide EOP, Allantoin, Niacinamide, Carbomer, Triethanolamine, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "brand": "Peter Thomas Roth",
+    "name": "Mega-Rich Intensive Anti-Aging Cellular Crème",
+    "category": "Moisturizer",
+    "description": "A rich anti-aging cream with stem cells, peptides, and hyaluronic acid.",
+    "inci": "Water, Glycerin, Dimethicone, Squalane, Glyceryl Stearate, Cetearyl Alcohol, Sodium Hyaluronate, Peptide Complex, Panthenol, Niacinamide, Retinol, Ceramide NP, Tocopherol, Ferulic Acid, Carbomer, Triethanolamine, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "brand": "Sunday Riley",
+    "name": "Good Genes All-In-One Lactic Acid Treatment",
+    "category": "Serum",
+    "description": "A purified lactic acid serum for resurfacing and immediate radiance.",
+    "inci": "Water, Lactic Acid, Sodium Lactate, Niacinamide, Glycerin, Pentylene Glycol, Glycolic Acid, Aloe Barbadensis Leaf Juice, Licorice Root Extract, Kiwi Extract, Lemon Extract, Sodium Hyaluronate, Sodium Hydroxide, Phenoxyethanol, Fragrance"
+  },
+  {
+    "brand": "Sunday Riley",
+    "name": "Luna Sleeping Night Oil",
+    "category": "Oil",
+    "description": "A retinol night oil with blue tansy and German chamomile to reduce wrinkles overnight.",
+    "inci": "Passiflora Edulis Seed Oil, Hippophae Rhamnoides Oil, Retinol, Tanacetum Annuum Flower Oil, Chamomilla Recutita Oil, Helianthus Annuus Seed Oil, Squalane, Tocopherol, Lavandula Angustifolia Oil, Fragrance"
+  },
+  {
+    "brand": "Olehenriksen",
+    "name": "Banana Bright Vitamin C Serum",
+    "category": "Serum",
+    "description": "A brightening vitamin C serum with banana powder and peptides for glow.",
+    "inci": "Water, Ascorbic Acid, Propanediol, Glycerin, Musa Sapientum (Banana) Powder, Niacinamide, Sodium Hyaluronate, Palmitoyl Tripeptide-1, Palmitoyl Tetrapeptide-7, Panthenol, Allantoin, Carbomer, Arginine, Phenoxyethanol, Ethylhexylglycerin, Fragrance"
+  },
+  {
+    "brand": "Kiehl's",
+    "name": "Ultra Facial Cream",
+    "category": "Moisturizer",
+    "description": "A classic 24-hour hydrating cream with squalane and glacial glycoprotein.",
+    "inci": "Water, Glycerin, Squalane, Dimethicone, PEG-100 Stearate, Cetyl Alcohol, Glyceryl Stearate, Stearic Acid, Sodium Lactate, PEG-20 Stearate, Carbomer, Phenoxyethanol, Sodium Hydroxide, Fragrance"
+  },
+  {
+    "brand": "Kiehl's",
+    "name": "Calendula Herbal-Extract Toner",
+    "category": "Toner",
+    "description": "An alcohol-free toner with calendula flower extract for soothing and balancing.",
+    "inci": "Water, Alcohol-free extract of Calendula Officinalis Flower, Glycerin, Hamamelis Virginiana Extract, Allantoin, Aloe Barbadensis Leaf Juice, Phenoxyethanol, Fragrance"
+  },
+  {
+    "brand": "Kiehl's",
+    "name": "Powerful-Strength Line-Reducing Concentrate",
+    "category": "Serum",
+    "description": "A 12.5% vitamin C serum with hyaluronic acid for firming and wrinkle reduction.",
+    "inci": "Water, Ascorbic Acid, Glycerin, Propylene Glycol, Dimethicone, Sodium Hyaluronate, Panthenol, Allantoin, Phenoxyethanol, Fragrance"
+  },
+  {
+    "brand": "Clinique",
+    "name": "Moisture Surge 100H Auto-Replenishing Hydrator",
+    "category": "Moisturizer",
+    "description": "An oil-free moisturizing gel with activated aloe water and hyaluronic acid.",
+    "inci": "Water, Glycerin, Butylene Glycol, Aloe Barbadensis Leaf Juice, Dimethicone, Sodium Hyaluronate, Allantoin, Niacinamide, Panthenol, Xanthan Gum, Carbomer, Sodium Hydroxide, Phenoxyethanol, Fragrance"
+  },
+  {
+    "brand": "Clinique",
+    "name": "Dramatically Different Moisturizing Lotion+",
+    "category": "Moisturizer",
+    "description": "The iconic yellow Clinique moisturizer reinforcing the skin barrier.",
+    "inci": "Water, Mineral Oil, Sesame Oil, Glycerin, Stearic Acid, Cetyl Alcohol, Propylene Glycol, Hydroxypropyl Methylcellulose, Dimethicone, PEG-100 Stearate, Glyceryl Stearate, Magnesium Aluminum Silicate, Allantoin, Cucumis Sativus Extract, Phenoxyethanol, Methylparaben, Propylparaben, Fragrance"
+  },
+  {
+    "brand": "Origins",
+    "name": "Original Skin Renewal Serum with Willowherb",
+    "category": "Serum",
+    "description": "A radiance-renewing serum with willowherb, oat extract, and squalane.",
+    "inci": "Water, Glycerin, Propanediol, Niacinamide, Epilobium Angustifolium Flower/Leaf/Stem Extract, Avena Sativa Kernel Extract, Squalane, Sodium Hyaluronate, Panthenol, Allantoin, Carbomer, Arginine, Phenoxyethanol, Fragrance"
+  },
+  {
+    "brand": "Olay",
+    "name": "Regenerist Micro-Sculpting Cream",
+    "category": "Moisturizer",
+    "description": "An anti-aging moisturizer with niacinamide, hyaluronic acid, and amino-peptides.",
+    "inci": "Water, Glycerin, Niacinamide, Palmitic Acid, Dimethicone, Panthenol, Sodium Hyaluronate, Amino-Peptide Complex, Allantoin, Tocopheryl Acetate, Carbomer, Sodium Hydroxide, Phenoxyethanol, Fragrance"
+  },
+  {
+    "brand": "Olay",
+    "name": "Vitamin C + Peptide 24 Serum",
+    "category": "Serum",
+    "description": "A vitamin C brightening serum with niacinamide and peptides for radiant skin.",
+    "inci": "Water, Glycerin, Niacinamide, Ascorbyl Glucoside, Panthenol, Sodium Hyaluronate, Palmitoyl Tripeptide-1, Palmitoyl Tetrapeptide-7, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "brand": "RoC",
+    "name": "Retinol Correxion Line Smoothing Serum",
+    "category": "Serum",
+    "description": "A dermatologist-developed retinol serum to reduce the appearance of fine lines.",
+    "inci": "Water, Propylene Glycol, Dimethicone, Glycerin, Retinol, Panthenol, Niacinamide, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Methylparaben, Fragrance"
+  },
+  {
+    "brand": "Eucerin",
+    "name": "Q10 Anti-Wrinkle Face Cream",
+    "category": "Moisturizer",
+    "description": "A daily anti-wrinkle face cream with Q10 coenzyme and vitamin E.",
+    "inci": "Water, Glycerin, Mineral Oil, Isopropyl Palmitate, Cetearyl Alcohol, Lanolin Alcohol, Dimethicone, Panthenol, Ubiquinone, Tocopheryl Acetate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "brand": "Avene",
+    "name": "Thermal Spring Water",
+    "category": "Mist",
+    "description": "A gentle thermal spring water mist to soothe and soften sensitive, reactive skin.",
+    "inci": "Avene Thermal Spring Water (Avene Aqua)"
+  },
+  {
+    "brand": "Avene",
+    "name": "Cicalfate+ Restorative Protective Cream",
+    "category": "Treatment",
+    "description": "A repairing and antibacterial barrier cream for irritated, post-procedure skin.",
+    "inci": "Water, Glycerin, Liquid Paraffin, Zinc Sulfate, Manganese Sulfate, Copper Sulfate, Sucrose Cocoate, Avene Thermal Spring Water, Cetyl Alcohol, Stearyl Alcohol, Glyceryl Stearate, Phenoxyethanol, Titanium Dioxide"
+  },
+  {
+    "brand": "Bioderma",
+    "name": "Sensibio H2O Micellar Water",
+    "category": "Cleanser",
+    "description": "The classic French pharmacy micellar water for sensitive skin makeup removal.",
+    "inci": "Water, Peg-6 Caprylic/Capric Glycerides, Fructooligosaccharides, Mannitol, Xylitol, Rhamnose, Cucumis Sativus Fruit Extract, Propylene Glycol, Cetrimonium Bromide, Disodium EDTA"
+  },
+  {
+    "brand": "Bioderma",
+    "name": "Sebium Global Acne Treatment",
+    "category": "Treatment",
+    "description": "A non-comedogenic blemish-correcting care for oily, acne-prone skin.",
+    "inci": "Water, Zinc Gluconate, Salicylic Acid, Niacinamide, Glycerin, Capryloyl Glycine, Enoxolone, Glycolic Acid, Carbomer, Sodium Hydroxide, Phenoxyethanol"
+  },
+  {
+    "brand": "Nuxe",
+    "name": "Huile Prodigieuse Multi-Purpose Dry Oil",
+    "category": "Oil",
+    "description": "A luxurious dry oil with six precious plant oils for face, body, and hair.",
+    "inci": "Corylus Avellana Seed Oil, Prunus Amygdalus Dulcis Oil, Camellia Oleifera Seed Oil, Macadamia Integrifolia Seed Oil, Rosa Canina Fruit Oil, Borage Seed Oil, Tocopherol, Vitamin E, Bisabolol, Linalool, Benzyl Benzoate, Fragrance"
+  },
+  {
+    "brand": "Embryolisse",
+    "name": "Lait Creme Concentre 24-Hour Miracle Cream",
+    "category": "Moisturizer",
+    "description": "The backstage beauty staple moisturizer used as a primer, mask, and cleanser.",
+    "inci": "Water, Glycerin, Stearic Acid, Glyceryl Stearate SE, Soy Protein, Shea Butter, Allantoin, Panthenol, Cetyl Alcohol, Carbomer, Sodium Hydroxide, Phenoxyethanol, Methylparaben, Fragrance"
+  },
+  {
+    "brand": "The INKEY List",
+    "name": "Niacinamide Serum",
+    "category": "Serum",
+    "description": "A 10% niacinamide serum with hyaluronic acid to reduce blemishes and shine.",
+    "inci": "Aqua/Water, Niacinamide, Pentylene Glycol, Glycerin, Sodium Hyaluronate, Zinc PCA, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "brand": "The INKEY List",
+    "name": "Hyaluronic Acid Serum",
+    "category": "Serum",
+    "description": "An affordable multi-weight hyaluronic acid serum for all-day hydration.",
+    "inci": "Aqua/Water, Sodium Hyaluronate, Hydrolyzed Hyaluronic Acid, Glycerin, Propanediol, Panthenol, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "brand": "The INKEY List",
+    "name": "Retinol Eye Cream",
+    "category": "Eye Cream",
+    "description": "A targeted eye cream with retinol and peptides for fine lines.",
+    "inci": "Aqua/Water, Glycerin, Dimethicone, Retinol, Palmitoyl Tripeptide-1, Palmitoyl Tetrapeptide-7, Niacinamide, Panthenol, Sodium Hyaluronate, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "brand": "The INKEY List",
+    "name": "Bakuchiol Moisturizer",
+    "category": "Moisturizer",
+    "description": "A gentle plant-based retinol alternative with bakuchiol for anti-aging benefits.",
+    "inci": "Aqua/Water, Glycerin, Squalane, Dimethicone, Bakuchiol, Niacinamide, Panthenol, Sodium Hyaluronate, Allantoin, Ceramide NP, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "brand": "e.l.f.",
+    "name": "Holy Hydration Face Cream",
+    "category": "Moisturizer",
+    "description": "An affordable gel-cream moisturizer with peptides, hyaluronic acid, and niacinamide.",
+    "inci": "Water, Glycerin, Niacinamide, Dimethicone, Sodium Hyaluronate, Palmitoyl Tripeptide-1, Palmitoyl Tetrapeptide-7, Panthenol, Allantoin, Ceramide NP, Carbomer, Triethanolamine, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "brand": "e.l.f.",
+    "name": "Superhydrate Moisturizer",
+    "category": "Moisturizer",
+    "description": "A vegan, cruelty-free moisturizer with squalane and antioxidant-rich ingredients.",
+    "inci": "Water, Glycerin, Squalane, Niacinamide, Dimethicone, Sodium Hyaluronate, Panthenol, Allantoin, Vitamin E, Carbomer, Triethanolamine, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "brand": "Versed",
+    "name": "Dew Point Moisturizing Gel Cream",
+    "category": "Moisturizer",
+    "description": "A clean, oil-free gel-cream with hyaluronic acid and aloe vera.",
+    "inci": "Water, Aloe Barbadensis Leaf Juice, Glycerin, Butylene Glycol, Sodium Hyaluronate, Niacinamide, Panthenol, Allantoin, Dimethicone, Carbomer, Triethanolamine, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "brand": "Hero Cosmetics",
+    "name": "Mighty Patch Original Pimple Patch",
+    "category": "Treatment",
+    "description": "Hydrocolloid blemish patches that absorb pus and protect pimples overnight.",
+    "inci": "Hydrocolloid (Gelatin, Pectin, Carboxymethylcellulose), Polyisobutylene, Polyurethane Film"
+  },
+  {
+    "brand": "Differin",
+    "name": "Adapalene Gel 0.1%",
+    "category": "Treatment",
+    "description": "The first OTC retinoid acne treatment, FDA-approved adapalene gel.",
+    "inci": "Adapalene 0.1%, Carbomer 940, Edetate Disodium, Methylparaben, Poloxamer 182, Propylene Glycol, Purified Water, Sodium Hydroxide"
+  },
+  {
+    "brand": "Stridex",
+    "name": "Maximum Strength Salicylic Acid Pads",
+    "category": "Exfoliant",
+    "description": "Pre-soaked salicylic acid pads for acne-prone skin.",
+    "inci": "Salicylic Acid 2%, Ammonium Xylenesulfonate, DMDM Hydantoin, Fragrance, Menthol, Polyethylene Glycols, PPG-5-Ceteth-20, SD Alcohol 40, Simethicone, Sodium Borate"
+  },
+  {
+    "brand": "Mario Badescu",
+    "name": "Drying Lotion",
+    "category": "Treatment",
+    "description": "An iconic blemish treatment with salicylic acid and calamine to shrink pimples overnight.",
+    "inci": "SD Alcohol 40, Water, Calamine, Zinc Oxide, Salicylic Acid, Sulfur, Camphor, Resorcinol"
+  },
+  {
+    "brand": "Pixi",
+    "name": "Glow Tonic",
+    "category": "Toner",
+    "description": "A cult-favourite 5% glycolic acid toning solution to boost cell turnover.",
+    "inci": "Water, Glycolic Acid, Glycerin, Witch Hazel Extract, Aloe Barbadensis Leaf Juice, Hydrogen Peroxide, Sodium Hydroxide, Phenoxyethanol, Citric Acid, Fragrance"
+  },
+  {
+    "brand": "Pixi",
+    "name": "Rose Ceramide Capsules",
+    "category": "Serum",
+    "description": "Single-dose ceramide and rose extract capsules for targeted moisture delivery.",
+    "inci": "Caprylic/Capric Triglyceride, Rosa Damascena Flower Oil, Ceramide NP, Ceramide AP, Ceramide EOP, Cholesterol, Phytosphingosine, Tocopherol"
+  },
+  {
+    "brand": "Farmacy",
+    "name": "Green Clean Makeup Meltaway Cleansing Balm",
+    "category": "Cleanser",
+    "description": "A papaya enzyme cleansing balm that melts away makeup and SPF.",
+    "inci": "Ethylhexyl Palmitate, Sorbitan Olivate, Cetyl Ethylhexanoate, PEG-4 Olivate, Helianthus Annuus Seed Oil, Carica Papaya Fruit Extract, Stearyl Heptanoate, Glyceryl Caprylate, Echinacea Purpurea Extract, Squalane, Morinda Citrifolia Fruit Extract, Tocopherol"
+  },
+  {
+    "brand": "Farmacy",
+    "name": "Whipped Greens Oil-Free Moisturizer",
+    "category": "Moisturizer",
+    "description": "A featherweight oil-free moisturizer with echinacea and papaya enzyme.",
+    "inci": "Water, Glycerin, Propanediol, Niacinamide, Carica Papaya Fruit Extract, Echinacea Purpurea Extract, Centella Asiatica Extract, Sodium Hyaluronate, Panthenol, Allantoin, Ceramide NP, Carbomer, Arginine, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "brand": "Herbivore",
+    "name": "Bakuchiol Jasmine Retinol Alternative Serum",
+    "category": "Serum",
+    "description": "A clean bakuchiol serum with jasmine extract as a gentle retinol alternative.",
+    "inci": "Squalane, Bakuchiol, Hippophae Rhamnoides Fruit Oil, Argania Spinosa Kernel Oil, Tocopherol, Jasminum Sambac Flower Extract, Lavandula Angustifolia Oil, Fragrance"
+  },
+  {
+    "brand": "Youth To The People",
+    "name": "Superfood Air-Whip Hyaluronic Acid Moisture Cream",
+    "category": "Moisturizer",
+    "description": "A whipped moisturizer with kale, spinach, green tea, and hyaluronic acid.",
+    "inci": "Water, Glycerin, Dimethicone, Isododecane, Niacinamide, Brassica Oleracea Italica (Broccoli) Seed Oil, Spinacia Oleracea Leaf Extract, Kale Extract, Camellia Sinensis Leaf Extract, Sodium Hyaluronate, Panthenol, Allantoin, Ceramide NP, Carbomer, Arginine, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "brand": "Biossance",
+    "name": "Squalane + Phyto-Retinol Serum",
+    "category": "Serum",
+    "description": "A retinol serum with 100% plant-derived squalane to buffer irritation.",
+    "inci": "Squalane, Bakuchiol, Passiflora Incarnata Seed Oil, Retinol, Bisabolol, Tocopherol, Rosmarinus Officinalis Leaf Extract"
+  },
+  {
+    "brand": "Biossance",
+    "name": "Squalane + Vitamin C Rose Oil",
+    "category": "Oil",
+    "description": "A glow-boosting face oil with squalane, vitamin C, and rose extract.",
+    "inci": "Squalane, Ascorbyl Tetraisopalmitate, Rosa Canina Fruit Oil, Rosa Damascena Flower Oil, Bisabolol, Tocopherol, Rosmarinus Officinalis Leaf Extract, Fragrance"
+  },
+  {
+    "brand": "Josie Maran",
+    "name": "100% Pure Argan Oil",
+    "category": "Oil",
+    "description": "A single-ingredient pure argan oil for face, body, and hair.",
+    "inci": "Argania Spinosa Kernel Oil"
+  },
+  {
+    "brand": "The Ordinary",
+    "name": "100% Plant-Derived Squalane",
+    "category": "Oil",
+    "description": "A pure squalane oil derived from sugarcane for lightweight moisture.",
+    "inci": "Squalane"
+  },
+  {
+    "brand": "The Ordinary",
+    "name": "Buffet Peptide Serum",
+    "category": "Serum",
+    "description": "A multi-peptide serum targeting multiple signs of aging in one formula.",
+    "inci": "Aqua (Water), Glycerin, Arginine, Acetyl Hexapeptide-3, Palmitoyl Tripeptide-1, Palmitoyl Tetrapeptide-7, Palmitoyl Tripeptide-38, Dipeptide Diaminobutyroyl Benzylamide Diacetate, Acetyl Tetrapeptide-5, Leuphasyl, Syn-Ake, SH-Oligopeptide-1, Sh-Polypeptide-1, Sh-Polypeptide-9, Hyaluronic Acid Crosspolymer, Sodium Hyaluronate, Larix Europaea Wood Extract, Ppca, PCA, Sodium PCA, Glycine, Alanine, Serine, Valine, Proline, Threonine, Isoleucine, Histidine, Phenylalanine, Triethanolamine, Isoceteth-20, Polysorbate 20, Carbomer, Phenoxyethanol, Chlorphenesin"
+  },
+  {
+    "brand": "The Ordinary",
+    "name": "Azelaic Acid Suspension 10%",
+    "category": "Treatment",
+    "description": "A 10% azelaic acid suspension for brightening and reducing blemishes.",
+    "inci": "Aqua (Water), Isodecyl Neopentanoate, Azelaic Acid, Dimethicone, Dimethicone Crosspolymer, C12-15 Alkyl Benzoate, Glycerin, Isohexadecane, Hydroxyethyl Acrylate/Sodium Acryloyldimethyl Taurate Copolymer, Phenyl Trimethicone, Polysorbate 60, Cetearyl Isononanoate, Polysilicone-11, Trisodium Ethylenediamine Disuccinate, Phenoxyethanol, Chlorphenesin"
+  },
+  {
+    "brand": "Paula's Choice",
+    "name": "Resist Anti-Aging Skin Restoring Moisturizer SPF 50",
+    "category": "Sunscreen",
+    "description": "A hydrating SPF 50 moisturizer with ceramides and antioxidants for aging skin.",
+    "inci": "Avobenzone 3%, Homosalate 10%, Octisalate 5%, Octocrylene 2.7%. Water, Glycerin, Niacinamide, Sodium Hyaluronate, Ceramide NP, Panthenol, Allantoin, Tocopheryl Acetate, Dimethicone, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "brand": "Cocokind",
+    "name": "Ceramide Barrier Serum",
+    "category": "Serum",
+    "description": "A clean barrier-supporting serum with oat ceramides, niacinamide, and squalane.",
+    "inci": "Water, Propanediol, Glycerin, Squalane, Niacinamide, Avena Sativa Kernel Extract, Ceramide NP, Panthenol, Allantoin, Sodium Hyaluronate, Carbomer, Arginine, 1,2-Hexanediol, Phenoxyethanol"
+  },
+  {
+    "brand": "Good Molecules",
+    "name": "Discoloration Correcting Serum",
+    "category": "Serum",
+    "description": "A targeted brightening serum with tranexamic acid, niacinamide, and kojic acid.",
+    "inci": "Water, Propanediol, Glycerin, Niacinamide, Tranexamic Acid, Kojic Acid, Panthenol, Sodium Hyaluronate, Allantoin, Arginine, Carbomer, Ethylhexylglycerin, Phenoxyethanol"
+  },
+  {
+    "brand": "Good Molecules",
+    "name": "Lightweight Daily Mineral SPF 30",
+    "category": "Sunscreen",
+    "description": "A tinted mineral sunscreen with zinc oxide, niacinamide, and centella asiatica.",
+    "inci": "Zinc Oxide 15%, Water, Glycerin, Niacinamide, Centella Asiatica Extract, Panthenol, Allantoin, Sodium Hyaluronate, Iron Oxides, Carbomer, Triethanolamine, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "brand": "CeraVe",
+    "name": "Blemish Control Face Wash",
+    "category": "Cleanser",
+    "description": "A 2% salicylic acid face wash with ceramides for blemish-prone skin.",
+    "inci": "Aqua/Water, Cocamidopropyl Betaine, Glycerin, Sodium Lauroyl Sarcosinate, Salicylic Acid, Niacinamide, Ceramide NP, Ceramide AP, Ceramide EOP, Cholesterol, Phytosphingosine, Carbomer, Sodium Hydroxide, Disodium EDTA, Phenoxyethanol"
+  },
+  {
+    "brand": "Naturium",
+    "name": "Tranexamic Acid Treatment Serum 5%",
+    "category": "Serum",
+    "description": "A brightening serum with 5% tranexamic acid and vitamin C for hyperpigmentation.",
+    "inci": "Water, Propanediol, Glycerin, Niacinamide, Tranexamic Acid, Ascorbyl Glucoside, Panthenol, Sodium Hyaluronate, Allantoin, Ceramide NP, Arginine, Carbomer, Ethylhexylglycerin, Phenoxyethanol"
+  },
+  {
+    "brand": "Naturium",
+    "name": "Niacinamide Serum 12% Plus Zinc 2%",
+    "category": "Serum",
+    "description": "A high-strength niacinamide and zinc serum for sebum control and pore minimizing.",
+    "inci": "Water, Niacinamide, Glycerin, Propanediol, Zinc PCA, Panthenol, Sodium Hyaluronate, Allantoin, Adenosine, Ceramide NP, Arginine, Carbomer, Ethylhexylglycerin, Phenoxyethanol"
+  },
+  {
+    "brand": "Minimalist",
+    "name": "2% Salicylic Acid Serum for Acne",
+    "category": "Serum",
+    "description": "A budget-friendly 2% salicylic acid serum for unclogging pores and reducing acne.",
+    "inci": "Water, Butylene Glycol, Propanediol, Niacinamide, Salicylic Acid, Glycerin, Zinc PCA, Allantoin, Panthenol, Sodium Hyaluronate, Arginine, Carbomer, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "brand": "Minimalist",
+    "name": "10% Niacinamide Face Serum",
+    "category": "Serum",
+    "description": "An affordable 10% niacinamide serum with zinc for brightening and pore reduction.",
+    "inci": "Water, Niacinamide, Glycerin, Butylene Glycol, Zinc PCA, Panthenol, Sodium Hyaluronate, Allantoin, Arginine, Carbomer, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "brand": "Dermalogica",
+    "name": "Daily Microfoliant",
+    "category": "Exfoliant",
+    "description": "A rice-based powder exfoliant with salicylic acid and papain for daily brightening.",
+    "inci": "Oryza Sativa Starch, Caprylic/Capric Triglyceride, Sodium Lauroyl Glutamate, Camellia Sinensis Extract, Ginkgo Biloba Leaf Extract, Licorice Root Extract, Colloidal Oatmeal, Salicylic Acid, Papain, Retinyl Palmitate, Ascorbyl Glucoside, Phenoxyethanol, Fragrance"
+  },
+  {
+    "brand": "Dermalogica",
+    "name": "Skin Smoothing Cream",
+    "category": "Moisturizer",
+    "description": "A medium-weight daily moisturizer with oat extract and barrier-repairing lipids.",
+    "inci": "Water, Glycerin, Dimethicone, Avena Sativa Kernel Extract, Allantoin, Panthenol, Tocopheryl Acetate, Ceramide NP, Sodium Hyaluronate, Niacinamide, Carbomer, Triethanolamine, Phenoxyethanol, Fragrance"
+  },
+  {
+    "brand": "Murad",
+    "name": "AHA/BHA Exfoliating Cleanser",
+    "category": "Cleanser",
+    "description": "A daily exfoliating cleanser with glycolic and salicylic acid for smooth skin.",
+    "inci": "Water, Glycerin, Glycolic Acid, Cocamidopropyl Betaine, Salicylic Acid, Lactic Acid, Sodium Lauroyl Sarcosinate, Panthenol, Allantoin, Sodium Hydroxide, Disodium EDTA, Phenoxyethanol, Fragrance"
+  },
+  {
+    "brand": "Murad",
+    "name": "Hydro-Dynamic Ultimate Moisture",
+    "category": "Moisturizer",
+    "description": "A rich anti-aging moisturizer with retinyl palmitate, antioxidants, and botanical extracts.",
+    "inci": "Water, Glycerin, Dimethicone, Niacinamide, Retinyl Palmitate, Panthenol, Tocopheryl Acetate, Sodium Hyaluronate, Ceramide NP, Allantoin, Carbomer, Triethanolamine, Phenoxyethanol, Fragrance"
+  },
+  {
+    "brand": "Belif",
+    "name": "True Cream Aqua Bomb",
+    "category": "Moisturizer",
+    "description": "A Korean gel-cream moisturizer with Lady's Mantle extract for intense hydration.",
+    "inci": "Water, Glycerin, Alchemilla Vulgaris Extract, Butylene Glycol, Niacinamide, Sodium Hyaluronate, Panthenol, Allantoin, Centella Asiatica Extract, Adenosine, Carbomer, Triethanolamine, Phenoxyethanol, Fragrance"
+  },
+  {
+    "brand": "Peach Slices",
+    "name": "Acne Exfoliating Toner",
+    "category": "Toner",
+    "description": "A 2% salicylic acid toner with watermelon, strawberry, and peach extracts.",
+    "inci": "Water, Salicylic Acid, Glycerin, Propanediol, Niacinamide, Citrullus Lanatus Extract, Fragaria Vesca Fruit Extract, Prunus Persica Fruit Extract, Allantoin, Panthenol, Sodium Hyaluronate, Arginine, Carbomer, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "brand": "Acropass",
+    "name": "Trouble Cure Micro-Dart Patch",
+    "category": "Treatment",
+    "description": "Dissolving microneedle patches with niacinamide, hyaluronic acid, and retinol.",
+    "inci": "Hyaluronic Acid, Niacinamide, Retinol, Centella Asiatica Extract, Panthenol, Ceramide NP"
+  },
+  {
+    "brand": "Revolution Skincare",
+    "name": "5% Caffeine Solution Eye Serum",
+    "category": "Eye Serum",
+    "description": "An affordable eye serum with 5% caffeine and peptides for puffiness and dark circles.",
+    "inci": "Water, Propanediol, Glycerin, Caffeine, Niacinamide, Panthenol, Sodium Hyaluronate, Acetyl Tetrapeptide-5, Palmitoyl Tripeptide-1, Palmitoyl Tetrapeptide-7, Allantoin, Arginine, Carbomer, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "brand": "Revolution Skincare",
+    "name": "2% Retinoid Serum",
+    "category": "Serum",
+    "description": "A budget-friendly 2% retinoid serum with vitamin C and hyaluronic acid.",
+    "inci": "Water, Propanediol, Glycerin, Retinol, Ascorbyl Glucoside, Niacinamide, Panthenol, Sodium Hyaluronate, Allantoin, Arginine, Carbomer, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "brand": "The Body Shop",
+    "name": "Vitamin C Glow-Revealing Serum",
+    "category": "Serum",
+    "description": "A brightening vitamin C serum with camu camu and hyaluronic acid.",
+    "inci": "Water, Glycerin, Propanediol, Niacinamide, Ascorbyl Glucoside, Myrciaria Dubia Fruit Extract, Sodium Hyaluronate, Panthenol, Allantoin, Carbomer, Arginine, Phenoxyethanol, Fragrance"
+  },
+  {
+    "brand": "Weleda",
+    "name": "Skin Food Original Ultra-Rich Cream",
+    "category": "Moisturizer",
+    "description": "A cult classic natural thick cream with sunflower, chamomile, and rosemary extracts.",
+    "inci": "Water, Petrolatum, Lanolin, Alcohol, Glycerin, Helianthus Annuus Seed Oil, Chamomilla Recutita Flower Extract, Rosmarinus Officinalis Leaf Extract, Viola Tricolor Extract, Xanthan Gum, Beeswax, Fragrance"
+  },
+  {
+    "brand": "Manuka Doctor",
+    "name": "ApiNourish Anti-Aging Day Cream",
+    "category": "Moisturizer",
+    "description": "A hydrating face cream enriched with purified bee venom and manuka honey.",
+    "inci": "Water, Glycerin, Caprylic/Capric Triglyceride, Manuka Honey, Bee Venom, Panthenol, Sodium Hyaluronate, Niacinamide, Allantoin, Ceramide NP, Carbomer, Triethanolamine, Phenoxyethanol"
+  },
+  {
+    "brand": "Krave Beauty",
+    "name": "Matcha Hemp Hydrating Cleanser",
+    "category": "Cleanser",
+    "description": "A gentle jelly cleanser with matcha and hemp seed oil for dry to normal skin.",
+    "inci": "Water, Glycerin, Cocamidopropyl Betaine, Camellia Sinensis Leaf Extract, Cannabis Sativa Seed Oil, Panthenol, Allantoin, Sodium Hyaluronate, Sodium Chloride, Citric Acid, Phenoxyethanol, Ethylhexylglycerin"
+  },
+  {
+    "brand": "Krave Beauty",
+    "name": "Great Barrier Relief",
+    "category": "Oil",
+    "description": "A barrier-rescue face oil with sea buckthorn, ceramides, and hemp.",
+    "inci": "Caprylic/Capric Triglyceride, Cannabis Sativa Seed Oil, Argania Spinosa Kernel Oil, Hippophae Rhamnoides Fruit Oil, Ceramide NP, Ceramide AP, Ceramide EOP, Cholesterol, Phytosphingosine, Tocopherol, Bisabolol"
+  },
+  {
+    "brand": "Then I Met You",
+    "name": "Living Cleansing Balm",
+    "category": "Cleanser",
+    "description": "A cold process balm cleanser with moringa and sea buckthorn for deep cleansing.",
+    "inci": "Ethylhexyl Palmitate, Sorbitan Olivate, Moringa Oleifera Seed Oil, Hippophae Rhamnoides Fruit Oil, Glyceryl Caprylate, PEG-4 Olivate, Tocopherol"
+  },
+  {
+    "brand": "Hada Labo",
+    "name": "Gokujyun Premium Hyaluronic Acid Lotion",
+    "category": "Toner",
+    "description": "A Japanese hyaluronic acid toner with five types of HA for intense hydration.",
+    "inci": "Water, Glycerin, Butylene Glycol, Dipropylene Glycol, Sodium Hyaluronate, Hydrolyzed Hyaluronic Acid, Sodium Acetylated Hyaluronate, Hydroxypropyltrimonium Hyaluronate, Sodium Hyaluronate Crosspolymer, Hydroxypropyl Methylcellulose, Arginine, Carbomer, Phenoxyethanol"
+  },
+  {
+    "brand": "Hada Labo",
+    "name": "Shirojyun Premium Whitening Milk",
+    "category": "Moisturizer",
+    "description": "A brightening emulsion with arbutin and vitamin C derivative for even skin tone.",
+    "inci": "Water, Glycerin, BG, Dipropylene Glycol, Liquid Paraffin, Methyl Gluceth-20, Dimethicone, Arbutin, Ascorbyl Glucoside, Sodium Hyaluronate, Tocopherol, Xanthan Gum, Carbomer, Triethanolamine, Phenoxyethanol"
+  },
+  {
+    "brand": "Rohto",
+    "name": "Hada Labo Gokujyun Hyaluronic Acid Face Wash",
+    "category": "Cleanser",
+    "description": "A foam face wash with two types of hyaluronic acid for gentle hydrating cleansing.",
+    "inci": "Water, Glycyrrhiza Glabra Root Extract, Sodium Cocoyl Isethionate, Glycerin, Lauric Acid, Cocamidopropyl Betaine, Propylene Glycol, Sodium Hyaluronate, Hydrolyzed Hyaluronic Acid, Citric Acid, Phenoxyethanol"
+  },
+  {
+    "brand": "Make P:rem",
+    "name": "Safe Me Relief Moisture Cream",
+    "category": "Moisturizer",
+    "description": "A soothing cream with cica and madecassoside for sensitive and reactive skin.",
+    "inci": "Water, Glycerin, Butylene Glycol, Dimethicone, Centella Asiatica Extract, Madecassoside, Asiaticoside, Asiatic Acid, Niacinamide, Panthenol, Sodium Hyaluronate, Allantoin, Ceramide NP, Carbomer, Arginine, Phenoxyethanol"
+  },
+  {
+    "brand": "Nacific",
+    "name": "Real Floral Toner Rose",
+    "category": "Toner",
+    "description": "A hydrating rose toner with 74% rose water and hyaluronic acid.",
+    "inci": "Rosa Damascena Flower Water, Glycerin, Butylene Glycol, Niacinamide, Panthenol, Sodium Hyaluronate, Allantoin, Adenosine, Arginine, Carbomer, 1,2-Hexanediol, Phenoxyethanol, Fragrance"
+  },
+  {
+    "brand": "Dr. G",
+    "name": "Brightening Peeling Gel",
+    "category": "Exfoliant",
+    "description": "A gentle peeling gel with AHA and PHA for smooth, bright skin.",
+    "inci": "Water, Glycerin, Propanediol, Lactic Acid, Gluconolactone, Niacinamide, Panthenol, Allantoin, Sodium Hyaluronate, Xanthan Gum, Arginine, Carbomer, 1,2-Hexanediol, Phenoxyethanol"
+  },
+  {
+    "brand": "Neogen",
+    "name": "Dermalogy Real Fresh Foam Green Tea",
+    "category": "Cleanser",
+    "description": "A soft-foam cleanser with 76% fresh green tea for antioxidant-rich cleansing.",
+    "inci": "Camellia Sinensis Leaf Water, Glycerin, Sodium Cocoyl Isethionate, Potassium Cocoyl Glycinate, Cocamidopropyl Betaine, Camellia Sinensis Leaf Extract, Niacinamide, Panthenol, Allantoin, Citric Acid, Phenoxyethanol"
+  },
+  {
+    "brand": "Etude House",
+    "name": "SoonJung 2x Barrier Intensive Cream",
+    "category": "Moisturizer",
+    "description": "A fragrance-free soothing cream with panthenol and madecassoside for sensitive skin.",
+    "inci": "Water, Glycerin, Butylene Glycol, Dimethicone, Panthenol, Madecassoside, Allantoin, Sodium Hyaluronate, Niacinamide, Ceramide NP, Carbomer, Arginine, 1,2-Hexanediol, Phenoxyethanol"
+  },
+  {
+    "brand": "A'pieu",
+    "name": "Madecassoside Cream",
+    "category": "Moisturizer",
+    "description": "An affordable cica cream with madecassoside and centella asiatica for calming skin.",
+    "inci": "Water, Glycerin, Butylene Glycol, Madecassoside, Centella Asiatica Extract, Asiaticoside, Asiatic Acid, Niacinamide, Panthenol, Allantoin, Sodium Hyaluronate, Ceramide NP, Carbomer, Arginine, 1,2-Hexanediol, Phenoxyethanol"
+  }
+]
