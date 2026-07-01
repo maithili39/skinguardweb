@@ -257,7 +257,8 @@ function applyOverlay(byNorm: Map<string, IngredientRow>): number {
     }
     if (e.tags) row.tags = e.tags;
     if (e.functions && e.functions.length) {
-      row.functions = Array.from(new Set([...row.functions, ...e.functions]));
+      // Curated functions go first so the display label is consumer-friendly
+      row.functions = Array.from(new Set([...e.functions, ...row.functions]));
     }
     if (e.description && !row.description) row.description = e.description;
     applied++;
@@ -312,7 +313,12 @@ async function main() {
     return null;
   };
 
-  const db = createClient({ url: `file:${DB_PATH}` });
+  const tursoUrl = process.env.TURSO_DATABASE_URL;
+  const tursoToken = process.env.TURSO_AUTH_TOKEN;
+  const db =
+    tursoUrl && tursoToken
+      ? createClient({ url: tursoUrl, authToken: tursoToken })
+      : createClient({ url: `file:${DB_PATH}` });
 
   console.log("Building schema…");
   const migrationsDir = join(__dirname, "migrations");

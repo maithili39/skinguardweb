@@ -3929,6 +3929,7 @@
       "Glycerol",
       "Glycerine"
     ],
+    "functions": ["Humectant", "Skin conditioning"],
     "tags": [
       "humectant"
     ]
@@ -4774,13 +4775,14 @@
   },
   {
     "inci_name": "Isopropyl Isostearate",
-    "what_it_does": "A lightweight synthetic emollient ester that improves spreadability and gives a silky finish, with a lower comedogenic risk than isopropyl palmitate.",
-    "rating": "goodie",
+    "what_it_does": "A synthetic emollient ester that improves spreadability and gives a silky finish, but rates 4–5 on standard comedogenicity scales and can clog pores for breakout-prone skin.",
+    "rating": "caution",
     "irritancy": 0,
-    "comedogenicity": 2,
+    "comedogenicity": 4,
     "pregnancy_safe": "safe",
     "tags": [
-      "emollient"
+      "emollient",
+      "comedogenic"
     ]
   },
   {
@@ -5820,6 +5822,7 @@
       "Vitamin B3",
       "Nicotinamide"
     ],
+    "functions": ["Skin conditioning", "Brightening", "Smoothing"],
     "tags": [
       "active",
       "brightening"
@@ -7240,6 +7243,7 @@
     "comedogenicity": 0,
     "pregnancy_safe": "caution",
     "pregnancy_notes": "EU restricts use on the nappy area of young children over endocrine-activity concerns; most experts consider normal adult cosmetic exposure low-risk, but some advise minimizing exposure during pregnancy out of caution.",
+    "functions": ["Preservative"],
     "tags": [
       "preservative"
     ]

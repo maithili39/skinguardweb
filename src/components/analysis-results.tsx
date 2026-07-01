@@ -143,10 +143,13 @@ function IngredientRow({
               href={`/ingredients/${ing.slug}`}
               className="font-medium text-text-dark hover:text-green-primary"
             >
-              {ing.displayName}
+              {item.rawName}
             </Link>
           ) : (
             <span className="font-medium text-text-dark">{item.rawName}</span>
+          )}
+          {ing && item.rawName.toLowerCase() !== ing.displayName.toLowerCase() && (
+            <span className="text-xs text-text-light">({ing.displayName})</span>
           )}
           {ing && <RatingBadge rating={ing.rating} />}
           {item.isMayContain && (
