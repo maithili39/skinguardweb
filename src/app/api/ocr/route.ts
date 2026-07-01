@@ -102,6 +102,9 @@ export const POST = withLogger(async (req: NextRequest) => {
   }
 
   try {
+    if (!process.env.GOOGLE_CREDENTIALS_JSON) {
+      return NextResponse.json({ error: "OCR is not configured. GOOGLE_CREDENTIALS_JSON is missing." }, { status: 503 });
+    }
     const token = await getAccessToken();
 
     const res = await fetch(
@@ -139,7 +142,8 @@ export const POST = withLogger(async (req: NextRequest) => {
     const text = extractIngredientSection(raw);
     return NextResponse.json({ text, raw: text !== raw ? raw : undefined });
   } catch (err) {
-    console.error("OCR error:", err);
-    return NextResponse.json({ error: "OCR processing failed." }, { status: 500 });
+    const msg = err instanceof Error ? err.message : String(err);
+    console.error("OCR error:", msg);
+    return NextResponse.json({ error: `OCR failed: ${msg}` }, { status: 500 });
   }
 });
