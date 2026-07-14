@@ -18,11 +18,16 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Please enter a valid email address." }, { status: 422 });
   }
 
-  const result = await db.execute({
-    sql: `INSERT OR IGNORE INTO newsletter_subscribers (email, created_at)
-          VALUES (?, datetime('now'))`,
-    args: [email],
-  });
+  let result;
+  try {
+    result = await db.execute({
+      sql: `INSERT OR IGNORE INTO newsletter_subscribers (email, created_at)
+            VALUES (?, datetime('now'))`,
+      args: [email],
+    });
+  } catch {
+    return NextResponse.json({ error: "Something went wrong. Please try again." }, { status: 500 });
+  }
 
   if (result.rowsAffected > 0) {
     try {
