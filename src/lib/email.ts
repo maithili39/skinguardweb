@@ -2,15 +2,16 @@ import "server-only";
 
 const RESEND_API_URL = "https://api.resend.com/emails";
 const FROM = "SkinGuard <noreply@skinguard.app>";
+const FROM_STAY_UPDATED = "SkinGuard Stay Updated <noreply@skinguard.app>";
 
-async function send(to: string, subject: string, html: string) {
+async function send(to: string, subject: string, html: string, from: string = FROM) {
   const res = await fetch(RESEND_API_URL, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ from: FROM, to, subject, html }),
+    body: JSON.stringify({ from, to, subject, html }),
   });
   if (!res.ok) {
     const text = await res.text();
@@ -59,5 +60,6 @@ export async function sendNewsletterWelcome(to: string) {
       </p>
     </div>
     `,
+    FROM_STAY_UPDATED,
   );
 }
