@@ -168,6 +168,22 @@ function FlagRow({ flag }: { flag: AnalysisFlag }) {
         {flag.ingredientNames.length > 0 && (
           <p className="mt-1 text-xs text-text-light">{flag.ingredientNames.join(", ")}</p>
         )}
+        {flag.suggestions && flag.suggestions.length > 0 && (
+          <div className="mt-2.5 rounded-xl bg-bg-section/70 px-3 py-2.5">
+            <p className="text-xs font-semibold text-text-dark">Try instead:</p>
+            <div className="mt-1.5 flex flex-wrap gap-1.5">
+              {flag.suggestions.map((s) => (
+                <Link
+                  key={s.slug}
+                  href={`/ingredients/${s.slug}`}
+                  className="rounded-full border border-border bg-white px-2.5 py-1 text-xs font-medium text-text-body hover:border-green-mid hover:text-green-primary transition-colors"
+                >
+                  {s.displayName}
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

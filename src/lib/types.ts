@@ -60,11 +60,19 @@ export interface AnalyzedIngredient {
   concentration?: string; // e.g. "10%" if listed on the label
 }
 
+export interface Substitution {
+  displayName: string;
+  slug: string;
+  whatItDoes: string | null;
+  rating: Rating | null;
+}
+
 export interface AnalysisFlag {
   level: "good" | "moderate" | "bad";
   title: string;
   detail: string;
   ingredientNames: string[];
+  suggestions?: Substitution[];
 }
 
 export type Verdict = "safe" | "caution" | "avoid";

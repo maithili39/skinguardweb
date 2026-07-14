@@ -1,6 +1,7 @@
 import "server-only";
 import { db } from "./db";
 import { getIngredientsByIds } from "./ingredients";
+import { suggestAlternatives } from "./substitutions";
 import { tokenizeInci, candidateForms, cleanToken } from "./inci";
 import { normalizeName } from "./text";
 import type {
@@ -141,7 +142,7 @@ export async function analyzeInci(
     };
   }
 
-  const flags = buildFlags(analyzed, profile);
+  const flags = await buildFlags(analyzed, profile);
   const { verdict, verdictReason } = buildVerdict(flags, profile);
   const { score, scoreBreakdown, recommendation } = buildScore(analyzed, flags, profile);
 
@@ -286,10 +287,10 @@ function hasTag(ing: Ingredient, tag: string): boolean {
   return ing.tags.includes(tag);
 }
 
-function buildFlags(
+async function buildFlags(
   analyzed: AnalyzedIngredient[],
   profile: SkinProfile,
-): AnalysisFlag[] {
+): Promise<AnalysisFlag[]> {
   const flags: AnalysisFlag[] = [];
   const ings = analyzed
     .map((a) => a.ingredient)
@@ -299,6 +300,7 @@ function buildFlags(
     ings.filter((i) => hasTag(i, tag)).map((i) => i.displayName);
   const namesWhere = (pred: (i: Ingredient) => boolean) =>
     ings.filter(pred).map((i) => i.displayName);
+  const ingsWhere = (pred: (i: Ingredient) => boolean) => ings.filter(pred);
 
   const concerns = new Set(profile.concerns);
   const isSensitive = concerns.has("sensitive") || concerns.has("rosacea");
@@ -331,7 +333,8 @@ function buildFlags(
   }
 
   // ── EU-declarable contact allergens — only a real concern for sensitised skin ──
-  const allergens = namesWithTag("allergen");
+  const allergenIngs = ingsWhere((i) => hasTag(i, "allergen"));
+  const allergens = allergenIngs.map((i) => i.displayName);
   if (allergens.length && isSensitive) {
     flags.push({
       level: "bad",
@@ -339,6 +342,7 @@ function buildFlags(
       detail:
         "The EU requires these fragrance chemicals to be listed by name above 0.01% (rinse-off) / 0.001% (leave-on) because they are established contact sensitisers. For sensitive or rosacea-prone skin the risk of a reaction is meaningfully elevated — a fragrance-free formula is a safer choice.",
       ingredientNames: allergens,
+      suggestions: await suggestAlternatives(allergenIngs, { excludeTags: ["allergen", "fragrance"] }),
     });
   } else if (allergens.length) {
     // Inform without alarming
@@ -366,9 +370,10 @@ function buildFlags(
   }
 
   // ── Comedogenicity — only flag ingredients rated 4–5, and contextualise ──
-  const highlyComedogenic = namesWhere(
+  const highlyComedogenicIngs = ingsWhere(
     (i) => (i.comedogenicity ?? 0) >= 4 || hasTag(i, "comedogenic"),
   );
+  const highlyComedogenic = highlyComedogenicIngs.map((i) => i.displayName);
   const mildlyComedogenic = namesWhere(
     (i) => (i.comedogenicity ?? 0) === 3,
   );
@@ -379,6 +384,10 @@ function buildFlags(
       detail:
         "These ingredients score 4–5 on the standard 0–5 comedogenicity scale, meaning they have a documented tendency to block follicles in controlled studies. For acne-prone skin this is a meaningful risk, not just a theoretical one. Concentration matters — if they appear near the end of the list they may be fine, but monitor your skin.",
       ingredientNames: highlyComedogenic,
+      suggestions: await suggestAlternatives(highlyComedogenicIngs, {
+        excludeTags: ["comedogenic"],
+        maxComedogenicity: 1,
+      }),
     });
   } else if (highlyComedogenic.length) {
     flags.push({
@@ -400,7 +409,8 @@ function buildFlags(
   }
 
   // ── Drying alcohols — only flag for dry/sensitive, inform others ──
-  const dryingAlcohol = namesWithTag("drying-alcohol");
+  const dryingAlcoholIngs = ingsWhere((i) => hasTag(i, "drying-alcohol"));
+  const dryingAlcohol = dryingAlcoholIngs.map((i) => i.displayName);
   if (dryingAlcohol.length) {
     if (isDry || isSensitive) {
       flags.push({
@@ -409,6 +419,7 @@ function buildFlags(
         detail:
           "Volatile alcohols (denatured alcohol, ethanol) evaporate quickly and give a fast-absorbing, matte finish. Clinical evidence shows repeated use can impair barrier function in dry or sensitive skin. For oily or normal skin types, low concentrations are typically well tolerated.",
         ingredientNames: dryingAlcohol,
+        suggestions: await suggestAlternatives(dryingAlcoholIngs, { excludeTags: ["drying-alcohol"] }),
       });
     }
     // For oily/normal skin: not flagged — it's actually beneficial (matte finish, penetration enhancer)
@@ -438,16 +449,20 @@ function buildFlags(
 
   // ── Fungal acne triggers — only if concern is set ──
   if (concerns.has("fungal-acne")) {
-    const fungalTriggers = namesWhere(
+    const fungalTriggerIngs = ingsWhere(
       (i) => hasTag(i, "fungal-acne-trigger") || hasTag(i, "oil"),
     );
+    const fungalTriggers = Array.from(new Set(fungalTriggerIngs.map((i) => i.displayName)));
     if (fungalTriggers.length) {
       flags.push({
         level: "moderate",
         title: "Potential malassezia triggers",
         detail:
           "Malassezia (pityrosporum) folliculitis feeds on certain fatty acids and oils. Note: comedogenicity scales and malassezia sensitivity are separate concerns — an ingredient can be non-comedogenic but still feed the yeast. These are worth avoiding if you have confirmed fungal acne, but they are harmless for everyone else.",
-        ingredientNames: Array.from(new Set(fungalTriggers)),
+        ingredientNames: fungalTriggers,
+        suggestions: await suggestAlternatives(fungalTriggerIngs, {
+          excludeTags: ["fungal-acne-trigger", "oil"],
+        }),
       });
     }
   }
