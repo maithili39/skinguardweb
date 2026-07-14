@@ -1,6 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { db } from "@/lib/db";
-import { getSessionUser, checkOrigin } from "@/lib/auth";
+import { getSessionUser } from "@/lib/auth";
 import { savedItemSchema } from "@/lib/validation";
 import { withLogger } from "@/lib/api-handler";
 
@@ -25,10 +25,6 @@ export const GET = withLogger(async (_req: NextRequest) => {
 });
 
 export const POST = withLogger(async (req: NextRequest) => {
-  if (!(await checkOrigin())) {
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-  }
-
   const user = await getSessionUser();
   if (!user) {
     return NextResponse.json({ error: "Not authenticated." }, { status: 401 });
@@ -58,10 +54,6 @@ export const POST = withLogger(async (req: NextRequest) => {
 });
 
 export const DELETE = withLogger(async (req: NextRequest) => {
-  if (!(await checkOrigin())) {
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-  }
-
   const user = await getSessionUser();
   if (!user) {
     return NextResponse.json({ error: "Not authenticated." }, { status: 401 });

@@ -313,7 +313,7 @@ export const POST = withLogger(async (req: NextRequest) => {
     return NextResponse.json({ text: ingredients, expiry });
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err);
-    console.error("OCR error:", msg);
-    return NextResponse.json({ error: `OCR failed: ${msg}` }, { status: 500 });
+    logger.error("ocr_failed", { error: msg });
+    return NextResponse.json({ error: "OCR failed. Please try again." }, { status: 500 });
   }
 });

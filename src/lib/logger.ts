@@ -7,12 +7,37 @@ interface LogEntry {
   [key: string]: unknown;
 }
 
+const REDACT_KEYS = new Set(["ip", "userId", "email"]);
+
+function redactIp(ip: string): string {
+  // Keep the ip useful for coarse rate-limit debugging without logging it
+  // in full: 203.0.113.42 -> 203.0.113.x
+  const parts = ip.split(".");
+  if (parts.length === 4) return `${parts.slice(0, 3).join(".")}.x`;
+  return "redacted";
+}
+
+function redact(meta?: Record<string, unknown>): Record<string, unknown> | undefined {
+  if (!meta) return meta;
+  const out: Record<string, unknown> = {};
+  for (const [key, value] of Object.entries(meta)) {
+    if (key === "ip" && typeof value === "string") {
+      out[key] = redactIp(value);
+    } else if (REDACT_KEYS.has(key)) {
+      out[key] = "[redacted]";
+    } else {
+      out[key] = value;
+    }
+  }
+  return out;
+}
+
 function log(level: Level, msg: string, meta?: Record<string, unknown>) {
   const entry: LogEntry = {
     ts: new Date().toISOString(),
     level,
     msg,
-    ...meta,
+    ...redact(meta),
   };
   const line = JSON.stringify(entry);
   if (level === "error") {

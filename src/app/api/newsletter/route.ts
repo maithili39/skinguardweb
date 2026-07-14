@@ -1,14 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { sendNewsletterWelcome } from "@/lib/email";
-import { checkOrigin, checkRateLimit, getRequestIp } from "@/lib/auth";
+import { checkRateLimit, getRequestIp } from "@/lib/auth";
 import { logger } from "@/lib/logger";
 
 export async function POST(req: NextRequest) {
-  if (!(await checkOrigin())) {
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-  }
-
   const ip = await getRequestIp();
   if (!(await checkRateLimit(ip))) {
     logger.warn("rate_limit_hit", { ip, route: "newsletter" });

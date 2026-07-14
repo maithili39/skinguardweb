@@ -4,7 +4,6 @@ import {
   hashPassword,
   createSession,
   sessionCookieValue,
-  checkOrigin,
   checkRateLimit,
   getRequestIp,
 } from "@/lib/auth";
@@ -13,10 +12,6 @@ import { withLogger } from "@/lib/api-handler";
 import { logger } from "@/lib/logger";
 
 export const POST = withLogger(async (req: NextRequest) => {
-  if (!(await checkOrigin())) {
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-  }
-
   const ip = await getRequestIp();
   if (!(await checkRateLimit(ip))) {
     logger.warn("rate_limit_hit", { ip, route: "signup" });

@@ -96,19 +96,6 @@ export function clearSessionCookieValue(): string {
   return `${SESSION_COOKIE}=; Path=/; HttpOnly; SameSite=Lax; Expires=Thu, 01 Jan 1970 00:00:00 GMT`;
 }
 
-export async function checkOrigin(): Promise<boolean> {
-  const hdrs = await headers();
-  const origin = hdrs.get("origin");
-  const host = hdrs.get("host");
-  if (!origin || !host) return false;
-  try {
-    const url = new URL(origin);
-    return url.host === host;
-  } catch {
-    return false;
-  }
-}
-
 const WINDOW_MS = 15 * 60 * 1000; // 15 minutes
 const MAX_ATTEMPTS = 10;
 
