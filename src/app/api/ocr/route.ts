@@ -1,6 +1,8 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { withLogger } from "@/lib/api-handler";
 import { cleanWithGemini } from "@/lib/gemini-ocr";
+import { checkRateLimit, getRequestIp } from "@/lib/auth";
+import { logger } from "@/lib/logger";
 import { z } from "zod";
 
 const schema = z.object({
@@ -239,6 +241,15 @@ function normalizeIngredientLines(text: string): string {
 }
 
 export const POST = withLogger(async (req: NextRequest) => {
+  const ip = await getRequestIp();
+  if (!(await checkRateLimit(ip))) {
+    logger.warn("rate_limit_hit", { ip, route: "ocr" });
+    return NextResponse.json(
+      { error: "Too many attempts — try again in 15 minutes." },
+      { status: 429 },
+    );
+  }
+
   let body: unknown;
   try {
     body = await req.json();
