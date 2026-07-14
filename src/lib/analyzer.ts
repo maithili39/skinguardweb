@@ -323,8 +323,18 @@ async function segmentBlob(rawText: string): Promise<BlobSegment[] | null> {
 
     if (matched) {
       flushUnmatched(pos);
-      segments.push({ id: matched.id, text: original.slice(pos, pos + matched.norm.length) });
-      pos += matched.norm.length;
+      let endPos = pos + matched.norm.length;
+      // Absorb a directly-following parenthetical clarification — e.g. keep
+      // "Aqua (Water)" or "Tocopheryl Acetate (Vitamin E)" as one segment
+      // instead of splitting the "(...)" off as its own unmatched entry.
+      let lookahead = endPos;
+      if (hay[lookahead] === " ") lookahead++;
+      if (hay[lookahead] === "(") {
+        const closeIdx = hay.indexOf(")", lookahead);
+        if (closeIdx !== -1) endPos = closeIdx + 1;
+      }
+      segments.push({ id: matched.id, text: original.slice(pos, endPos) });
+      pos = endPos;
       matchedCount++;
     } else {
       if (unmatchedStart === -1) unmatchedStart = pos;
