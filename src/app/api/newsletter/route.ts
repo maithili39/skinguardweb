@@ -43,8 +43,12 @@ export async function POST(req: NextRequest) {
   if (result.rowsAffected > 0) {
     try {
       await sendNewsletterWelcome(email);
-    } catch {
-      // Don't fail if email send fails
+    } catch (err) {
+      // Don't fail the subscription if the welcome email fails to send —
+      // but log it, since this used to fail completely silently.
+      logger.error("newsletter_welcome_email_failed", {
+        error: err instanceof Error ? err.message : String(err),
+      });
     }
   }
 
