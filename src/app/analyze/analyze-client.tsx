@@ -152,6 +152,14 @@ export default function AnalyzeClient() {
     [skinType, concerns, runAnalysisWithProfile],
   );
 
+  function startNewAnalysis() {
+    setReport(null);
+    setError(null);
+    setText("");
+    setProductLabel("");
+    setTab("paste");
+  }
+
   return (
     <div className="mx-auto max-w-3xl px-6 py-12">
       <header className="mb-8">
@@ -289,14 +297,16 @@ export default function AnalyzeClient() {
         )}
       </section>
 
-      <button
-        type="button"
-        onClick={() => runAnalysis(text)}
-        disabled={loading}
-        className="w-full rounded-full bg-green-btn px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-green-btn-hover disabled:opacity-60"
-      >
-        {loading ? "Analyzing…" : "Analyze Ingredients"}
-      </button>
+      {!report && (
+        <button
+          type="button"
+          onClick={() => runAnalysis(text)}
+          disabled={loading}
+          className="w-full rounded-full bg-green-btn px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-green-btn-hover disabled:opacity-60"
+        >
+          {loading ? "Analyzing…" : "Analyze Ingredients"}
+        </button>
+      )}
 
       {error && (
         <p className="mt-3 rounded-xl bg-risk-bad-bg px-4 py-3 text-sm text-risk-bad">
@@ -305,9 +315,18 @@ export default function AnalyzeClient() {
       )}
 
       {report && (
-        <div className="mt-10">
-          <AnalysisResults report={report} />
-        </div>
+        <>
+          <button
+            type="button"
+            onClick={startNewAnalysis}
+            className="w-full rounded-full border border-green-primary px-6 py-3.5 text-sm font-semibold text-green-primary transition-colors hover:bg-green-light"
+          >
+            New Analysis
+          </button>
+          <div className="mt-10">
+            <AnalysisResults report={report} />
+          </div>
+        </>
       )}
     </div>
   );
