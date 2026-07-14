@@ -6,15 +6,12 @@ interface BarcodeScannerProps {
   onIngredients: (inci: string, productName: string) => void;
 }
 
-interface OBFProduct {
-  product_name?: string;
-  ingredients_text?: string;
-  ingredients_text_en?: string;
-}
-
-interface OBFResponse {
-  status: number;
-  product?: OBFProduct;
+interface BarcodeLookupResponse {
+  found: boolean;
+  productName?: string;
+  ingredients?: string;
+  reason?: "not_found" | "no_ingredients";
+  error?: string;
 }
 
 type Phase = "idle" | "scanning" | "looking-up" | "found" | "not-found" | "error" | "no-camera";
@@ -94,31 +91,25 @@ export default function BarcodeScanner({ onIngredients }: BarcodeScannerProps) {
     setMessage(`Barcode detected: ${barcode}`);
 
     try {
-      const res = await fetch(
-        `https://world.openbeautyfacts.org/api/v0/product/${encodeURIComponent(barcode)}.json`,
-        { signal: AbortSignal.timeout(8000) },
-      );
-      if (!res.ok) throw new Error("API error");
-      const data = (await res.json()) as OBFResponse;
+      const res = await fetch("/api/barcode", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ barcode }),
+      });
+      const data = (await res.json()) as BarcodeLookupResponse;
 
-      if (data.status !== 1 || !data.product) {
+      if (!res.ok || !data.found) {
         setPhase("not-found");
-        setMessage(`No product found for barcode ${barcode}. Try scanning another product or use Photo / OCR.`);
+        setMessage(
+          data.reason === "no_ingredients"
+            ? "Product found but ingredient list is not available in the database. Try Photo / OCR."
+            : `No product found for barcode ${barcode}. Try scanning another product or use Photo / OCR.`,
+        );
         return;
       }
 
-      const p = data.product;
-      const inci = (p.ingredients_text_en ?? p.ingredients_text ?? "").trim();
-      const name = (p.product_name ?? "").trim();
-
-      if (!inci) {
-        setPhase("not-found");
-        setMessage("Product found but ingredient list is not available in the database. Try Photo / OCR.");
-        return;
-      }
-
-      setProductName(name);
-      setIngredients(inci);
+      setProductName(data.productName ?? "");
+      setIngredients(data.ingredients ?? "");
       setPhase("found");
     } catch {
       setPhase("error");
