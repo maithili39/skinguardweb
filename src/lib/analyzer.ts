@@ -111,6 +111,33 @@ export async function analyzeInci(
     resolved.push({ token: tokens[i], id, kind });
   }
 
+  // Second pass: some real-world labels wrap ingredient names across lines
+  // with few or no commas, so the tokenizer above ends up gluing several
+  // ingredients into one long unmatched blob. Try to recover the individual
+  // ingredients by segmenting the blob against our own name/synonym
+  // dictionary, rather than showing one big "not recognized" entry.
+  const expanded: typeof resolved = [];
+  for (const r of resolved) {
+    const wordCount = r.token.raw.trim().split(/\s+/).filter(Boolean).length;
+    if (r.id === null && wordCount >= 4) {
+      const segments = await segmentBlob(r.token.raw);
+      if (segments) {
+        for (const seg of segments) {
+          if (seg.id !== null) idsToLoad.add(seg.id);
+          expanded.push({
+            token: { ...r.token, raw: seg.text },
+            id: seg.id,
+            kind: seg.id !== null ? "fuzzy" : "unmatched",
+          });
+        }
+        continue;
+      }
+    }
+    expanded.push(r);
+  }
+  resolved.length = 0;
+  resolved.push(...expanded);
+
   const ingMap = await getIngredientsByIds([...idsToLoad]);
 
   const analyzed: AnalyzedIngredient[] = resolved.map((r) => ({
@@ -230,6 +257,84 @@ async function getTypoIndex(): Promise<TypoCandidate[]> {
     })();
   }
   return typoIndexPromise;
+}
+
+let sortedTypoIndexPromise: Promise<TypoCandidate[]> | null = null;
+
+// Longest-name-first so greedy matching prefers "Sodium Palm Aqua" over
+// just "Sodium" when both are valid prefixes at the same position.
+async function getSortedTypoIndex(): Promise<TypoCandidate[]> {
+  if (!sortedTypoIndexPromise) {
+    sortedTypoIndexPromise = getTypoIndex().then((idx) =>
+      [...idx].filter((c) => c.norm.length >= 3).sort((a, b) => b.norm.length - a.norm.length),
+    );
+  }
+  return sortedTypoIndexPromise;
+}
+
+interface BlobSegment {
+  id: number | null;
+  text: string;
+}
+
+/**
+ * Recover individual ingredients from a run of text that the tokenizer
+ * couldn't split (e.g. a label with wrapped lines and few/no commas).
+ * Greedily matches known ingredient/synonym names left-to-right; anything
+ * in between becomes its own unmatched segment. Returns null if fewer than
+ * two ingredients were recovered, so the caller can keep the original blob.
+ */
+async function segmentBlob(rawText: string): Promise<BlobSegment[] | null> {
+  const original = rawText.replace(/\s+/g, " ").trim();
+  if (!original) return null;
+  const hay = original.toUpperCase();
+  const sorted = await getSortedTypoIndex();
+
+  const segments: BlobSegment[] = [];
+  let pos = 0;
+  let matchedCount = 0;
+  let unmatchedStart = -1;
+
+  const flushUnmatched = (end: number) => {
+    if (unmatchedStart !== -1 && end > unmatchedStart) {
+      const text = original.slice(unmatchedStart, end).trim();
+      if (text) segments.push({ id: null, text });
+    }
+    unmatchedStart = -1;
+  };
+
+  while (pos < hay.length) {
+    if (hay[pos] === " ") {
+      pos++;
+      continue;
+    }
+
+    let matched: TypoCandidate | null = null;
+    for (const cand of sorted) {
+      if (hay.startsWith(cand.norm, pos)) {
+        const endPos = pos + cand.norm.length;
+        const boundaryOk = endPos === hay.length || hay[endPos] === " " || hay[endPos] === "(";
+        if (boundaryOk) {
+          matched = cand;
+          break;
+        }
+      }
+    }
+
+    if (matched) {
+      flushUnmatched(pos);
+      segments.push({ id: matched.id, text: original.slice(pos, pos + matched.norm.length) });
+      pos += matched.norm.length;
+      matchedCount++;
+    } else {
+      if (unmatchedStart === -1) unmatchedStart = pos;
+      const nextSpace = hay.indexOf(" ", pos);
+      pos = nextSpace === -1 ? hay.length : nextSpace;
+    }
+  }
+  flushUnmatched(hay.length);
+
+  return matchedCount >= 2 ? segments : null;
 }
 
 function boundedLevenshtein(a: string, b: string, max: number): number {
