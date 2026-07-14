@@ -107,6 +107,7 @@ export default function AnalyzeClient() {
       if (!trimmed) return;
       setLoading(true);
       setError(null);
+      setReport(null);
       try {
         const res = await fetch("/api/analyze", {
           method: "POST",
@@ -143,6 +144,7 @@ export default function AnalyzeClient() {
       const trimmed = inputText.trim();
       if (!trimmed) {
         setError("Paste or scan an ingredient list first.");
+        setReport(null);
         return;
       }
       await runAnalysisWithProfile(trimmed, { skinType, concerns });
