@@ -38,12 +38,12 @@ export default function OcrPanel({ onExtracted }: OcrPanelProps) {
     setPreview(url);
 
     try {
-      const base64 = await fileToBase64(file);
+      const { base64, mimeType } = await fileToBase64(file);
 
       const res = await fetch("/api/ocr", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ imageBase64: base64 }),
+        body: JSON.stringify({ imageBase64: base64, mimeType }),
       });
 
       const data = await res.json() as { text?: string; expiry?: ExpiryInfo; error?: string };
@@ -100,7 +100,7 @@ export default function OcrPanel({ onExtracted }: OcrPanelProps) {
               <circle cx="12" cy="13" r="3" />
             </svg>
             <span className="font-medium text-text-body">Take or upload a photo</span>
-            <span className="text-xs">Powered by Google Cloud Vision</span>
+            <span className="text-xs">Powered by Gemini AI Vision</span>
           </button>
 
           {/* Tips */}
@@ -124,7 +124,7 @@ export default function OcrPanel({ onExtracted }: OcrPanelProps) {
           )}
           <div className="mx-auto mb-3 h-6 w-6 animate-spin rounded-full border-2 border-green-primary border-t-transparent" />
           <p className="text-sm text-text-body">Reading ingredient list…</p>
-          <p className="mt-1 text-xs text-text-muted">Google Cloud Vision is processing your image</p>
+          <p className="mt-1 text-xs text-text-muted">Gemini AI Vision is processing your image</p>
         </div>
       )}
 
@@ -220,7 +220,9 @@ function ExpiryBanner({ expiry }: { expiry: ExpiryInfo }) {
   );
 }
 
-function fileToBase64(file: File): Promise<string> {
+function fileToBase64(
+  file: File,
+): Promise<{ base64: string; mimeType: string }> {
   return new Promise((resolve, reject) => {
     const img = new Image();
     const url = URL.createObjectURL(file);
@@ -229,8 +231,13 @@ function fileToBase64(file: File): Promise<string> {
       const MAX = 2048;
       let { width, height } = img;
       if (width > MAX || height > MAX) {
-        if (width > height) { height = Math.round((height * MAX) / width); width = MAX; }
-        else { width = Math.round((width * MAX) / height); height = MAX; }
+        if (width > height) {
+          height = Math.round((height * MAX) / width);
+          width = MAX;
+        } else {
+          width = Math.round((width * MAX) / height);
+          height = MAX;
+        }
       }
       const canvas = document.createElement("canvas");
       canvas.width = width;
@@ -238,7 +245,7 @@ function fileToBase64(file: File): Promise<string> {
       const ctx = canvas.getContext("2d")!;
       ctx.drawImage(img, 0, 0, width, height);
       const dataUrl = canvas.toDataURL("image/jpeg", 0.9);
-      resolve(dataUrl.split(",")[1]);
+      resolve({ base64: dataUrl.split(",")[1], mimeType: "image/jpeg" });
     };
     img.onerror = reject;
     img.src = url;
