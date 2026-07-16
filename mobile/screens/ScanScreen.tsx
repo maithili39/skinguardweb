@@ -29,7 +29,7 @@ export default function ScanScreen({ mode, onResult, onBack }: Props) {
 
   useEffect(() => {
     if (!permission?.granted) requestPermission();
-  }, []);
+  }, [permission?.granted, requestPermission]);
 
   // ── OCR: take photo → send to API ────────────────────────────────────────
 
@@ -50,7 +50,7 @@ export default function ScanScreen({ mode, onResult, onBack }: Props) {
       if (!res.ok) throw new Error("OCR failed");
       const { text } = await res.json();
       setOcrText(text);
-    } catch (e) {
+    } catch {
       Alert.alert("Error", "Could not extract text from image. Try again with better lighting.");
     } finally {
       setLoading(false);

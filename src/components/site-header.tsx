@@ -43,8 +43,12 @@ export default function SiteHeader({ user }: SiteHeaderProps) {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
-  // Close on route change
-  useEffect(() => { setOpen(false); }, [pathname]);
+  // Close on route change (adjust state during render instead of in an effect)
+  const [prevPathname, setPrevPathname] = useState(pathname);
+  if (prevPathname !== pathname) {
+    setPrevPathname(pathname);
+    setOpen(false);
+  }
 
   // Sign-in link goes back to current page after login
   const signInHref = `/login?next=${encodeURIComponent(pathname)}`;

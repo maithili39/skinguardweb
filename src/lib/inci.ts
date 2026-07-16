@@ -30,7 +30,7 @@ function splitTokens(text: string): string[] {
   // Heuristic: ". " before an uppercase letter, after a letter/digit/paren.
   // Replace those periods with commas before splitting so the normal
   // path handles them correctly.
-  let normalised = text.replace(/([a-zA-Z0-9\)])\.\s+(?=[A-Z])/g, "$1, ");
+  const normalised = text.replace(/([a-zA-Z0-9\)])\.\s+(?=[A-Z])/g, "$1, ");
 
   const parts = normalised
     .split(/[\n•·;]+|,(?!\d)|(?<!\d),/g)

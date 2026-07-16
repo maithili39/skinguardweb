@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import {
   SKIN_TYPES,
@@ -17,79 +17,96 @@ import type { AnalysisReport } from "@/lib/types";
 
 type Tab = "paste" | "photo" | "barcode";
 
+type InitialState = {
+  skinType: SkinType;
+  concerns: Concern[];
+  text: string;
+  tab: Tab;
+  // Set when returning from a login redirect — triggers an auto-run.
+  pendingRun: { text: string; profile: SkinProfile } | null;
+};
+
+// Read the ?inci= param, post-login pending state, or homepage handoff once,
+// at first render, so state can be initialised directly instead of via effects.
+function readInitialState(inciParam: string | null): InitialState {
+  const init: InitialState = {
+    skinType: "normal",
+    concerns: [],
+    text: "",
+    tab: "paste",
+    pendingRun: null,
+  };
+
+  if (inciParam) {
+    init.text = decodeURIComponent(inciParam);
+    return init;
+  }
+  if (typeof window === "undefined") return init;
+
+  // Restore pending state saved before auth redirect
+  const pendingRaw = sessionStorage.getItem(AUTH_PENDING_KEY);
+  if (pendingRaw) {
+    sessionStorage.removeItem(AUTH_PENDING_KEY);
+    try {
+      const data = JSON.parse(pendingRaw) as {
+        skinType?: SkinType;
+        concerns?: Concern[];
+        text?: string;
+      };
+      if (data.skinType) init.skinType = data.skinType;
+      if (Array.isArray(data.concerns)) init.concerns = data.concerns;
+      if (data.text) {
+        init.text = data.text;
+        init.pendingRun = {
+          text: data.text,
+          profile: { skinType: init.skinType, concerns: init.concerns },
+        };
+      }
+    } catch {
+      // ignore malformed state
+    }
+    return init;
+  }
+
+  try {
+    const raw = sessionStorage.getItem(HANDOFF_KEY);
+    if (!raw) return init;
+    sessionStorage.removeItem(HANDOFF_KEY);
+    const data = JSON.parse(raw) as {
+      skinType?: SkinType;
+      concerns?: Concern[];
+      text?: string;
+      tab?: string;
+    };
+    if (data.skinType) init.skinType = data.skinType;
+    if (Array.isArray(data.concerns)) init.concerns = data.concerns;
+    if (data.text) init.text = data.text;
+    if (data.tab === "photo") init.tab = "photo";
+  } catch {
+    // ignore malformed handoff
+  }
+  return init;
+}
+
 const SAMPLE =
   "Aqua, Glycerin, Niacinamide, Sodium Hyaluronate, Dimethicone, Cetearyl Alcohol, Phenoxyethanol, Tocopherol, Parfum, Limonene";
 
 export default function AnalyzeClient() {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const [skinType, setSkinType] = useState<SkinType>("normal");
-  const [concerns, setConcerns] = useState<Concern[]>([]);
-  const [tab, setTab] = useState<Tab>("paste");
-  const [text, setText] = useState("");
+  // Initial values come from ?inci=, post-login pending state, or the
+  // homepage handoff — read once via a lazy initializer (no effects needed).
+  const [init] = useState<InitialState>(() =>
+    readInitialState(searchParams.get("inci")),
+  );
+  const [skinType, setSkinType] = useState<SkinType>(init.skinType);
+  const [concerns, setConcerns] = useState<Concern[]>(init.concerns);
+  const [tab, setTab] = useState<Tab>(init.tab);
+  const [text, setText] = useState(init.text);
   const [productLabel, setProductLabel] = useState("");
   const [report, setReport] = useState<AnalysisReport | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
-  // Pick up the profile/text handed off from the homepage form OR from the
-  // ?inci= query param (used by product pages' "Customize analysis" link).
-  // Also restore and auto-run a pending analysis after login redirect.
-  useEffect(() => {
-    const inciParam = searchParams.get("inci");
-    if (inciParam) {
-      setText(decodeURIComponent(inciParam));
-      return;
-    }
-
-    // Restore pending state saved before auth redirect
-    const pendingRaw = sessionStorage.getItem(AUTH_PENDING_KEY);
-    if (pendingRaw) {
-      sessionStorage.removeItem(AUTH_PENDING_KEY);
-      try {
-        const data = JSON.parse(pendingRaw) as {
-          skinType?: SkinType;
-          concerns?: Concern[];
-          text?: string;
-        };
-        if (data.skinType) setSkinType(data.skinType);
-        if (Array.isArray(data.concerns)) setConcerns(data.concerns);
-        if (data.text) {
-          setText(data.text);
-          // Auto-run after restoring state
-          setTimeout(() => {
-            const profile: SkinProfile = {
-              skinType: data.skinType ?? "normal",
-              concerns: data.concerns ?? [],
-            };
-            runAnalysisWithProfile(data.text!, profile);
-          }, 100);
-        }
-      } catch {
-        // ignore malformed state
-      }
-      return;
-    }
-
-    try {
-      const raw = sessionStorage.getItem(HANDOFF_KEY);
-      if (!raw) return;
-      sessionStorage.removeItem(HANDOFF_KEY);
-      const data = JSON.parse(raw) as {
-        skinType?: SkinType;
-        concerns?: Concern[];
-        text?: string;
-        tab?: string;
-      };
-      if (data.skinType) setSkinType(data.skinType);
-      if (Array.isArray(data.concerns)) setConcerns(data.concerns);
-      if (data.text) setText(data.text);
-      if (data.tab === "photo") setTab("photo");
-    } catch {
-      // ignore malformed handoff
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchParams]);
 
   function toggleConcern(id: Concern) {
     setConcerns((prev) => {
@@ -136,8 +153,17 @@ export default function AnalyzeClient() {
         setLoading(false);
       }
     },
-    [router],
+    [router, productLabel],
   );
+
+  // Auto-run an analysis restored after the login redirect (runs once).
+  const autoRanRef = useRef(false);
+  useEffect(() => {
+    if (init.pendingRun && !autoRanRef.current) {
+      autoRanRef.current = true;
+      runAnalysisWithProfile(init.pendingRun.text, init.pendingRun.profile);
+    }
+  }, [init.pendingRun, runAnalysisWithProfile]);
 
   const runAnalysis = useCallback(
     async (inputText: string) => {

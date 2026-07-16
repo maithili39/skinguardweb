@@ -1,6 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { withLogger } from "@/lib/api-handler";
-import { extractWithGeminiVision, cleanWithGemini } from "@/lib/gemini-ocr";
+import { extractWithGeminiVision } from "@/lib/gemini-ocr";
 import { checkRateLimit, getRequestIp } from "@/lib/auth";
 import { logger } from "@/lib/logger";
 import { z } from "zod";

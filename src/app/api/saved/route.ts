@@ -4,7 +4,7 @@ import { getSessionUser } from "@/lib/auth";
 import { savedItemSchema } from "@/lib/validation";
 import { withLogger } from "@/lib/api-handler";
 
-export const GET = withLogger(async (_req: NextRequest) => {
+export const GET = withLogger(async () => {
   const user = await getSessionUser();
   if (!user) {
     return NextResponse.json({ error: "Not authenticated." }, { status: 401 });

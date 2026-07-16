@@ -11,7 +11,8 @@ export const profileSchema = z.object({
 
 export const analyzeSchema = z.object({
   text: z.string().min(1, "Paste an ingredient list to analyze.").max(20000),
-  profile: profileSchema,
+  // Omitted profile falls back to the field defaults (normal skin, no concerns)
+  profile: profileSchema.prefault({}),
   label: z.string().max(120).optional(),
 });
 
