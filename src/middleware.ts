@@ -27,7 +27,7 @@ function isSameOrigin(req: NextRequest): boolean {
   return false;
 }
 
-export function proxy(req: NextRequest) {
+export function middleware(req: NextRequest) {
   if (MUTATING_METHODS.has(req.method) && !isSameOrigin(req)) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
