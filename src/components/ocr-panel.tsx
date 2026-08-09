@@ -38,31 +38,28 @@ export default function OcrPanel({ onExtracted }: OcrPanelProps) {
     setPreview(url);
 
     try {
-      const { base64, mimeType } = await fileToBase64(file);
+      // Import Tesseract dynamically (client-side only)
+      const Tesseract = (await import("tesseract.js")).default;
 
-      const res = await fetch("/api/ocr", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ imageBase64: base64, mimeType }),
+      const text = await Tesseract.recognize(url, "eng", {
+        logger: (m) => {
+          if (m.status === "recognizing") {
+            setMessage(`Processing: ${Math.round(m.progress * 100)}%`);
+          }
+        },
       });
 
-      const data = await res.json() as { text?: string; expiry?: ExpiryInfo; error?: string };
-
-      if (!res.ok || data.error) {
-        throw new Error(data.error ?? "OCR failed");
-      }
-
-      const text = (data.text ?? "").trim();
-      setExtracted(text);
-      setExpiry(data.expiry ?? null);
+      const extractedText = (text.data.text ?? "").trim();
+      setExtracted(extractedText);
       setStatus("done");
+      setMessage(null);
 
-      if (!text) {
+      if (!extractedText) {
         setMessage("No text found. Try a clearer, well-lit photo of just the ingredient list.");
       }
     } catch (err) {
       setStatus("error");
-      setMessage(err instanceof Error ? err.message : "OCR failed. Try another image or paste the list manually.");
+      setMessage(err instanceof Error ? err.message : "OCR processing failed. Please try another image or paste the list manually.");
     }
   }
 
@@ -100,7 +97,7 @@ export default function OcrPanel({ onExtracted }: OcrPanelProps) {
               <circle cx="12" cy="13" r="3" />
             </svg>
             <span className="font-medium text-text-body">Take or upload a photo</span>
-            <span className="text-xs">Powered by Gemini AI Vision</span>
+            <span className="text-xs">Local OCR processing (works offline)</span>
           </button>
 
           {/* Tips */}
@@ -124,7 +121,7 @@ export default function OcrPanel({ onExtracted }: OcrPanelProps) {
           )}
           <div className="mx-auto mb-3 h-6 w-6 animate-spin rounded-full border-2 border-green-primary border-t-transparent" />
           <p className="text-sm text-text-body">Reading ingredient list…</p>
-          <p className="mt-1 text-xs text-text-muted">Gemini AI Vision is processing your image</p>
+          <p className="mt-1 text-xs text-text-muted">Local OCR processing (this may take 10-30 seconds)</p>
         </div>
       )}
 
