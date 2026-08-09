@@ -27,12 +27,12 @@ const SCIENCE = [
     title: "Matched against EU data",
     body: "Every ingredient is checked against 24,000+ EU CosIng entries and 275 curated risk flags.",
     icon: (
-      <svg width="52" height="52" viewBox="0 0 32 32" fill="none" stroke="#4a5d44" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="52" height="52" viewBox="0 0 32 32" fill="none" stroke="#22c55e" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
         <rect x="6" y="3" width="16" height="20" rx="2" />
         <line x1="10" y1="9" x2="18" y2="9" />
         <line x1="10" y1="13" x2="18" y2="13" />
         <line x1="10" y1="17" x2="14" y2="17" />
-        <circle cx="21" cy="22" r="5" fill="#f0ede6" stroke="#4a5d44" strokeWidth="1.4" />
+        <circle cx="21" cy="22" r="5" fill="rgba(34, 197, 94, 0.1)" stroke="#22c55e" strokeWidth="1.4" />
         <line x1="21" y1="19.5" x2="21" y2="24.5" />
         <line x1="18.5" y1="22" x2="23.5" y2="22" />
       </svg>
@@ -42,17 +42,17 @@ const SCIENCE = [
     title: "Trust in data",
     body: "Every analysis is backed by curated dermatological flags and global regulatory databases.",
     icon: (
-      <svg width="52" height="52" viewBox="0 0 32 32" fill="none" stroke="#4a5d44" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="52" height="52" viewBox="0 0 32 32" fill="none" stroke="#22c55e" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
         <path d="M16 3 L28 8 V18 C28 24 22 28 16 30 C10 28 4 24 4 18 V8 Z" />
         <polyline points="11,16 14.5,19.5 21,13" />
       </svg>
     ),
   },
   {
-    title: "4000+ Ingredients Analyzed",
-    body: "Our database actively tracks over 4,000 common and uncommon skincare ingredients for safety.",
+    title: "24K+ Ingredients Analyzed",
+    body: "Our database actively tracks over 24,000 cosmetic ingredients with safety data and regulatory status.",
     icon: (
-      <svg width="52" height="52" viewBox="0 0 32 32" fill="none" stroke="#4a5d44" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="52" height="52" viewBox="0 0 32 32" fill="none" stroke="#22c55e" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
         <rect x="4" y="4" width="10" height="10" rx="2" />
         <rect x="18" y="4" width="10" height="10" rx="2" />
         <rect x="4" y="18" width="10" height="10" rx="2" />
@@ -64,7 +64,7 @@ const SCIENCE = [
 
 export default function Home() {
   return (
-    <div style={{ backgroundColor: "#f5f1ea" }}>
+    <div style={{ background: "linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)" }}>
       {/* HERO */}
       <section
         className="relative flex w-full items-center overflow-hidden bg-cover bg-no-repeat"
@@ -72,46 +72,111 @@ export default function Home() {
           height: "calc(100vh - 74px)",
           minHeight: "560px",
           maxHeight: "900px",
-          backgroundImage: "linear-gradient(to right, rgba(245,241,234,0.5) 0%, rgba(245,241,234,0.3) 25%, transparent 60%), url(/skinguard%20main%20page%20image.png)",
+          backgroundImage: "linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 41, 59, 0.7) 50%, rgba(15, 23, 42, 0.85) 100%), url(/skinguard%20main%20page%20image.png)",
           backgroundSize: "cover",
           backgroundPosition: "right center",
-          backgroundColor: "#f5f1ea",
         }}
       >
+        {/* Animated gradient orbs */}
+        <div style={{
+          position: "absolute",
+          top: "10%",
+          right: "10%",
+          width: "400px",
+          height: "400px",
+          background: "radial-gradient(circle, rgba(34, 197, 94, 0.15) 0%, transparent 70%)",
+          borderRadius: "50%",
+          animation: "float 8s ease-in-out infinite",
+        }} />
+        <div style={{
+          position: "absolute",
+          bottom: "10%",
+          left: "5%",
+          width: "300px",
+          height: "300px",
+          background: "radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%)",
+          borderRadius: "50%",
+          animation: "float 10s ease-in-out infinite",
+          animationDelay: "2s",
+        }} />
 
-        <div className="mx-auto w-full max-w-6xl px-8">
-          <div style={{ maxWidth: "500px" }}>
-            <p
-              className="inline-block rounded-full border px-4 py-1.5 text-xs font-semibold uppercase tracking-widest"
-              style={{ borderColor: "#c8c3bb", color: "#2a2724" }}
+        <style>{`
+          @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(30px); }
+          }
+          @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+          .animate-in {
+            animation: slideUp 0.8s ease-out;
+          }
+        `}</style>
+
+        <div className="relative z-10 mx-auto w-full max-w-6xl px-8">
+          <div style={{ maxWidth: "550px" }}>
+            <div
+              className="inline-block rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-widest backdrop-blur-md"
+              style={{
+                borderColor: "rgba(34, 197, 94, 0.5)",
+                color: "#22c55e",
+                backgroundColor: "rgba(34, 197, 94, 0.1)"
+              }}
             >
-              Clean Ingredients
-            </p>
+              ✨ AI-Powered Ingredient Analysis
+            </div>
 
             <h1
-              className="mt-5 leading-tight tracking-tight text-text-dark"
-              style={{ fontSize: "clamp(2.4rem, 4.5vw, 3.5rem)", fontWeight: 900, fontFamily: "var(--font-outfit)" }}
+              className="mt-6 leading-tight tracking-tight animate-in"
+              style={{
+                fontSize: "clamp(2.8rem, 5vw, 4rem)",
+                fontWeight: 900,
+                fontFamily: "var(--font-outfit)",
+                background: "linear-gradient(135deg, #ffffff 0%, #e0f2fe 50%, #22c55e 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+                lineHeight: 1.2,
+              }}
             >
-              Good for your skin.
+              Know Every
               <br />
-              <span style={{ fontFamily: "var(--font-playfair)", fontStyle: "italic", fontWeight: 700, color: "#4a5d44" }}>
-                Better for you.
+              <span style={{ fontFamily: "var(--font-playfair)", fontStyle: "italic" }}>
+                Ingredient
               </span>
+              <br />
+              Before It Touches Your Skin
             </h1>
 
-            <p className="mt-5 text-base leading-7" style={{ color: "#5a5348", maxWidth: "400px" }}>
-              High performance beauty with clean, powerful ingredients that
-              truly care. We analyze every label to flag irritants,
-              pore-cloggers, and hidden toxins.
+            <p className="mt-6 text-base leading-7 animate-in" style={{
+              color: "#cbd5e1",
+              maxWidth: "450px",
+              animationDelay: "0.1s"
+            }}>
+              Scan, photograph, or paste any ingredient list. Get instant analysis backed by 24,000+ EU CosIng entries and dermatology-backed safety ratings.
             </p>
 
-            <div className="mt-8">
+            <div className="mt-10 flex gap-4 animate-in" style={{ animationDelay: "0.2s" }}>
               <Link
                 href="/analyze"
-                className="inline-block rounded-2xl px-8 py-4 text-base font-semibold text-white shadow transition-colors hover:bg-green-btn-hover"
-                style={{ backgroundColor: "#4a5d44" }}
+                className="inline-block rounded-2xl px-8 py-4 text-base font-semibold text-white shadow-xl transition-all hover:scale-105 hover:shadow-2xl"
+                style={{
+                  background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
+                }}
               >
-                Analyze Ingredients
+                Analyze Now
+              </Link>
+              <Link
+                href="/ingredients"
+                className="inline-block rounded-2xl px-8 py-4 text-base font-semibold transition-all hover:scale-105 backdrop-blur-md"
+                style={{
+                  color: "#22c55e",
+                  border: "1.5px solid rgba(34, 197, 94, 0.5)",
+                  backgroundColor: "rgba(34, 197, 94, 0.05)"
+                }}
+              >
+                Browse Ingredients
               </Link>
             </div>
           </div>
@@ -119,29 +184,49 @@ export default function Home() {
       </section>
 
       {/* TRUST IN DATA — 3-column bento */}
-      <section>
-        <div className="mx-auto max-w-6xl px-6 py-16">
-          <div className="grid gap-5 md:grid-cols-3" style={{ height: "420px" }}>
+      <section style={{ background: "linear-gradient(180deg, rgba(15, 23, 42, 0) 0%, rgba(15, 23, 42, 0.5) 100%)" }}>
+        <div className="mx-auto max-w-6xl px-6 py-20">
+          <div className="mb-16 text-center">
+            <h2
+              style={{
+                fontSize: "2.8rem",
+                fontWeight: 800,
+                background: "linear-gradient(135deg, #22c55e 0%, #10b981 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              Trust in Data
+            </h2>
+            <p style={{ color: "#cbd5e1", marginTop: "12px", fontSize: "1.1rem" }}>
+              Powered by science, backed by regulations
+            </p>
+          </div>
+          <div className="grid gap-6 md:grid-cols-3" style={{ height: "420px" }}>
 
-            {/* LEFT — pink card with heading + stat */}
+            {/* LEFT — gradient card with heading + stat */}
             <div
-              className="flex flex-col justify-between rounded-3xl p-9"
-              style={{ backgroundColor: "#fce8e0" }}
+              className="flex flex-col justify-between rounded-3xl p-10 backdrop-blur-xl border transition-all hover:scale-105 hover:shadow-2xl cursor-pointer"
+              style={{
+                background: "linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%)",
+                borderColor: "rgba(34, 197, 94, 0.3)",
+              }}
             >
               <div>
-                <h2
+                <h3
                   style={{
                     fontFamily: "var(--font-playfair)",
                     fontStyle: "italic",
-                    fontSize: "2.1rem",
+                    fontSize: "2.3rem",
                     fontWeight: 700,
-                    color: "#c97a55",
+                    color: "#22c55e",
                     lineHeight: 1.25,
                   }}
                 >
-                  Trust in data
-                </h2>
-                <p className="mt-4 text-sm leading-6" style={{ color: "#7a5a48" }}>
+                  Trust in Data
+                </h3>
+                <p className="mt-4 text-sm leading-6" style={{ color: "#cbd5e1" }}>
                   Every analysis is backed by curated dermatological flags and global regulatory databases.
                 </p>
               </div>
@@ -149,51 +234,83 @@ export default function Home() {
                 <p
                   style={{
                     fontFamily: "var(--font-playfair)",
-                    fontSize: "4.5rem",
-                    fontWeight: 700,
-                    color: "#c97a55",
+                    fontSize: "4.8rem",
+                    fontWeight: 800,
+                    background: "linear-gradient(135deg, #22c55e 0%, #10b981 100%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
                     lineHeight: 1,
                   }}
                 >
-                  4000<span style={{ fontSize: "3rem" }}>+</span>
+                  24K<span style={{ fontSize: "2.8rem" }}>+</span>
                 </p>
-                <p className="mt-2 text-sm font-semibold" style={{ color: "#a35e3a" }}>
-                  CosIng Ingredients
+                <p className="mt-2 text-sm font-semibold" style={{ color: "#86efac" }}>
+                  EU CosIng Ingredients
                 </p>
               </div>
             </div>
 
             {/* CENTER — serum stats image */}
-            <div className="relative overflow-hidden rounded-3xl">
+            <div className="relative overflow-hidden rounded-3xl border transition-all hover:scale-105 hover:shadow-2xl" style={{ borderColor: "rgba(34, 197, 94, 0.2)" }}>
               <Image
                 src="/serum-stats.png"
                 alt="Serum stability analysis"
                 fill
                 className="object-cover object-center"
               />
+              <div style={{
+                position: "absolute",
+                inset: 0,
+                background: "linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, transparent 100%)",
+                pointerEvents: "none"
+              }} />
             </div>
 
             {/* RIGHT — two stacked cards */}
-            <div className="flex flex-col gap-5">
+            <div className="flex flex-col gap-6">
               <div
-                className="flex flex-1 flex-col justify-center rounded-3xl bg-white p-8"
+                className="flex flex-1 flex-col justify-center rounded-3xl p-8 backdrop-blur-xl border transition-all hover:scale-105 hover:shadow-2xl cursor-pointer"
+                style={{
+                  background: "linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(96, 165, 250, 0.05) 100%)",
+                  borderColor: "rgba(59, 130, 246, 0.3)",
+                }}
               >
-                <p style={{ fontSize: "4rem", fontWeight: 300, color: "#2a2724", lineHeight: 1 }}>
-                  275<span style={{ fontSize: "2.4rem" }}>+</span>
+                <p style={{
+                  fontSize: "4.5rem",
+                  fontWeight: 800,
+                  background: "linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                  lineHeight: 1,
+                }}>
+                  275<span style={{ fontSize: "2.6rem" }}>+</span>
                 </p>
-                <p className="mt-2 text-sm font-medium" style={{ color: "#5a5348" }}>
-                  Curated risk flags
+                <p className="mt-3 text-sm font-semibold" style={{ color: "#bfdbfe" }}>
+                  Curated Safety Flags
                 </p>
               </div>
               <div
-                className="flex flex-1 flex-col justify-center rounded-3xl p-8"
-                style={{ backgroundColor: "#4a5d44" }}
+                className="flex flex-1 flex-col justify-center rounded-3xl p-8 backdrop-blur-xl border transition-all hover:scale-105 hover:shadow-2xl cursor-pointer"
+                style={{
+                  background: "linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(196, 181, 253, 0.05) 100%)",
+                  borderColor: "rgba(168, 85, 247, 0.3)",
+                }}
               >
-                <p style={{ fontSize: "4rem", fontWeight: 300, color: "#ffffff", lineHeight: 1 }}>
+                <p style={{
+                  fontSize: "4.5rem",
+                  fontWeight: 800,
+                  background: "linear-gradient(135deg, #a855f7 0%, #c4b5fd 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                  lineHeight: 1,
+                }}>
                   8
                 </p>
-                <p className="mt-2 text-sm font-medium" style={{ color: "#c8ddd0" }}>
-                  Routine conflict types
+                <p className="mt-3 text-sm font-semibold" style={{ color: "#ddd6fe" }}>
+                  Skin Concern Types
                 </p>
               </div>
             </div>
@@ -203,60 +320,84 @@ export default function Home() {
       </section>
 
       {/* TESTIMONIALS */}
-      <section style={{ backgroundColor: "#edf2ee" }}>
-        <div className="mx-auto max-w-6xl px-6 py-16">
-          <h2
-            className="mb-12 text-center font-display font-bold"
-            style={{ color: "#1a1a1a", fontSize: "2.5rem" }}
-          >
-            What users are saying
-          </h2>
+      <section style={{ background: "linear-gradient(180deg, rgba(15, 23, 42, 0.5) 0%, rgba(15, 23, 42, 0) 100%)" }}>
+        <div className="mx-auto max-w-6xl px-6 py-20">
+          <div className="mb-16 text-center">
+            <h2
+              className="font-display font-bold"
+              style={{
+                fontSize: "2.8rem",
+                background: "linear-gradient(135deg, #22c55e 0%, #10b981 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              Loved by Skincare Enthusiasts
+            </h2>
+            <p style={{ color: "#cbd5e1", marginTop: "12px", fontSize: "1.1rem" }}>
+              See what our users are discovering
+            </p>
+          </div>
 
-          <div className="grid items-center gap-12 md:grid-cols-2">
+          <div className="grid items-center gap-16 md:grid-cols-2">
             <div className="flex items-center justify-center">
-              <Image
-                src="/happy_users_reviews.png"
-                alt="Happy SkinGuard users"
-                width={460}
-                height={460}
-                className="h-auto w-full max-w-[420px]"
-              />
+              <div style={{ position: "relative", width: "420px", height: "420px" }}>
+                <Image
+                  src="/happy_users_reviews.png"
+                  alt="Happy SkinGuard users"
+                  width={460}
+                  height={460}
+                  className="h-auto w-full max-w-[420px] rounded-3xl"
+                  style={{
+                    boxShadow: "0 20px 60px rgba(34, 197, 94, 0.2)",
+                  }}
+                />
+              </div>
             </div>
 
-            <div className="space-y-4">
-              {TESTIMONIALS.map((t) => (
+            <div className="space-y-6">
+              {TESTIMONIALS.map((t, idx) => (
                 <div
                   key={t.name}
-                  className="rounded-2xl bg-white p-6"
-                  style={{ boxShadow: "0 2px 12px rgba(0,0,0,0.07)" }}
+                  className="rounded-2xl backdrop-blur-xl border p-8 transition-all hover:scale-105 hover:shadow-2xl cursor-pointer"
+                  style={{
+                    background: "linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%)",
+                    borderColor: "rgba(34, 197, 94, 0.2)",
+                    animation: `slideUp 0.6s ease-out ${idx * 0.1}s both`,
+                  }}
                 >
                   <span
                     style={{
                       display: "block",
                       fontFamily: "Georgia, serif",
-                      fontSize: "2.2rem",
+                      fontSize: "2.5rem",
                       lineHeight: 1,
-                      color: "#3a5a44",
-                      marginBottom: "8px",
+                      color: "#22c55e",
+                      marginBottom: "12px",
+                      opacity: 0.6,
                     }}
                   >
                     &ldquo;
                   </span>
-                  <p style={{ color: "#4a4540", fontSize: "0.95rem", lineHeight: "1.7", fontStyle: "italic" }}>
+                  <p style={{ color: "#e2e8f0", fontSize: "1rem", lineHeight: "1.8", fontStyle: "italic" }}>
                     {t.quote}
                   </p>
-                  <div className="mt-4 flex items-center gap-3">
+                  <div className="mt-6 flex items-center gap-4">
                     <div
-                      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-bold text-white"
-                      style={{ backgroundColor: t.color }}
+                      className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-sm font-bold text-white shadow-lg"
+                      style={{
+                        backgroundColor: t.color,
+                        boxShadow: `0 8px 24px ${t.color}40`,
+                      }}
                     >
                       {t.initial}
                     </div>
                     <div>
-                      <p className="text-sm font-semibold" style={{ color: "#1a1a1a" }}>{t.name}</p>
-                      <div className="flex gap-0.5" style={{ color: "#f0a020" }}>
+                      <p className="text-sm font-semibold" style={{ color: "#f0fdfa" }}>{t.name}</p>
+                      <div className="flex gap-1 mt-1" style={{ color: "#fbbf24" }}>
                         {[...Array(5)].map((_, i) => (
-                          <svg key={i} width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                          <svg key={i} width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                           </svg>
                         ))}
@@ -271,39 +412,92 @@ export default function Home() {
       </section>
 
       {/* BACKED BY SCIENCE */}
-      <section style={{ backgroundColor: "#ffffff" }}>
-        <div className="mx-auto max-w-5xl px-6 py-16">
-          <div className="mb-12 text-center">
+      <section style={{
+        background: "linear-gradient(180deg, rgba(15, 23, 42, 0) 0%, rgba(15, 23, 42, 0.8) 100%)"
+      }}>
+        <div className="mx-auto max-w-5xl px-6 py-20">
+          <div className="mb-16 text-center">
             <h2
               className="font-display font-bold"
-              style={{ color: "#1a1a1a", fontSize: "2.5rem" }}
+              style={{
+                fontSize: "2.8rem",
+                background: "linear-gradient(135deg, #22c55e 0%, #10b981 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
             >
               Backed by Science
             </h2>
-            <p className="mt-3" style={{ color: "#6a7a6e", fontSize: "1rem" }}>
-              We bring transparency to your skincare products.
+            <p className="mt-4" style={{ color: "#cbd5e1", fontSize: "1.1rem" }}>
+              Powered by regulatory databases and dermatological research
             </p>
           </div>
 
-          <div className="grid gap-12 text-center md:grid-cols-3">
-            {SCIENCE.map((s) => (
-              <div key={s.title} className="flex flex-col items-center">
-                <div className="mb-6">{s.icon}</div>
+          <div className="grid gap-10 text-center md:grid-cols-3">
+            {SCIENCE.map((s, idx) => (
+              <div
+                key={s.title}
+                className="flex flex-col items-center rounded-3xl backdrop-blur-xl border p-10 transition-all hover:scale-105 hover:shadow-2xl cursor-pointer"
+                style={{
+                  background: "linear-gradient(135deg, rgba(34, 197, 94, 0.05) 0%, rgba(16, 185, 129, 0.02) 100%)",
+                  borderColor: "rgba(34, 197, 94, 0.2)",
+                  animation: `slideUp 0.6s ease-out ${idx * 0.1}s both`,
+                }}
+              >
+                <div
+                  className="mb-6 rounded-2xl p-4 transition-all"
+                  style={{
+                    background: "linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%)",
+                  }}
+                >
+                  {/* Update icon stroke color */}
+                  {s.icon && typeof s.icon === 'object' && s.icon.type === 'svg' ? (
+                    <div style={{ color: "#22c55e" }}>{s.icon}</div>
+                  ) : (
+                    s.icon
+                  )}
+                </div>
                 <h3
                   className="font-display font-bold"
-                  style={{ color: "#1a1a1a", fontSize: "1.15rem" }}
+                  style={{ color: "#f0fdfa", fontSize: "1.3rem" }}
                 >
                   {s.title}
                 </h3>
                 <p
-                  className="mt-3 leading-7"
-                  style={{ color: "#5a6a5e", maxWidth: "260px", fontSize: "0.95rem" }}
+                  className="mt-4 leading-7"
+                  style={{ color: "#cbd5e1", maxWidth: "280px", fontSize: "0.95rem" }}
                 >
                   {s.body}
                 </p>
               </div>
             ))}
           </div>
+        </div>
+
+        {/* Footer CTA */}
+        <div className="mx-auto max-w-4xl px-6 py-16 text-center">
+          <h2
+            style={{
+              fontSize: "2.2rem",
+              fontWeight: 800,
+              color: "#f0fdfa",
+            }}
+          >
+            Ready to analyze your products?
+          </h2>
+          <p style={{ color: "#cbd5e1", marginTop: "16px", fontSize: "1.1rem" }}>
+            Join thousands of users making informed skincare decisions
+          </p>
+          <Link
+            href="/analyze"
+            className="inline-block mt-8 rounded-2xl px-10 py-4 text-base font-semibold text-white shadow-xl transition-all hover:scale-105 hover:shadow-2xl"
+            style={{
+              background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
+            }}
+          >
+            Start Analyzing →
+          </Link>
         </div>
       </section>
     </div>
