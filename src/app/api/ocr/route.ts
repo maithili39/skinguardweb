@@ -1,6 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { withLogger } from "@/lib/api-handler";
-import { extractWithGeminiVision } from "@/lib/gemini-ocr";
+import { extractWithTesseract } from "@/lib/tesseract-ocr";
 import { checkRateLimit, getRequestIp } from "@/lib/auth";
 import { logger } from "@/lib/logger";
 import { z } from "zod";
@@ -218,43 +218,28 @@ export const POST = withLogger(async (req: NextRequest) => {
     );
   }
 
-  if (!process.env.GEMINI_API_KEY) {
-    return NextResponse.json(
-      { error: "OCR is not configured. GEMINI_API_KEY is missing." },
-      { status: 503 },
-    );
-  }
-
   try {
-    const mimeType = parsed.data.mimeType ?? "image/jpeg";
+    // ── Primary path: Tesseract.js local OCR (no API key needed) ──────────────
+    const ocrText = await extractWithTesseract(parsed.data.imageBase64);
 
-    // ── Primary path: Gemini Vision reads the image directly ──────────────────
-    // No Google Cloud Vision needed — Gemini multimodal handles both OCR and
-    // ingredient extraction in a single free API call.
-    const geminiResult = await extractWithGeminiVision(
-      parsed.data.imageBase64,
-      mimeType,
-    );
-
-    if (geminiResult) {
-      logger.info("ocr_success", { method: "gemini_vision" });
-      return NextResponse.json({
-        text: geminiResult.ingredients,
-        expiry: geminiResult.expiry,
-      });
+    if (!ocrText || ocrText.trim().length === 0) {
+      logger.warn("ocr_no_text_found", { image_size: parsed.data.imageBase64.length });
+      return NextResponse.json(
+        { error: "No text found in image. Try a clearer, well-lit photo of just the ingredient list." },
+        { status: 400 }
+      );
     }
 
-    // ── No text found in image ────────────────────────────────────────────────
-    logger.warn("ocr_no_text_found", { image_size: parsed.data.imageBase64.length });
-    return NextResponse.json(
-      { error: "No text found in image. Try a clearer, well-lit photo of just the ingredient list." },
-      { status: 400 }
-    );
+    // Extract ingredient section from OCR text
+    const { ingredients, expiry } = extractIngredientSection(ocrText);
+
+    logger.info("ocr_success", { method: "tesseract", text_length: ocrText.length });
+    return NextResponse.json({ text: ingredients, expiry });
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err);
     logger.error("ocr_failed", { error: msg });
     return NextResponse.json(
-      { error: "OCR failed. Please try again." },
+      { error: "OCR processing failed. Please try again with a clearer image." },
       { status: 500 },
     );
   }
