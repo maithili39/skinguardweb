@@ -97,7 +97,7 @@ export function clearSessionCookieValue(): string {
 }
 
 const WINDOW_MS = 15 * 60 * 1000; // 15 minutes
-const MAX_ATTEMPTS = 10;
+const MAX_ATTEMPTS = 50; // Increased for development testing
 
 export async function checkRateLimit(ip: string): Promise<boolean> {
   const now = Date.now();
