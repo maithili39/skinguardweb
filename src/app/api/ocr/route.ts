@@ -244,11 +244,12 @@ export const POST = withLogger(async (req: NextRequest) => {
       });
     }
 
-    // ── Fallback: regex-based extraction if Gemini is unavailable ─────────────
-    // This branch should rarely be reached since Gemini Vision is the primary.
-    logger.warn("ocr_gemini_unavailable", { fallback: "regex" });
-    const { ingredients, expiry } = extractIngredientSection("");
-    return NextResponse.json({ text: ingredients, expiry });
+    // ── No text found in image ────────────────────────────────────────────────
+    logger.warn("ocr_no_text_found", { image_size: parsed.data.imageBase64.length });
+    return NextResponse.json(
+      { error: "No text found in image. Try a clearer, well-lit photo of just the ingredient list." },
+      { status: 400 }
+    );
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err);
     logger.error("ocr_failed", { error: msg });

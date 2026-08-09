@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:skinguardweb-5vhv.vercel.app)",
+      "Bash(npx tsc *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" https://skinguardweb-5vhv.vercel.app/serum-stats.png)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" https://skinguardweb-5vhv.vercel.app/happy_users_reviews.png)",
+      "Bash(curl -s -X POST https://skinguardweb-5vhv.vercel.app/api/newsletter -H \"Content-Type: application/json\" -d '{\"email\":\"test@example.com\"}' -w \"\\\\nHTTP:%{http_code}\\\\n\")",
+      "Bash(curl -s -X POST https://skinguardweb-5vhv.vercel.app/api/newsletter -H \"Content-Type: application/json\" -d '{}' -w \"\\\\nHTTP:%{http_code}\\\\n\")",
+      "Bash(curl -s -X POST https://skinguardweb-5vhv.vercel.app/api/newsletter -H \"Content-Type: application/json\" -d '{\"email\":\"not-an-email\"}' -w \"\\\\nHTTP:%{http_code}\\\\n\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" https://skinguardweb-5vhv.vercel.app/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" https://skinguardweb-5vhv.vercel.app/nonexistent-page-xyz)",
+      "Bash(taskkill //F //IM node.exe)",
+      "Bash(curl -s -c /tmp/c7.txt -X POST http://localhost:3400/api/auth/signup -H 'Content-Type: application/json' -H 'Origin: http://localhost:3400' -d '{\"email\":\"__TRACKED_VAR__\",\"password\":\"TestPass1234\"}' -w '\\\\nHTTP:%{http_code}\\\\n')",
+      "Bash(curl -s -X POST http://localhost:3400/api/analyze -H \"Content-Type: application/json\" -H \"Origin: http://localhost:3400\" -b /tmp/c7.txt -d '{\"text\":\"Sodium Palmate, Sodium Palm Aqua \\(Water\\) Glycerin Physalis Peruviana Extract Tocopheryl Acetate \\(Vitamin E\\) Sodium Chloride Parfum \\(Fragrance\\) CI 77891\",\"profile\":{\"skinType\":\"normal\",\"concerns\":[]}}')",
+      "Bash(node -e ' *)",
+      "Bash(git commit -m ' *)",
+      "Bash(curl -s -c /tmp/c8.txt -X POST http://localhost:3401/api/auth/signup -H 'Content-Type: application/json' -H 'Origin: http://localhost:3401' -d '{\"email\":\"__TRACKED_VAR__\",\"password\":\"TestPass1234\"}')",
+      "Bash(curl -s -X POST http://localhost:3401/api/analyze -H \"Content-Type: application/json\" -H \"Origin: http://localhost:3401\" -b /tmp/c8.txt -d '{\"text\":\"Aqua Glycerin Niacinamide Sodium Hyaluronate Dimethicone Phenoxyethanol Tocopherol\",\"profile\":{\"skinType\":\"normal\",\"concerns\":[]}}')",
+      "Bash(curl -s -X POST http://localhost:3401/api/analyze -H \"Content-Type: application/json\" -H \"Origin: http://localhost:3401\" -b /tmp/c8.txt -d '{\"text\":\"Aqua, Glycerin, Niacinamide, Parfum, Limonene\",\"profile\":{\"skinType\":\"normal\",\"concerns\":[]}}')",
+      "Bash(curl -s -c /tmp/c9.txt -X POST http://localhost:3402/api/auth/signup -H 'Content-Type: application/json' -H 'Origin: http://localhost:3402' -d '{\"email\":\"__TRACKED_VAR__\",\"password\":\"TestPass1234\"}')",
+      "Bash(curl -s -X POST http://localhost:3402/api/analyze -H \"Content-Type: application/json\" -H \"Origin: http://localhost:3402\" -b /tmp/c9.txt -d '{\"text\":\"Sodium Palmate, Sodium Palm Aqua \\(Water\\) Glycerin Physalis Peruviana Extract Tocopheryl Acetate \\(Vitamin E\\) Sodium Chloride Parfum \\(Fragrance\\) CI 77891\",\"profile\":{\"skinType\":\"normal\",\"concerns\":[]}}')"
+    ]
+  }
+}

@@ -80,7 +80,11 @@ ${SHARED_JSON_SCHEMA}`;
 
     if (!res.ok) {
       const errText = await res.text();
-      console.error("Gemini vision error:", res.status, errText);
+      console.error("Gemini vision error:", {
+        status: res.status,
+        error: errText,
+        apiUrl: GEMINI_URL,
+      });
       return null;
     }
 
